@@ -1,0 +1,17 @@
+{
+  "name": "INSIDE MAPS",
+  "displayName": "INSIDE MAPSS",
+  "expo": {
+    "name": "INSIDE MAPS",
+    "slug": "INSIDE MAPS",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
