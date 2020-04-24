@@ -1,32 +1,31 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import React from "react";
+import { ImageBackground, StyleSheet, Text, View } from "react-native";
 
-function AppState() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-      </View>
-    );
-  }
-  
+const AppState = () => (
+  <View style={styles.container}>
+    <ImageBackground source={require('../../../public/img/Mirage.jpg')} style={styles.image}>
+      <Text style={styles.text}>Inside</Text>
+    </ImageBackground>
+  </View>
+);
+
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#F5FCFF',
-    },
-    welcome: {
-      fontSize: 20,
-      textAlign: 'center',
-      margin: 10,
-    },
-    instructions: {
-      textAlign: 'center',
-      color: '#333333',
-      marginBottom: 5,
-    },
-  });
+  container: {
+    flex: 1,
+    flexDirection: "column",
+  },
+  image: {
+    justifyContent: "center",
+    alignItems: 'center',
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center"
+  },
+  text: {
+    color: "grey",
+    fontSize: 30,
+    fontWeight: "bold"
+  }
+});
 
 export default AppState
