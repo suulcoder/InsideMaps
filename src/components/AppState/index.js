@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
   image: {
     alignItems: 'center',
     flex: 1,
-    resizeMode: "cover",
   },
   text: {
     color: "grey",

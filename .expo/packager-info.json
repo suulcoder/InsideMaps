@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19004,
-  "packagerPid": 26284,
-  "expoServerNgrokUrl": "https://in-37j.anonymous.insidemaps.exp.direct",
-  "packagerNgrokUrl": "https://packager.gf-eia.anonymous.insidemaps.exp.direct",
-  "ngrokPid": 26401,
-  "webpackServerPort": 19006
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
+  "webpackServerPort": null
 }
