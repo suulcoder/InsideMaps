@@ -1,10 +1,11 @@
 import React from "react";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import Header from "../Header";
 
 const AppState = () => (
   <View style={styles.container}>
-    <ImageBackground source={require('../../../public/img/Mirage.jpg')} style={styles.image}>
-      <Text style={styles.text}>Inside</Text>
+    <ImageBackground source={require('../../../public/img/image.png')} style={styles.image}>
+      <Header></Header>
     </ImageBackground>
   </View>
 );
@@ -15,11 +16,9 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   image: {
-    justifyContent: "center",
     alignItems: 'center',
     flex: 1,
     resizeMode: "cover",
-    justifyContent: "center"
   },
   text: {
     color: "grey",
