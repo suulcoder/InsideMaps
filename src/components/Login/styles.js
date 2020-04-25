@@ -33,6 +33,15 @@ let styles = StyleSheet.create({
         borderWidth: 6,
         borderColor: '#540A08',
         width: 150
+    },
+    errorText:{
+        borderColor: "red",
+        color: "white",
+        fontSize: 15,
+    },
+    section:{
+        flexDirection: "column",
+        alignItems:"center"
     }
 });
 if(width<800){
@@ -72,7 +81,11 @@ if(width<800){
             width: 150,
             marginTop: 35,
             marginBottom: 20
-        }
+        },
+        errorText:{
+            color: "red",
+            fontSize: 15,
+        },
 })}
 
 export default styles

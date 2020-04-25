@@ -9,7 +9,7 @@ let styles = StyleSheet.create({
         borderWidth: 3,
         borderColor: '#FFFFFF',
         padding: 60,
-        marginTop: 120,
+        marginTop: 100,
         marginBottom: 120
     },
     inputShort: {
@@ -84,7 +84,11 @@ let styles = StyleSheet.create({
     textVerySmall:{
         color: "white",
         fontSize: 11    ,
-    }
+    },
+    errorText:{
+        color: "white",
+        fontSize: 15,
+    },
 });
 
 export default styles
