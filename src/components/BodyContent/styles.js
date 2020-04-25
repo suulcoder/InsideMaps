@@ -6,16 +6,18 @@ let styles = StyleSheet.create({
       alignItems: "baseline",
       alignSelf: 'stretch',
       flexDirection: "row",
-      flexWrap: 'wrap',
       justifyContent: 'center',
-      padding: 150
+      paddingRight: 150,
+      paddingLeft: 150,
+      paddingTop: 40
     },
     text: {
         color: "white",
-        fontSize: 120,
+        fontSize: 110,
       },
     textContainer:  {
-        width: 700
+      marginTop: 90,  
+      width: 700
     }
   });
 if(width<800){
@@ -25,6 +27,7 @@ styles = StyleSheet.create({
       alignSelf: 'stretch',
       flexDirection: "row",
       flexWrap: 'wrap',
+      justifyContent: 'center',
       padding: 45,
       marginBottom:50
     },
@@ -33,8 +36,10 @@ styles = StyleSheet.create({
         fontSize: 60,
       },
     textContainer:  {
-        width: 400,
-        marginTop:70
+        width: 300,
+        marginTop:70,
+        marginBottom: 70,
+        marginRight: 50
     }
   });
 }
