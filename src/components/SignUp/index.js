@@ -4,6 +4,7 @@ import { View, TextInput, Button, Text, Switch } from "react-native";
 import styles from './styles'
 import { getError, getIsAuthenticating } from '../../reducers'
 import * as actions from '../../actions/auth'
+import NumericInput from 'react-native-numeric-input'
 
 const SignUp = ({Message, onSubmit}) => {
     const [user,changeUser] = useState('')
@@ -12,7 +13,7 @@ const SignUp = ({Message, onSubmit}) => {
     const [email,changeEmail] = useState('')
     const [name,changeName] = useState('')
     const [lastname,changeLastname] = useState('')
-    const [age,changeAge] = useState('')
+    const [age,changeAge] = useState(0)
     const [sex,changesex] = useState(true)
     const toggleSwitch = () => changesex(previousState => !previousState);
     
@@ -32,7 +33,9 @@ const SignUp = ({Message, onSubmit}) => {
                 className="email"
                 type="email"
                 placeholder="email"
+                autoCompleteType='email'
                 value={email}
+                keyboardType={'email-address'}        
                 onChange={e=>changeEmail(e.target.value)}
             />
             <View style={styles.subSection}>
@@ -44,8 +47,8 @@ const SignUp = ({Message, onSubmit}) => {
                 />
                 <TextInput
                     style={styles.input}
-                    placeholder="Lastname"
                     value={lastname}
+                    placeholder="Lastname"
                     onChange={e=>changeLastname(e.target.value)}
                 />
             </View>
@@ -76,6 +79,7 @@ const SignUp = ({Message, onSubmit}) => {
                         style={styles.inputShort}
                         placeholder="AGE"
                         value={age}
+                        keyboardType={'numeric'}
                         onChange={e=>changeAge(e.target.value)}
                     />
                 </View>
@@ -106,35 +110,44 @@ const SignUp = ({Message, onSubmit}) => {
 
 export default connect(
     state => ({
-        Message: (getIsAuthenticating(state).signup)?('LOADING...'):(getError(state)) 
+        Message: (getIsAuthenticating(state).signup!==null)?
+            ((getIsAuthenticating(state).signup)?
+                ('LOADING...'):
+                (getError(state))):
+            (undefined) 
     }),
     dispatch => ({
         onSubmit(name,lastname,user,email,password,age,sex, passwordConfirm){
             if(user && password && lastname && name && email && age){
                 if(password==passwordConfirm){
-                    dispatch(actions.startSignUp(name,lastname,user,email,password,age,sex));
+                    if(age>0){
+                        dispatch(actions.startSignUp(name,lastname,user,email,password,age,sex));
+                    }
+                    else{
+                        dispatch(actions.failLogin('WRITE A VALID AGE',1));
+                    }
                 }
                 else{
-                    dispatch(actions.failLogin('PASSWORDS MUST MATCH'));
+                    dispatch(actions.failLogin('PASSWORDS MUST MATCH',1));
                 }
             }    
             else if(!user){
-                dispatch(actions.failLogin('USER FIELD MUST NOT BE EMPTY'));
+                dispatch(actions.failLogin('USER FIELD MUST NOT BE EMPTY',1));
             }
             else if(!password){
-                dispatch(actions.failLogin('PASSWORD FIELD MUST NOT BE EMPTY'));
+                dispatch(actions.failLogin('PASSWORD FIELD MUST NOT BE EMPTY',1));
             }
             else if(!name){
-                dispatch(actions.failLogin('NAME FIELD MUST NOT BE EMPTY'));
+                dispatch(actions.failLogin('NAME FIELD MUST NOT BE EMPTY',1));
             }
             else if(!lastname){
-                dispatch(actions.failLogin('LASTNAME FIELD MUST NOT BE EMPTY'));
+                dispatch(actions.failLogin('LASTNAME FIELD MUST NOT BE EMPTY',1));
             }
             else if(!email){
-                dispatch(actions.failLogin('EMAIL FIELD MUST NOT BE EMPTY'));
+                dispatch(actions.failLogin('EMAIL FIELD MUST NOT BE EMPTY',1));
             }
             else if(!age){
-                dispatch(actions.failLogin('AGE FIELD MUST NOT BE EMPTY'));
+                dispatch(actions.failLogin('AGE FIELD MUST NOT BE EMPTY',1));
             }
         }
     })

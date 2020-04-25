@@ -13,8 +13,8 @@ let styles = StyleSheet.create({
         marginBottom: 120
     },
     inputShort: {
-        width: 50,
-        height: 10,
+        width: 70,
+        height: 30,
         backgroundColor: '#FFFFFF',
         borderRadius: 20,
         fontSize: 9,

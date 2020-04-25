@@ -42,7 +42,11 @@ const Login = ({Message ,onSubmit}) => {
 
 export default connect(
     state => ({
-        Message: (getIsAuthenticating(state).login)?('LOADING...'):(getError(state)) 
+        Message: (getIsAuthenticating(state).login!==null)?
+            ((getIsAuthenticating(state).login)?
+                ('LOADING...'):
+                (getError(state))):
+            (undefined) 
     }),
     dispatch => ({
         onSubmit(user,password){
@@ -50,10 +54,10 @@ export default connect(
                 dispatch(actions.startLogin(user,password))
             }    
             else if(!user){
-                dispatch(actions.failLogin('USER FIELD MUST NOT BE EMPTY'))
+                dispatch(actions.failLogin('USER FIELD MUST NOT BE EMPTY',0))
             }
             else if(!password){
-                dispatch(actions.failLogin('PASSWORD FIELD MUST NOT BE EMPTY'))
+                dispatch(actions.failLogin('PASSWORD FIELD MUST NOT BE EMPTY',0))
             }
         }
     })

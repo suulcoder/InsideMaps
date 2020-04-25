@@ -1,8 +1,8 @@
 {
   "devToolsPort": 19002,
   "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 5350,
+  "packagerPort": null,
+  "packagerPid": null,
   "expoServerNgrokUrl": "https://g7-mii.anonymous.insidemaps.exp.direct",
   "packagerNgrokUrl": "https://packager.g7-mii.anonymous.insidemaps.exp.direct",
   "ngrokPid": 5376,

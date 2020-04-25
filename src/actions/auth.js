@@ -21,7 +21,7 @@ export const completeLogin = token => ({
   payload: { token },
 });
 
-export const failLogin = error => ({
+export const failLogin = (error,form) => ({
   type: types.AUTHENTICATION_FAILED,
-  payload: { error },
+  payload: { error, form },
 });
