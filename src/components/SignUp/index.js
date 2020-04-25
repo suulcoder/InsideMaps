@@ -1,15 +1,22 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
-import { View, TextInput, Button, Text } from "react-native";
+import { View, TextInput, Button, Text, Switch } from "react-native";
 import styles from './styles'
+import { getError, getIsAuthenticating } from '../../reducers'
+import * as actions from '../../actions/auth'
+import NumericInput from 'react-native-numeric-input'
 
-const SignUp = ({onSubmit}) => {
+const SignUp = ({Message, onSubmit}) => {
     const [user,changeUser] = useState('')
     const [password,changePassword] = useState('')
     const [passwordConfirm,changePasswordComfirm] = useState('')
     const [email,changeEmail] = useState('')
     const [name,changeName] = useState('')
     const [lastname,changeLastname] = useState('')
+    const [age,changeAge] = useState(0)
+    const [sex,changesex] = useState(true)
+    const toggleSwitch = () => changesex(previousState => !previousState);
+    
     return (
         <View style={styles.signUp}>
             <Text style={styles.text}>START NOW</Text>
@@ -26,7 +33,9 @@ const SignUp = ({onSubmit}) => {
                 className="email"
                 type="email"
                 placeholder="email"
+                autoCompleteType='email'
                 value={email}
+                keyboardType={'email-address'}        
                 onChange={e=>changeEmail(e.target.value)}
             />
             <View style={styles.subSection}>
@@ -34,13 +43,13 @@ const SignUp = ({onSubmit}) => {
                     style={styles.input}
                     placeholder="Name"
                     value={name}
-                    onChange={e=>changePassword(e.target.value)}
+                    onChange={e=>changeName(e.target.value)}
                 />
                 <TextInput
                     style={styles.input}
-                    placeholder="Lastname"
                     value={lastname}
-                    onChange={e=>changePasswordComfirm(e.target.value)}
+                    placeholder="Lastname"
+                    onChange={e=>changeLastname(e.target.value)}
                 />
             </View>
             <View style={styles.subSection}>
@@ -63,10 +72,36 @@ const SignUp = ({onSubmit}) => {
                     onChange={e=>changePasswordComfirm(e.target.value)}
                 />
             </View>
+            <View style={styles.subSection2}>
+                <View style={styles.subSection}>
+                    <Text style={styles.textSmall}>AGE: </Text>
+                    <TextInput
+                        style={styles.inputShort}
+                        placeholder="AGE"
+                        value={age}
+                        keyboardType={'numeric'}
+                        onChange={e=>changeAge(e.target.value)}
+                    />
+                </View>
+                <View style={styles.subSection}>
+                    <Text style={styles.textSmall}>SEX:  </Text>
+                    <View style={styles.subSection}>
+                        <Text style={styles.textVerySmall}>M  </Text>
+                        <Switch
+                            trackColor={{ false: "#540A08", true: "#540A08" }}
+                            onValueChange={toggleSwitch}
+                            thumbColor={sex ? "#f5dd4b" : "#f4f3f4"}
+                            value={sex}
+                        />
+                        <Text style={styles.textVerySmall}>   F</Text>
+                    </View>
+                </View>
+            </View>
+            <Text style={styles.errorText}>{Message}</Text>
             <View style={styles.button}>
                 <Button type="submit" color='#540A08' title='SIGN UP' 
                     style={styles.button} onPress={
-                    () => onSubmit(user,email,password,passwordConfirm)
+                    () => onSubmit(name,lastname,user,email,password,age,sex, passwordConfirm)
                 }/>
             </View>
         </View>
@@ -74,10 +109,46 @@ const SignUp = ({onSubmit}) => {
 }
 
 export default connect(
-    undefined,
-    dispatch=>({
-        onSubmit(user,email,password,passwordConfirm){
-
+    state => ({
+        Message: (getIsAuthenticating(state).signup!==null)?
+            ((getIsAuthenticating(state).signup)?
+                ('LOADING...'):
+                (getError(state))):
+            (undefined) 
+    }),
+    dispatch => ({
+        onSubmit(name,lastname,user,email,password,age,sex, passwordConfirm){
+            if(user && password && lastname && name && email && age){
+                if(password==passwordConfirm){
+                    if(age>0){
+                        dispatch(actions.startSignUp(name,lastname,user,email,password,age,sex));
+                    }
+                    else{
+                        dispatch(actions.failLogin('WRITE A VALID AGE',1));
+                    }
+                }
+                else{
+                    dispatch(actions.failLogin('PASSWORDS MUST MATCH',1));
+                }
+            }    
+            else if(!user){
+                dispatch(actions.failLogin('USER FIELD MUST NOT BE EMPTY',1));
+            }
+            else if(!password){
+                dispatch(actions.failLogin('PASSWORD FIELD MUST NOT BE EMPTY',1));
+            }
+            else if(!name){
+                dispatch(actions.failLogin('NAME FIELD MUST NOT BE EMPTY',1));
+            }
+            else if(!lastname){
+                dispatch(actions.failLogin('LASTNAME FIELD MUST NOT BE EMPTY',1));
+            }
+            else if(!email){
+                dispatch(actions.failLogin('EMAIL FIELD MUST NOT BE EMPTY',1));
+            }
+            else if(!age){
+                dispatch(actions.failLogin('AGE FIELD MUST NOT BE EMPTY',1));
+            }
         }
     })
 )(SignUp)

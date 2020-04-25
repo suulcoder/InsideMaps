@@ -9,8 +9,18 @@ let styles = StyleSheet.create({
         borderWidth: 3,
         borderColor: '#FFFFFF',
         padding: 60,
-        marginTop: 120,
+        marginTop: 100,
         marginBottom: 120
+    },
+    inputShort: {
+        width: 70,
+        height: 30,
+        backgroundColor: '#FFFFFF',
+        borderRadius: 20,
+        fontSize: 9,
+        marginRight: 15,
+        marginLeft: 15,
+        padding: 10,
     },
     input: {
         minWidth: 150,
@@ -18,7 +28,7 @@ let styles = StyleSheet.create({
         borderRadius: 20,
         fontSize: 12,
         marginRight: 15,
-        marginTop: 15,
+        marginTop: 12,
         padding: 10
     },
     inputLarge: {
@@ -27,7 +37,7 @@ let styles = StyleSheet.create({
         borderRadius: 20,
         fontSize: 12,
         marginRight: 15,
-        marginTop: 15,
+        marginTop: 12,
         padding: 10
     },
     password:{
@@ -36,7 +46,7 @@ let styles = StyleSheet.create({
         borderRadius: 20,
         fontSize: 12,
         marginRight: 15,
-        marginTop: 15,
+        marginTop: 12,
         padding: 10,
     },
     button:{
@@ -53,11 +63,31 @@ let styles = StyleSheet.create({
         marginBottom: 60
     },
     subSection: {
-        alignItems: "baseline",
+        alignItems: "center",
         flexDirection: "row",
         justifyContent: "center",
         padding: 5,
         flexWrap: 'wrap'
+    },
+    subSection2: {
+        alignItems: "center",
+        flexDirection: "row",
+        justifyContent: 'space-between',
+        padding: 5,
+        marginTop: 12,
+        flexWrap: 'wrap'
+    },
+    textSmall:{
+        color: "white",
+        fontSize: 15,
+    },
+    textVerySmall:{
+        color: "white",
+        fontSize: 11    ,
+    },
+    errorText:{
+        color: "white",
+        fontSize: 15,
     },
 });
 

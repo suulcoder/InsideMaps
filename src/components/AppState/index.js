@@ -3,27 +3,47 @@ import { ImageBackground, ScrollView, View } from "react-native";
 import Header from "../Header";
 import styles from './styles'
 import BodyContent from "../BodyContent";
+import { connect } from 'react-redux'
+import { getAuthToken } from '../../reducers/index'
 
-let AppState = () => (
-  <ScrollView style={styles.container}>
-    <ImageBackground source={require('../../../public/img/image.png')} style={styles.image}>
-      <Header></Header>
-      <BodyContent></BodyContent>
-    </ImageBackground>
-  </ScrollView>
-);
+const MyApp = ({isLogged}) => (
+  <ImageBackground source={require('../../../public/img/image.png')} style={styles.image}>
+     {
+       (isLogged)?(
+        <View></View>
+       ):(
+        <View>
+          <Header></Header>
+          <BodyContent></BodyContent>
+        </View>
+       )
+     }
+    
+  </ImageBackground>
+)
 
-if (typeof document != 'undefined') {
-  // I'm on the web!
-  AppState = () => (
-    <View style={styles.container}>
-      <ImageBackground source={require('../../../public/img/image.png')} style={styles.image}>
-        <Header></Header>
-        <BodyContent></BodyContent>
-      </ImageBackground>
-    </View>
-  );
-}
+const AppState = ({isLogged}) => {
+  if (typeof document != 'undefined') {
+    // I'm on the web!
+    return (
+      <View style={styles.container}>
+        <MyApp isLogged={isLogged}></MyApp>
+      </View>
+    );
+  }
+  return (
+    <ScrollView style={styles.container}>
+      <myApp></myApp>
+    </ScrollView>
+  )
+}; 
 
-
-export default AppState
+export default connect(
+  state => {
+    console.log(state)
+    return({
+      isLogged: getAuthToken(state)!=null
+    })
+  },
+  undefined
+)(AppState)

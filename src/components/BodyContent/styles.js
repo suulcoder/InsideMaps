@@ -8,8 +8,7 @@ let styles = StyleSheet.create({
       flexDirection: "row",
       justifyContent: 'center',
       paddingRight: 150,
-      paddingLeft: 150,
-      paddingTop: 40
+      paddingLeft: 150
     },
     text: {
         color: "white",
