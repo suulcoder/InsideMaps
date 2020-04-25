@@ -1,9 +1,13 @@
 import { combineReducers } from 'redux';
 
-/*const reducer = combineReducers({
-    
-})*/
+import auth, * as authSelectors from './auth';
 
-const reducer = () => undefined
+const reducer = combineReducers({
+  auth
+});
 
-export default reducer
+export default reducer;
+
+export const getAuthToken = state => authSelectors.getAuthToken(state.auth);
+export const getIsAuthenticating = state => authSelectors.getIsAuthenticating(state.auth);
+export const getIsAuthenticating = state => authSelectors.getIsAuthenticating(state.auth);
