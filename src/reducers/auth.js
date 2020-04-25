@@ -60,4 +60,4 @@ export default auth;
 
 export const getAuthToken = state => state.token;
 export const getIsAuthenticating = state => state.isAuthenticating;
-export const getIsAuthenticating = state => state.error;
+export const getIsAuthenticatingError = state => state.error;

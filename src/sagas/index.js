@@ -1,9 +1,11 @@
 import { fork, all } from 'redux-saga/effects';
 
+import { watchLoginStarted } from './auth';
+
 function* mainSaga() {
-  yield 0/*all([
-    fork(),
-  ]);*/
+  yield all([
+    fork(watchLoginStarted),
+  ]);
 }
 
 
