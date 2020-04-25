@@ -7,6 +7,7 @@ let styles = StyleSheet.create({
       alignSelf: 'stretch',
       flexDirection: "row",
       flexWrap: 'wrap',
+      justifyContent: 'center',
       padding: 150
     },
     text: {

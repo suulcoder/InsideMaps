@@ -32,8 +32,6 @@ let styles = StyleSheet.create({
         borderRadius: 50,
         borderWidth: 6,
         borderColor: '#540A08',
-        color: '#FFFFFF',
-        fontSize: 5,
         width: 150
     }
 });
@@ -71,8 +69,6 @@ if(width<800){
             borderColor: '#540A08',
             borderRadius: 50,
             borderWidth: 6,
-            color: '#FFFFFF',
-            fontSize: 20,
             width: 150,
             marginTop: 35,
             marginBottom: 20
