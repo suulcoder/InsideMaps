@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
-import { View, TextInput, Button, Text } from "react-native";
+import { View, TextInput, Button, Text, Switch } from "react-native";
 import styles from './styles'
 
 const SignUp = ({onSubmit}) => {
@@ -10,6 +10,10 @@ const SignUp = ({onSubmit}) => {
     const [email,changeEmail] = useState('')
     const [name,changeName] = useState('')
     const [lastname,changeLastname] = useState('')
+    const [age,changeAge] = useState('')
+    const [sex,changesex] = useState(true)
+    const toggleSwitch = () => changesex(previousState => !previousState);
+    
     return (
         <View style={styles.signUp}>
             <Text style={styles.text}>START NOW</Text>
@@ -34,13 +38,13 @@ const SignUp = ({onSubmit}) => {
                     style={styles.input}
                     placeholder="Name"
                     value={name}
-                    onChange={e=>changePassword(e.target.value)}
+                    onChange={e=>changeName(e.target.value)}
                 />
                 <TextInput
                     style={styles.input}
                     placeholder="Lastname"
                     value={lastname}
-                    onChange={e=>changePasswordComfirm(e.target.value)}
+                    onChange={e=>changeLastname(e.target.value)}
                 />
             </View>
             <View style={styles.subSection}>
@@ -62,6 +66,30 @@ const SignUp = ({onSubmit}) => {
                     value={passwordConfirm}
                     onChange={e=>changePasswordComfirm(e.target.value)}
                 />
+            </View>
+            <View style={styles.subSection2}>
+                <View style={styles.subSection}>
+                    <Text style={styles.textSmall}>AGE: </Text>
+                    <TextInput
+                        style={styles.inputShort}
+                        placeholder="AGE"
+                        value={age}
+                        onChange={e=>changeAge(e.target.value)}
+                    />
+                </View>
+                <View style={styles.subSection}>
+                    <Text style={styles.textSmall}>SEX:  </Text>
+                    <View style={styles.subSection}>
+                        <Text style={styles.textVerySmall}>M  </Text>
+                        <Switch
+                            trackColor={{ false: "#540A08", true: "#540A08" }}
+                            onValueChange={toggleSwitch}
+                            thumbColor={sex ? "#f5dd4b" : "#f4f3f4"}
+                            value={sex}
+                        />
+                        <Text style={styles.textVerySmall}>   F</Text>
+                    </View>
+                </View>
             </View>
             <View style={styles.button}>
                 <Button type="submit" color='#540A08' title='SIGN UP' 
