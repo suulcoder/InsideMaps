@@ -20,33 +20,27 @@ let styles = StyleSheet.create({
     logo: {
       height: 85,
       width: 85,
+      marginRight: 170
     }
   });
-  let color = '#02121B'
-  let scale = 1
-  if (typeof document != 'undefined') {
-    height = Dimensions.get('window').width;  // when its in phone, its bigger side will be de heigh
-    color = 'transparent'
-    scale = 2
-  } 
-  if(width<900){
+  if(typeof document === 'undefined'){
       styles = StyleSheet.create({
-          container: {
+          container:{
             alignItems: "center",
             flexDirection: "column",
             justifyContent: "center",
             backgroundColor: '#02121B',
             borderColor: '#FFFFFF',
             padding: 50,
-            width: width
+            width: width,
           },
           container2: {
-            backgroundColor: color,
+            backgroundColor: '#02121B',
             height: 2,
-            marginTop: 1    
+            marginTop: 1,
           },
           logo: {
-            marginTop: 100/scale,
+            marginTop: 100,
             height: 85,
             width: 85,
           }

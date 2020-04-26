@@ -42,16 +42,20 @@ let styles = StyleSheet.create({
     section:{
         flexDirection: "column",
         alignItems:"center"
-    }
+    },
+    text:{
+        color: "transparent",
+        fontSize: 15,
+    },
 });
-if(width<900){
+if(typeof document === 'undefined'){
     styles = StyleSheet.create({
         login: {
             flexDirection: "column",
             justifyContent: "flex-start",
             alignItems: "center",
             padding: 5,
-            marginTop: 70,
+            marginTop: 150,
             flexWrap: 'wrap'
         },
         user: {
@@ -84,7 +88,17 @@ if(width<900){
         },
         errorText:{
             color: "red",
-            fontSize: 15,
+            fontSize: 12,
+        },
+        text:{
+            color: 'white',
+            fontSize: 12,
+            marginTop: 15,
+            fontWeight: "bold"
+        },
+        sectionText:{
+            marginTop: 50,
+            alignItems: "center"
         },
         section:{
             flexDirection: "column",

@@ -26,7 +26,7 @@ const SignUp = ({Message, onSubmit}) => {
                     style={styles.inputLarge}
                     className="userSignUp"
                     type="text"
-                    placeholder="username"
+                    placeholder="username*"
                     value={user}
                     onChangeText={changeUser}
                     onChange={e => changeUser(e.target.value)}
@@ -35,7 +35,7 @@ const SignUp = ({Message, onSubmit}) => {
                     style={styles.inputLarge}
                     className="email"
                     type="email"
-                    placeholder="email"
+                    placeholder="email*"
                     autoCompleteType='email'
                     value={email}
                     keyboardType={'email-address'}    
@@ -45,7 +45,7 @@ const SignUp = ({Message, onSubmit}) => {
                 <View style={styles.subSection}>
                     <TextInput
                         style={styles.input}
-                        placeholder="Name"
+                        placeholder="Name*"
                         value={name}
                         onChangeText={changeName}
                         onChange={e=>changeName(e.target.value)}
@@ -53,7 +53,7 @@ const SignUp = ({Message, onSubmit}) => {
                     <TextInput
                         style={styles.input}
                         value={lastname}
-                        placeholder="Lastname"
+                        placeholder="Lastname*"
                         onChangeText={changeLastname}
                         onChange={e=>changeLastname(e.target.value)}
                     />
@@ -64,7 +64,7 @@ const SignUp = ({Message, onSubmit}) => {
                         className="passwordSignUp"
                         type="password"
                         secureTextEntry={true}
-                        placeholder="password"
+                        placeholder="password*"
                         value={password}
                         onChangeText={changePassword}
                         onChange={e=>changePassword(e.target.value)}
@@ -74,7 +74,7 @@ const SignUp = ({Message, onSubmit}) => {
                         className="passwordConfirm"
                         type="password"
                         secureTextEntry={true}
-                        placeholder="password confirmation"
+                        placeholder="password confirmation*"
                         value={passwordConfirm}
                         onChangeText={changePasswordComfirm}
                         onChange={e=>changePasswordComfirm(e.target.value)}
@@ -127,9 +127,9 @@ export default connect(
     }),
     dispatch => ({
         onSubmit(name,lastname,user,email,password,age,sex, passwordConfirm){
-            if(user && password && lastname && name && email && age){
+            if(user && password && lastname && name && email ){
                 if(password==passwordConfirm){
-                    if(age>0){
+                    if(age>0 || !age){
                         console.log(validateEmail(email))
                         if(validateEmail(email)){
                             dispatch(actions.startSignUp(name,lastname,user,email,password,age,sex));

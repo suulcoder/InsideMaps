@@ -38,6 +38,9 @@ const Login = ({Message ,onSubmit}) => {
                 
             </View>
             <Text style={styles.errorText}>{Message}</Text>
+            <View style={styles.sectionText}>
+                <Text style={styles.text}>Scroll Down ↓</Text>
+            </View>
         </View>
     )
 }

@@ -7,8 +7,8 @@ import { connect } from 'react-redux'
 import { getAuthToken } from '../../reducers/index'
 
 const MyApp = ({isLogged}) => (
-  <View>
-    <ImageBackground source={require('../../../public/img/image.png')} style={styles.image}>
+  <View style={styles.body}>
+    <ImageBackground source={require('../../../public/img/background.jpg')} style={styles.image} imageStyle={{opacity:0.45}}>
       {
         (isLogged)?(
           <View></View>

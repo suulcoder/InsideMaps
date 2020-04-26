@@ -96,16 +96,15 @@ let styles = StyleSheet.create({
         fontSize: 15,
     },
 });
-if(width<900){
+if(typeof document === 'undefined'){
     styles = StyleSheet.create({
         signUp: {
             alignItems: "center",
             flexDirection: "column",
             justifyContent: "center",
-            backgroundColor: '#02121B',
+            borderWidth: 1,
             borderColor: '#FFFFFF',
-            padding: 50,
-            width: width
+            padding: 30,
         },
         inputShort: {
             width: 70,
@@ -118,7 +117,7 @@ if(width<900){
             padding: 10,
         },
         input: {
-            width: 250,
+            width: 270,
             backgroundColor: '#FFFFFF',
             borderRadius: 20,
             fontSize: 12,
@@ -127,7 +126,7 @@ if(width<900){
             padding: 15
         },
         inputLarge: {
-            width: 250,
+            width: 270,
             backgroundColor: '#FFFFFF',
             borderRadius: 20,
             fontSize: 12,
@@ -136,7 +135,7 @@ if(width<900){
             padding: 15
         },
         password:{
-            width: 250,
+            width: 270,
             backgroundColor: '#FFFFFF',
             borderRadius: 20,
             fontSize: 12,
@@ -150,13 +149,14 @@ if(width<900){
             borderWidth: 6,
             borderColor: '#540A08',
             width: 150,
+            marginBottom: 20,
             marginTop: 50
         },
         text: {
             color: "white",
             fontSize: 35,
             marginBottom: 60,
-            marginTop: 40
+            marginTop: 10
         },
         subSection: {
             alignItems: "baseline",
@@ -188,19 +188,17 @@ if(width<900){
             fontSize: 7    ,
         },
         errorText:{
-            color: "red",
+            color: "white",
             fontSize: 15,
         },
         container2: {
-            backgroundColor: '#02121B',
             height: 2,
             marginBottom: 1,
         },
         container3: {
-            backgroundColor: '#02121B',
             height: 2,
             marginTop: 1,
-            marginBottom: 10
+            marginBottom: 20
         },
     });
 }
