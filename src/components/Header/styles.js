@@ -5,7 +5,6 @@ let height = Dimensions.get('window').height;
 let styles = StyleSheet.create({
     container: {
       alignItems: "center",
-      alignSelf: 'stretch',
       flexDirection: "row",
       justifyContent: 'space-between',
       paddingBottom: 15,
@@ -30,19 +29,16 @@ let styles = StyleSheet.create({
     color = 'transparent'
     scale = 2
   } 
-  if(width<800){
+  if(width<900){
       styles = StyleSheet.create({
           container: {
             alignItems: "center",
-            alignSelf: 'stretch',
-            backgroundColor: color,
             flexDirection: "column",
-            justifyContent: 'space-between',
-            paddingBottom: 36/scale,
-            paddingLeft: 20,
-            paddingRight: 20,
-            paddingTop: 100/scale,
-            width: height,
+            justifyContent: "center",
+            backgroundColor: '#02121B',
+            borderColor: '#FFFFFF',
+            padding: 50,
+            width: width
           },
           container2: {
             backgroundColor: color,
@@ -50,7 +46,7 @@ let styles = StyleSheet.create({
             marginTop: 1    
           },
           logo: {
-            marginTop: 20/scale,
+            marginTop: 100/scale,
             height: 85,
             width: 85,
           }

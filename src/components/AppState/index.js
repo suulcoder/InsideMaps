@@ -7,33 +7,35 @@ import { connect } from 'react-redux'
 import { getAuthToken } from '../../reducers/index'
 
 const MyApp = ({isLogged}) => (
-  <ImageBackground source={require('../../../public/img/image.png')} style={styles.image}>
-     {
-       (isLogged)?(
-        <View></View>
-       ):(
-        <View>
-          <Header></Header>
-          <BodyContent></BodyContent>
-        </View>
-       )
-     }
-    
-  </ImageBackground>
+  <View>
+    <ImageBackground source={require('../../../public/img/image.png')} style={styles.image}>
+      {
+        (isLogged)?(
+          <View></View>
+        ):(
+          <View style={styles.container2}>
+            <Header></Header>
+            <BodyContent></BodyContent>
+          </View>
+        )
+      }
+      
+    </ImageBackground>
+  </View>
 )
 
 const AppState = ({isLogged}) => {
   if (typeof document != 'undefined') {
     // I'm on the web!
     return (
-      <View style={styles.container}>
+      <View style={styles.container} >
         <MyApp isLogged={isLogged}></MyApp>
       </View>
     );
   }
   return (
-    <ScrollView style={styles.container}>
-      <myApp></myApp>
+    <ScrollView style={styles.container} contentContainerStyle={{alignItems:"center"}}>
+      <MyApp isLogged={isLogged}></MyApp>
     </ScrollView>
   )
 }; 

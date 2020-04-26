@@ -13,7 +13,7 @@ export const loadState = async () => {
   }
 };
 
-export const saveState = async () => {
+export const saveState = async (state) => {
   try{
     const serializedState = JSON.stringify(state);
     await AsyncStorage.setItem('state',serializedState)

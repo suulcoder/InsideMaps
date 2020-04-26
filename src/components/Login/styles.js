@@ -44,7 +44,7 @@ let styles = StyleSheet.create({
         alignItems:"center"
     }
 });
-if(width<800){
+if(width<900){
     styles = StyleSheet.create({
         login: {
             flexDirection: "column",
@@ -86,6 +86,10 @@ if(width<800){
             color: "red",
             fontSize: 15,
         },
+        section:{
+            flexDirection: "column",
+            alignItems:"center"
+        }
 })}
 
 export default styles

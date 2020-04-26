@@ -42,7 +42,7 @@ function* login(action) {
     }
 
   } catch (error) {
-    yield put(actions.failLogin('Falló la conexión'));
+    yield put(actions.failLogin('CONNECTION FAILED',0));
   }
 }
 

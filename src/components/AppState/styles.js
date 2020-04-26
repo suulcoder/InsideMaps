@@ -5,6 +5,11 @@ const styles = StyleSheet.create({
       flex: 1,
       flexDirection: "column",
     },
+    container2: {
+      flex: 1,
+      flexDirection: "column",
+      alignItems: "center"
+    },
     image: {
       alignItems: 'center',
       flex: 1,

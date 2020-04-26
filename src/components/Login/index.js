@@ -17,6 +17,7 @@ const Login = ({Message ,onSubmit}) => {
                 type="text"
                 placeholder="username"
                 value={user}
+                onChangeText={changeUser}
                 onChange={e => changeUser(e.target.value)}
                 />
                 <TextInput
@@ -26,6 +27,7 @@ const Login = ({Message ,onSubmit}) => {
                     secureTextEntry={true}
                     placeholder="password"
                     value={password}
+                    onChangeText={changePassword}
                     onChange={e=>changePassword(e.target.value)}
                 />
                 <View style={styles.button}>

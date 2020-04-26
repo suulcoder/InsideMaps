@@ -3,7 +3,8 @@ const width = Dimensions.get('window').width;
 
 let styles = StyleSheet.create({
     container: {
-      alignItems: "baseline",
+      marginTop: 100,
+      alignItems: "flex-start",
       alignSelf: 'stretch',
       flexDirection: "row",
       justifyContent: 'center',
@@ -19,25 +20,24 @@ let styles = StyleSheet.create({
       width: 700
     }
   });
-if(width<800){
+if(width<900){
 styles = StyleSheet.create({
     container: {
       alignItems: "center",
       alignSelf: 'stretch',
-      flexDirection: "row",
-      flexWrap: 'wrap',
+      flexDirection: "column",
       justifyContent: 'center',
-      padding: 45,
-      marginBottom:50
+      paddingLeft: 20,
+      paddingRight: 20,
     },
     text: {
         color: "white",
-        fontSize: 60,
+        fontSize: 55,
       },
     textContainer:  {
         width: 300,
-        marginTop:70,
-        marginBottom: 70,
+        marginTop:80,
+        marginBottom: 80,
         marginRight: 50
     }
   });

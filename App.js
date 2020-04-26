@@ -13,11 +13,11 @@ import mainSaga from './src/sagas';
 //localStorage.clear();
 const persistedState = loadState()
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(reducer,persistedState,applyMiddleware(sagaMiddleware));
+const store = createStore(reducer,applyMiddleware(sagaMiddleware));
 sagaMiddleware.run(mainSaga);
-/*store.subscribe(throttle(()=>{
+store.subscribe(throttle(()=>{
   saveState(store.getState());
-}),1000)*/
+}),1000)
 
 const instructions = Platform.select({
   ios: `Press Cmd+R to reload,\nCmd+D or shake for dev menu`,
