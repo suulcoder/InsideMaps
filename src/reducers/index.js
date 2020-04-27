@@ -13,3 +13,21 @@ export const getIsAuthenticating = state => authSelectors.getIsAuthenticating(st
 export const getIsAuthenticatingError = state => authSelectors.getIsAuthenticatingError(state.auth);
 export const isAuthenticated = state => getAuthToken(state) != null;
 export const getError = state => authSelectors.getError(state.auth);
+
+
+
+//como se ve nuestro estado
+
+/* 
+
+state:{
+
+  auth: {
+    token: null
+    isAuthenticating:{login:null, signin:false}
+    error:null
+  },
+
+}
+
+*/ 
