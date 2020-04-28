@@ -21,7 +21,14 @@ let styles = StyleSheet.create({
       height: 85,
       width: 85,
       marginRight: 170
-    }
+    },
+    button:{
+      backgroundColor: '#540A08',
+      borderRadius: 50,
+      borderWidth: 6,
+      borderColor: '#540A08',
+      width: 150
+  },
   });
   if(typeof document === 'undefined'){
       styles = StyleSheet.create({
@@ -43,7 +50,16 @@ let styles = StyleSheet.create({
             marginTop: 100,
             height: 85,
             width: 85,
-          }
+          },
+          button:{
+            backgroundColor: '#540A08',
+            borderColor: '#540A08',
+            borderRadius: 50,
+            borderWidth: 6,
+            width: 150,
+            marginTop: 35,
+            marginBottom: 20
+        },
         });
   }
   

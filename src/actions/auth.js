@@ -25,3 +25,7 @@ export const failLogin = (error,form) => ({
   type: types.AUTHENTICATION_FAILED,
   payload: { error, form },
 });
+
+export const logout = () => ({
+  type: types.LOGOUT,
+})

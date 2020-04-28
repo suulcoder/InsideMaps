@@ -1,9 +1,13 @@
-import {StyleSheet} from "react-native";
+import {StyleSheet, Dimensions } from "react-native";
+const width = Dimensions.get('window').width;  // when its in phone, its bigger side will be de heigh
+const height = Dimensions.get('window').height;  
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
       flexDirection: "column",
+      height: height,
+      width: width
     },
     container2: {
       flex: 1,
@@ -13,14 +17,20 @@ const styles = StyleSheet.create({
     image: {
       alignItems: 'center',
       flex: 1,
+      height: height,
+      width: width
     },
     text: {
-      color: "grey",
-      fontSize: 30,
-      fontWeight: "bold"
+      marginTop: 100,
+      color: "white",
+      fontSize: 100,
+      fontWeight: "bold",
+      marginLeft: 150
     },
     body: {
-      backgroundColor: "black"
+      backgroundColor: "black",
+      height: height,
+      width: width
     }
   });
   

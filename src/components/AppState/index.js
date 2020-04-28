@@ -1,5 +1,5 @@
 import React from "react";
-import { ImageBackground, ScrollView, View } from "react-native";
+import { ImageBackground, ScrollView, View, Text } from "react-native";
 import Header from "../Header";
 import styles from './styles'
 import BodyContent from "../BodyContent";
@@ -11,7 +11,10 @@ const MyApp = ({isLogged}) => (
     <ImageBackground source={require('../../../public/img/background.jpg')} style={styles.image} imageStyle={{opacity:0.45}}>
       {
         (isLogged)?(
-          <View></View>
+          <View>
+            <Header></Header>
+            <Text style={styles.text}> YOU ARE LOGGED </Text>
+          </View>
         ):(
           <View style={styles.container2}>
             <Header></Header>

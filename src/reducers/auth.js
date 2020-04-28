@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 
 import * as types from '../types/auth';
-import actions from 'redux-form/lib/actions';
 
 const token = (state = null, action) => {
   switch (action.type) {
@@ -16,6 +15,9 @@ const token = (state = null, action) => {
       return action.payload.token;
     }
     case types.AUTHENTICATION_FAILED: {
+      return null;
+    }
+    case types.LOGOUT: {
       return null;
     }
   }
@@ -40,7 +42,9 @@ const login = (state = null, action) => {
       }
       return null;
     }
-    
+    case types.LOGOUT:{
+      return null;
+    }
   }
   return state
 }
@@ -63,6 +67,9 @@ const signup = (state=null, action) => {
       }
       return false;
     }
+    case types.LOGOUT:{
+      return null;
+    }
   }
   return state;
 
@@ -84,6 +91,9 @@ const error = (state = null, action) => {
     }
     case types.AUTHENTICATION_FAILED: {
       return action.payload.error;
+    }
+    case types.LOGOUT:{
+      return null;
     }
   }
   return state;
