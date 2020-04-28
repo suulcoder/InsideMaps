@@ -43,7 +43,7 @@ function* login(action) {
 
   } catch (error) {
     console.log(error)
-    yield put(actions.failLogin('CONNECTION FAILED',0));
+    yield put(actions.failLogin('CONNECTION FAILED',0));   //0 because is in login form
   }
 }
 
@@ -79,7 +79,7 @@ function* signin(action) {
     }
     
   } catch (error) {
-    yield put(actions.failLogin('CONNECTION FAILED',1));
+    yield put(actions.failLogin('CONNECTION FAILED',1));      //1 because is in sign up
   }
   
 }
