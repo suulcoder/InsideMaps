@@ -1,12 +1,14 @@
 {
+  "homepage": "https://suulcoder.github.io/InsideMaps",
   "main": "index.js",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "web": "expo start --web",
     "test": "jest",
-    "build": "webpack --mode production",
-    "start": "webpack-dev-server --config ./webpack.config.js --mode development"
+    "start": "react-native start",
+    "deploy": "gh-pages -d web-build",
+    "predeploy": "expo build:web"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.9.0",
@@ -37,6 +39,7 @@
   "devDependencies": {
     "@babel/core": "~7.9.0",
     "babel-jest": "~25.2.6",
+    "gh-pages": "^2.2.0",
     "jest": "~25.2.6",
     "react-test-renderer": "~16.9.0",
     "redux-logger": "^3.0.6"

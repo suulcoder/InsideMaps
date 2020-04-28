@@ -1,0 +1,20 @@
+{
+  "files": {
+    "app.js": "/InsideMaps/static/js/app.b83c5c32.chunk.js",
+    "app.js.map": "/InsideMaps/static/js/app.b83c5c32.chunk.js.map",
+    "runtime~app.js": "/InsideMaps/static/js/runtime~app.2ce278e1.js",
+    "runtime~app.js.map": "/InsideMaps/static/js/runtime~app.2ce278e1.js.map",
+    "static/js/2.2ceed4e5.chunk.js": "/InsideMaps/static/js/2.2ceed4e5.chunk.js",
+    "static/js/2.2ceed4e5.chunk.js.map": "/InsideMaps/static/js/2.2ceed4e5.chunk.js.map",
+    "index.html": "/InsideMaps/index.html",
+    "manifest.json": "/InsideMaps/manifest.json",
+    "serve.json": "/InsideMaps/serve.json",
+    "static/media/LOGO.png": "/InsideMaps/static/media/LOGO.00516d3e.png",
+    "static/media/background.jpg": "/InsideMaps/static/media/background.e21b441d.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime~app.2ce278e1.js",
+    "static/js/2.2ceed4e5.chunk.js",
+    "static/js/app.b83c5c32.chunk.js"
+  ]
+}

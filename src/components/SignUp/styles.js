@@ -117,7 +117,7 @@ if(typeof document === 'undefined'){
             padding: 10,
         },
         input: {
-            width: 270,red
+            width: 270,
             backgroundColor: '#FFFFFF',
             borderRadius: 20,
             fontSize: 12,
