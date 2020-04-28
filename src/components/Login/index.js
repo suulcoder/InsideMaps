@@ -4,9 +4,10 @@ import { View, TextInput, Button, Text } from "react-native";
 import styles from './styles'
 import { getError, getIsLogging } from '../../reducers'
 import * as actions from '../../actions/auth'
+import { validateEmail } from  '../../modules/validate'
 
 const Login = ({Message ,onSubmit}) => {
-    const [user,changeUser] = useState('')
+    const [email,changeEmail] = useState('')
     const [password,changePassword] = useState('')
     return (
         <View style={styles.section}>
@@ -16,9 +17,12 @@ const Login = ({Message ,onSubmit}) => {
                 className="user"
                 type="text"
                 placeholder="email"
-                value={user}
-                onChangeText={changeUser}
-                onChange={e => changeUser(e.target.value)}
+                value={email}
+                autoCompleteType='email'
+                value={email}
+                keyboardType={'email-address'}    
+                onChangeText={changeEmail}
+                onChange={e => changeEmail(e.target.value)}
                 />
                 <TextInput
                     style={styles.password}
@@ -32,7 +36,7 @@ const Login = ({Message ,onSubmit}) => {
                 />
                 <View style={styles.button}>
                     <Button className="login_button" color='#540A08'  title={'LOGIN'} type="submit" onPress={
-                        () => onSubmit(user,password)
+                        () => onSubmit(email,password)
                     }/>
                 </View>
                 
@@ -54,13 +58,18 @@ export default connect(
             (undefined) 
     }),
     dispatch => ({
-        onSubmit(user,password){
-            if(user && password){
-                dispatch(actions.startLogin(user,password))
+        onSubmit(email,password){
+            if(email && password){
+                if(validateEmail(email)){
+                    dispatch(actions.startLogin(email,password))
+                }
+                else{
+                    dispatch(actions.failLogin('WRITE A VALID EMAIL',0))
+                }
                 
             }    
-            else if(!user){
-                dispatch(actions.failLogin('USER FIELD MUST NOT BE EMPTY',0))
+            else if(!email){
+                dispatch(actions.failLogin('EMAIL FIELD MUST NOT BE EMPTY',0))
             }
             else if(!password){
                 dispatch(actions.failLogin('PASSWORD FIELD MUST NOT BE EMPTY',0))

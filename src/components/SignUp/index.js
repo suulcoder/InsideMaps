@@ -130,7 +130,6 @@ export default connect(
             if(user && password && lastname && name && email ){
                 if(password==passwordConfirm){
                     if(age>0 || !age){
-                        console.log(validateEmail(email))
                         if(validateEmail(email)){
                             if(age){
                                 dispatch(actions.startSignUp(name,lastname,user,email,password,age,sex));
