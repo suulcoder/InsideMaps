@@ -20,13 +20,21 @@ const API_BASE_URL = 'https://inside-maps-api.herokuapp.com/api/v1/auth';
 function* login(action) {
 
   try {
-    console.log("esto le mandamos", action.payload)
+
+    let formBody = [];
+    for (let property in action.payload) {
+        let encodedKey = encodeURIComponent(property);
+        let encodedValue = encodeURIComponent(action.payload[property]);
+        formBody.push(encodedKey + "=" + encodedValue);
+    }
+    formBody = formBody.join("&");
+    
     const response = yield call(
       fetch,  
       `${API_BASE_URL}/signin/`,
       {
         method: 'POST',
-        body: JSON.stringify(action.payload),
+        body: formBody,
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
