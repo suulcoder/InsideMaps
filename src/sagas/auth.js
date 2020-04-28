@@ -38,7 +38,7 @@ function* login(action) {
       yield put(actions.completeLogin(token));
     } else {
       const { message } = yield response.json();
-      yield put(actions.failLogin(message));
+      yield put(actions.failLogin(message,0));   //0 because is in login form
     }
 
   } catch (error) {
@@ -75,11 +75,11 @@ function* signin(action) {
       yield put(actions.completeLogin(token));
     } else {
       const { message } = yield response.json();
-      yield put(actions.failLogin(message));
+      yield put(actions.failLogin(message,1));                 //1 becuase is in sign up
     }
     
   } catch (error) {
-    yield put(actions.failLogin('CONNECTION FAILED',0));
+    yield put(actions.failLogin('CONNECTION FAILED',1));
   }
   
 }

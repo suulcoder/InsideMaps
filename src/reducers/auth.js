@@ -37,10 +37,9 @@ const login = (state = null, action) => {
       return null;
     }
     case types.AUTHENTICATION_FAILED: {
-      if(action.payload.form===0){
-        return false;
-      }
-      return null;
+      return(action.payload.form===0)?
+        (false):
+        (null);
     }
     case types.LOGOUT:{
       return null;
@@ -62,10 +61,9 @@ const signup = (state=null, action) => {
       return null;
     }
     case types.AUTHENTICATION_FAILED: {
-      if(action.payload.form===0){
-        return null;
-      }
-      return false;
+      return(action.payload.form===1)?
+        (false):
+        (null);
     }
     case types.LOGOUT:{
       return null;
@@ -116,5 +114,5 @@ export const getAuthToken = state => state.token;
 export const getIsAuthenticating = state => state.isAuthenticating;
 export const getIsAuthenticatingError = state => state.error;
 export const getError = state => state.error;
-export const getIsLogging = state => state.login;
-export const getIsSigning = state => state.signup;
+export const getIsLogging = state =>  state.isAuthenticating.login;
+export const getIsSigning = state => state.isAuthenticating.signup;
