@@ -15,7 +15,7 @@ const Login = ({Message ,onSubmit}) => {
                 style={styles.user}
                 className="user"
                 type="text"
-                placeholder="username"
+                placeholder="email"
                 value={user}
                 onChangeText={changeUser}
                 onChange={e => changeUser(e.target.value)}
