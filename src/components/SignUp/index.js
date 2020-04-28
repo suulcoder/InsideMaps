@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import { View, TextInput, Button, Text, Switch } from "react-native";
 import styles from './styles'
-import { getError, getIsAuthenticating } from '../../reducers'
+import { getError, getIsSigning } from '../../reducers'
 import * as actions from '../../actions/auth'
 import { validateEmail } from  '../../modules/validate'
 
@@ -119,8 +119,8 @@ const SignUp = ({Message, onSubmit}) => {
 
 export default connect(
     state => ({
-        Message: (getIsAuthenticating(state).signup!==null)?
-            ((getIsAuthenticating(state).signup)?
+        Message: (getIsSigning(state)!==null)?
+            ((getIsSigning(state))?
                 ('LOADING...'):
                 (getError(state))):
             (undefined) 

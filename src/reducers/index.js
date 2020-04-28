@@ -13,7 +13,8 @@ export const getIsAuthenticating = state => authSelectors.getIsAuthenticating(st
 export const getIsAuthenticatingError = state => authSelectors.getIsAuthenticatingError(state.auth);
 export const isAuthenticated = state => getAuthToken(state) != null;
 export const getError = state => authSelectors.getError(state.auth);
-
+export const getIsLogging = state => authSelectors.getIsLogging(state.auth);
+export const getIsSigning = state => authSelectors.getIsSigning(state.auth);
 
 
 //como se ve nuestro estado
@@ -23,8 +24,11 @@ export const getError = state => authSelectors.getError(state.auth);
 state:{
 
   auth: {
-    token: null
-    isAuthenticating:{login:null, signin:false}
+    token: null,
+    isAuthenticating:{
+      login:null, 
+      signin:false
+    },
     error:null
   },
 

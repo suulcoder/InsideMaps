@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
 import * as types from '../types/auth';
+import actions from 'redux-form/lib/actions';
 
 const token = (state = null, action) => {
   switch (action.type) {
@@ -21,30 +22,53 @@ const token = (state = null, action) => {
   return state;
 };
 
-const isAuthenticating = (state = {login:null,signup:null}, action) => {  
-  //null when there is no action on the form.
-  //false when there is interaction with the form
-  //true when i
-  switch (action.type) {
-
+const login = (state = null, action) => {
+  switch(action.type){
+    
     case types.AUTHENTICATION_STARTED: {
-      return ({login:true,signup:null});
+      return true;
     }
     case types.REGISTRATION_STARTED:{
-      return ({login:null,signup:true});
+      return null;
     }
     case types.AUTHENTICATION_COMPLETED: {
-      return {login:null,signup:null};
+      return null;
     }
     case types.AUTHENTICATION_FAILED: {
       if(action.payload.form===0){
-        return {login:false,signup:null};
+        return false;
       }
-      return {login:null,signup:false};
+      return null;
+    }
+    
+  }
+  return state
+}
+
+const signup = (state=null, action) => {
+  switch(action.type){
+    
+    case types.AUTHENTICATION_STARTED: {
+      return null;
+    }
+    case types.REGISTRATION_STARTED:{
+      return true;
+    }
+    case types.AUTHENTICATION_COMPLETED: {
+      return null;
+    }
+    case types.AUTHENTICATION_FAILED: {
+      if(action.payload.form===0){
+        return null;
+      }
+      return false;
     }
   }
   return state;
-};
+
+}
+
+
 
 const error = (state = null, action) => {
   switch (action.type) {
@@ -65,6 +89,11 @@ const error = (state = null, action) => {
   return state;
 };
 
+const isAuthenticating = combineReducers({
+  login,
+  signup,
+});
+
 const auth = combineReducers({
   token,
   isAuthenticating,
@@ -77,3 +106,5 @@ export const getAuthToken = state => state.token;
 export const getIsAuthenticating = state => state.isAuthenticating;
 export const getIsAuthenticatingError = state => state.error;
 export const getError = state => state.error;
+export const getIsLogging = state => state.login;
+export const getIsSigning = state => state.signup;

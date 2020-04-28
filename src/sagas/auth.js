@@ -14,21 +14,21 @@ import * as types from '../types/auth';
 import axios from 'axios';
 
 
-const API_BASE_URL = 'http://localhost:4000/api/v1/auth/';
+const API_BASE_URL = 'https://inside-maps-api.herokuapp.com/api/v1/auth';
 
 
 function* login(action) {
 
   try {
-
+    console.log("esto le mandamos", action.payload)
     const response = yield call(
-      axios,
+      fetch,  
       `${API_BASE_URL}/signin/`,
       {
         method: 'POST',
         body: JSON.stringify(action.payload),
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
       },
     );
@@ -42,6 +42,7 @@ function* login(action) {
     }
 
   } catch (error) {
+    console.log(error)
     yield put(actions.failLogin('CONNECTION FAILED',0));
   }
 }
@@ -54,6 +55,31 @@ export function* watchLoginStarted() {
   );
 }
 
-function* signin(action) {
 
+function* signin(action) {
+  try {
+    const response = yield call(
+      axios,
+      `${API_BASE_URL}/signup/`,
+      {
+        method: 'POST',
+        body: JSON.stringify(action.payload),
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      },
+    );
+
+    if (response.status === 200) {
+      const { token } = yield response.json();
+      yield put(actions.completeLogin(token));
+    } else {
+      const { message } = yield response.json();
+      yield put(actions.failLogin(message));
+    }
+    
+  } catch (error) {
+    yield put(actions.failLogin('CONNECTION FAILED',0));
+  }
+  
 }

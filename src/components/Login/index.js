@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import { View, TextInput, Button, Text } from "react-native";
 import styles from './styles'
-import { getError, getIsAuthenticating } from '../../reducers'
+import { getError, getIsLogging } from '../../reducers'
 import * as actions from '../../actions/auth'
 
 const Login = ({Message ,onSubmit}) => {
@@ -47,8 +47,8 @@ const Login = ({Message ,onSubmit}) => {
 
 export default connect(
     state => ({
-        Message: (getIsAuthenticating(state).login!==null)?
-            ((getIsAuthenticating(state).login)?
+        Message: (getIsLogging(state)!==null)?
+            ((getIsLogging(state))?
                 ('LOADING...'):
                 (getError(state))):
             (undefined) 
@@ -57,6 +57,7 @@ export default connect(
         onSubmit(user,password){
             if(user && password){
                 dispatch(actions.startLogin(user,password))
+                
             }    
             else if(!user){
                 dispatch(actions.failLogin('USER FIELD MUST NOT BE EMPTY',0))
@@ -67,3 +68,4 @@ export default connect(
         }
     })
 )(Login)
+

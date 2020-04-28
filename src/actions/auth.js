@@ -2,7 +2,7 @@ import * as types from '../types/auth';
 
 export const startLogin = (username, password) => ({
   type: types.AUTHENTICATION_STARTED,
-  payload: { username, password},             
+  payload: { email: username,  password},             
 });
 
 export const startSignUp = (name, lastname, username, email, password, age, gender) => ({
