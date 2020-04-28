@@ -132,7 +132,12 @@ export default connect(
                     if(age>0 || !age){
                         console.log(validateEmail(email))
                         if(validateEmail(email)){
-                            dispatch(actions.startSignUp(name,lastname,user,email,password,age,sex));
+                            if(age){
+                                dispatch(actions.startSignUp(name,lastname,user,email,password,age,sex));
+                            }
+                            else{
+                                dispatch(actions.startSignUp(name,lastname,user,email,password,null,sex));
+                            }
                         }
                         else{
                             dispatch(actions.failLogin('WRITE A VALID EMAIL',1));
