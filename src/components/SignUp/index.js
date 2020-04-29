@@ -5,8 +5,10 @@ import styles from './styles'
 import { getError, getIsSigning } from '../../reducers'
 import * as actions from '../../actions/auth'
 import { validateEmail } from  '../../modules/validate'
+import { getIsLogging } from '../../reducers/auth';
+import Spinner from '../spinner';
 
-const SignUp = ({Message, onSubmit}) => {
+const SignUp = ({Message, onSubmit, signInStatus}) => {
     const [user,changeUser] = useState('')
     const [password,changePassword] = useState('')
     const [passwordConfirm,changePasswordComfirm] = useState('')
@@ -106,12 +108,15 @@ const SignUp = ({Message, onSubmit}) => {
                     </View>
                 </View>
                 <Text style={styles.errorText}>{Message}</Text>
-                <View style={styles.button}>
-                    <Button type="submit" color='#540A08' title='SIGN UP' 
-                        style={styles.button} onPress={
-                        () => onSubmit(name,lastname,user,email,password,age,sex, passwordConfirm)
-                    }/>
-                </View>
+                {
+                    signInStatus ? <Spinner/> :
+                    <View style={styles.button}>
+                        <Button type="submit" color='#540A08' title='SIGN UP' 
+                            style={styles.button} onPress={
+                            () => onSubmit(name,lastname,user,email,password,age,sex, passwordConfirm)
+                        }/>
+                    </View>
+                }
             </View>
             <View style={styles.container3}></View>
         </View>
@@ -125,7 +130,8 @@ export default connect(
             ((getIsSigning(state))?
                 ('LOADING...'):
                 (getError(state))):
-            (undefined) 
+            (undefined) ,
+        signInStatus: getIsSigning(state)
     }),
     dispatch => ({
         onSubmit(name,lastname,user,email,password,age,sex, passwordConfirm){

@@ -35,7 +35,7 @@ const Login = ({Message ,onSubmit, loginSatus}) => {
                     onChangeText={changePassword}
                     onChange={e=>changePassword(e.target.value)}
                 />
-                   { loginSatus ? <Spinner size={1} />:
+                   { loginSatus ? <Spinner />:
                     
                     <View style={styles.button}>
                         <Button className="login_button" color='#540A08'  title={'LOGIN'} type="submit" onPress={
