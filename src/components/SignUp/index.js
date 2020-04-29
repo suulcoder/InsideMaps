@@ -131,7 +131,7 @@ export default connect(
                 if(password==passwordConfirm){
                     if(age>0 || !age){
                         if(validateEmail(email)){
-                            dispatch(actions.startSignUp(name,lastname,user,email,password,age,(sex)?'Female':'Male'));
+                            dispatch(actions.startSignUp(name,lastname,user,email,password,age,(sex)?0:1));
                         }
                         else{
                             dispatch(actions.failLogin('WRITE A VALID EMAIL',1));

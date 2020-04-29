@@ -58,7 +58,7 @@ export function* watchLoginStarted() {
 function* signup(action) {
   try {
     const response = yield call(
-      axios,
+      fetch,  
       `${API_BASE_URL}/signup/`,
       {
         method: 'POST',
@@ -69,16 +69,15 @@ function* signup(action) {
       },
     );
 
-    if (response.status === 200) {
-      const { token } = yield response.json();
-      yield put(actions.completeLogin(token));
+    if (response.status > 200 && response.status < 300) {
+        yield put(actions.failLogin('¡User created, please login!',1));
     } else {
       const { message } = yield response.json();
-      yield put(actions.failLogin(message,1));                 //1 becuase is in sign up
+      yield put(actions.failLogin(message,1));   //1 because is in signup form
     }
-    
+
   } catch (error) {
-    yield put(actions.failLogin('CONNECTION FAILED',1));      //1 because is in sign up
+    yield put(actions.failLogin('CONNECTION FAILED',1));   //1 because is in signup form
   }
   
 }

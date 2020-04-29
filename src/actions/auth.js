@@ -15,7 +15,7 @@ export const startSignUp = (name, lastname, username, email, password, age, gend
     password, 
     age, 
     gender,
-    role:'user' },
+    role:1},
 });
 
 export const completeLogin = token => ({
