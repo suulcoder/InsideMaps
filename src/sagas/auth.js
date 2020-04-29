@@ -66,9 +66,11 @@ function* signup(action) {
         },
       },
     );
-    if (response.status > 200 && response.status < 300) {
+    if (response.status >= 200 && response.status <= 300) {
         const { email, password } = action.payload;
         yield put(actions.startLogin(email, password));
+    } else if (response.status >= 500 && response.status <= 600){
+        yield put(actions.failLogin('Email is already registered',1));
     } else {
       const data = yield response.json(); 
       yield put(actions.failLogin(data[0].msg,1));   //1 because is in signup form
