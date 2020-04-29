@@ -56,20 +56,24 @@ export function* watchLoginStarted() {
 
 function* signup(action) {
   try {
+    console.log("esto le mandamos bro",action.payload);
     const response = yield call(
       fetch,  
       `${API_BASE_URL}/signup/`,
       {
         method: 'POST',
-        body: bodyParser(action.payload),
+        body: JSON.stringify(action.payload),
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
         },
       },
     );
-
+    console.log("esto nos mandan : ",response);
+    
     if (response.status > 200 && response.status < 300) {
         yield put(actions.failLogin('¡User created, please login!',1));
+        const { email, password } = action.payload;
+        yield put(actions.startLogin(email, password));
     } else {
       const { message } = yield response.json();
       yield put(actions.failLogin(message,1));   //1 because is in signup form

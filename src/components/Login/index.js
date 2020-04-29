@@ -2,11 +2,12 @@ import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import { View, TextInput, Button, Text } from "react-native";
 import styles from './styles'
-import { getError, getIsLogging } from '../../reducers'
+import { getError, getIsLogging, getLogin } from '../../reducers'
 import * as actions from '../../actions/auth'
 import { validateEmail } from  '../../modules/validate'
+import  Spinner  from '../spinner';
 
-const Login = ({Message ,onSubmit}) => {
+const Login = ({Message ,onSubmit, loginSatus}) => {
     const [email,changeEmail] = useState('')
     const [password,changePassword] = useState('')
     return (
@@ -34,12 +35,14 @@ const Login = ({Message ,onSubmit}) => {
                     onChangeText={changePassword}
                     onChange={e=>changePassword(e.target.value)}
                 />
-                <View style={styles.button}>
-                    <Button className="login_button" color='#540A08'  title={'LOGIN'} type="submit" onPress={
-                        () => onSubmit(email,password)
-                    }/>
-                </View>
-                
+                   { loginSatus ? <Spinner size={1} />:
+                    
+                    <View style={styles.button}>
+                        <Button className="login_button" color='#540A08'  title={'LOGIN'} type="submit" onPress={
+                            () => onSubmit(email,password)
+                        }/>
+                    </View>
+                }
             </View>
             <Text style={styles.errorText}>{Message}</Text>
             <View style={styles.sectionText}>
@@ -55,7 +58,8 @@ export default connect(
             ((getIsLogging(state))?
                 ('LOADING...'):
                 (getError(state))):
-            (undefined) 
+            (undefined) ,
+        loginSatus: getIsLogging(state)
     }),
     dispatch => ({
         onSubmit(email,password){

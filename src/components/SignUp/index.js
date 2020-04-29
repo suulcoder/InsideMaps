@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, Fragment} from 'react';
 import { connect } from 'react-redux';
 import { View, TextInput, Button, Text, Switch } from "react-native";
 import styles from './styles'
@@ -18,6 +18,7 @@ const SignUp = ({Message, onSubmit}) => {
     const toggleSwitch = () => changesex(previousState => !previousState);
     
     return (
+        <Fragment>
         <View>
             <View style={styles.container2}></View>
             <View style={styles.signUp}>
@@ -114,6 +115,7 @@ const SignUp = ({Message, onSubmit}) => {
             </View>
             <View style={styles.container3}></View>
         </View>
+        </Fragment>
     )
 }
 
