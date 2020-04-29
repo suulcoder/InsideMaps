@@ -41,7 +41,6 @@ function* login(action) {
     }
 
   } catch (error) {
-    console.log(error)
     yield put(actions.failLogin('CONNECTION FAILED',0));   //0 because is in login form
   }
 }
