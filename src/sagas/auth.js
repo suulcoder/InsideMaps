@@ -31,7 +31,6 @@ function* login(action) {
         },
       },
     );
-
     if (response.status === 200) {
       const { token } = yield response.json();
       yield put(actions.completeLogin(token));
@@ -56,7 +55,6 @@ export function* watchLoginStarted() {
 
 function* signup(action) {
   try {
-    console.log("esto le mandamos bro",action.payload);
     const response = yield call(
       fetch,  
       `${API_BASE_URL}/signup/`,
@@ -68,18 +66,16 @@ function* signup(action) {
         },
       },
     );
-    console.log("esto nos mandan : ",response);
-    
     if (response.status > 200 && response.status < 300) {
-        yield put(actions.failLogin('¡User created, please login!',1));
         const { email, password } = action.payload;
         yield put(actions.startLogin(email, password));
     } else {
-      const { message } = yield response.json();
-      yield put(actions.failLogin(message,1));   //1 because is in signup form
+      const data = yield response.json(); 
+      yield put(actions.failLogin(data[0].msg,1));   //1 because is in signup form
     }
 
   } catch (error) {
+    console.log(error)
     yield put(actions.failLogin('CONNECTION FAILED',1));   //1 because is in signup form
   }
   

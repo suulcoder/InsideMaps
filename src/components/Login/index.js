@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import { View, TextInput, Button, Text } from "react-native";
 import styles from './styles'
-import { getError, getIsLogging, getLogin } from '../../reducers'
+import { getError, getIsLogging, getIsSigning } from '../../reducers'
 import * as actions from '../../actions/auth'
 import { validateEmail } from  '../../modules/validate'
 import  Spinner  from '../spinner';
