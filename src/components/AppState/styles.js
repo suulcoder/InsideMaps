@@ -7,7 +7,6 @@ const styles = StyleSheet.create({
       flex: 1,
       flexDirection: "column",
       height: height,
-      width: width
     },
     container2: {
       flex: 1,
@@ -18,7 +17,6 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       flex: 1,
       height: height,
-      width: width
     },
     text: {
       marginTop: 100,
@@ -30,7 +28,6 @@ const styles = StyleSheet.create({
     body: {
       backgroundColor: "black",
       height: height,
-      width: width
     }
   });
   

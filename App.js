@@ -13,7 +13,7 @@ import mainSaga from './src/sagas';
 //localStorage.clear();
 const persistedState = loadState()
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(reducer,applyMiddleware(sagaMiddleware));
+const store = createStore(reducer,persistedState,applyMiddleware(sagaMiddleware));
 sagaMiddleware.run(mainSaga);
 store.subscribe(throttle(()=>{
   saveState(store.getState());

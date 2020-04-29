@@ -8,10 +8,10 @@ import {
   select,
 } from 'redux-saga/effects';
 
-import * as selectors from '../reducers';
 import * as actions from '../actions/auth';
 import * as types from '../types/auth';
 import axios from 'axios';
+import { bodyParser } from '../modules/parser';
 
 
 const API_BASE_URL = 'https://inside-maps-api.herokuapp.com/api/v1/auth';
@@ -20,21 +20,12 @@ const API_BASE_URL = 'https://inside-maps-api.herokuapp.com/api/v1/auth';
 function* login(action) {
 
   try {
-
-    let formBody = [];
-    for (let property in action.payload) {
-        let encodedKey = encodeURIComponent(property);
-        let encodedValue = encodeURIComponent(action.payload[property]);
-        formBody.push(encodedKey + "=" + encodedValue);
-    }
-    formBody = formBody.join("&");
-    
     const response = yield call(
       fetch,  
       `${API_BASE_URL}/signin/`,
       {
         method: 'POST',
-        body: formBody,
+        body: bodyParser(action.payload),
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
@@ -64,14 +55,14 @@ export function* watchLoginStarted() {
 }
 
 
-function* signin(action) {
+function* signup(action) {
   try {
     const response = yield call(
       axios,
       `${API_BASE_URL}/signup/`,
       {
         method: 'POST',
-        body: JSON.stringify(action.payload),
+        body: bodyParser(action.payload),
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
@@ -90,4 +81,11 @@ function* signin(action) {
     yield put(actions.failLogin('CONNECTION FAILED',1));      //1 because is in sign up
   }
   
+}
+
+export function* watchSignUpStarted() {
+  yield takeEvery(
+    types.REGISTRATION_STARTED,
+    signup,
+  );
 }

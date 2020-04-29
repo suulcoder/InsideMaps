@@ -127,16 +127,11 @@ export default connect(
     }),
     dispatch => ({
         onSubmit(name,lastname,user,email,password,age,sex, passwordConfirm){
-            if(user && password && lastname && name && email ){
+            if(user && password && lastname && name && email && age){
                 if(password==passwordConfirm){
                     if(age>0 || !age){
                         if(validateEmail(email)){
-                            if(age){
-                                dispatch(actions.startSignUp(name,lastname,user,email,password,age,sex));
-                            }
-                            else{
-                                dispatch(actions.startSignUp(name,lastname,user,email,password,null,sex));
-                            }
+                            dispatch(actions.startSignUp(name,lastname,user,email,password,age,(sex)?'Female':'Male'));
                         }
                         else{
                             dispatch(actions.failLogin('WRITE A VALID EMAIL',1));

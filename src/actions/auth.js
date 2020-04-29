@@ -7,13 +7,15 @@ export const startLogin = (username, password) => ({
 
 export const startSignUp = (name, lastname, username, email, password, age, gender) => ({
   type: types.REGISTRATION_STARTED,
-  payload: { name, 
-      lastname, 
-      username, 
-      email, 
-      password, 
-      age, 
-      gender },
+  payload: { 
+    firstname: name, 
+    lastname, 
+    username, 
+    email, 
+    password, 
+    age, 
+    gender,
+    role:'user' },
 });
 
 export const completeLogin = token => ({

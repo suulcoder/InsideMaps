@@ -36,7 +36,6 @@ export default connect(
     dispatch => ({
         onSubmit(){
             dispatch(logout())
-            console.log("fjsld")
         }
     })
   )(Header)
