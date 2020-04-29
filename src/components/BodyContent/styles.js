@@ -9,18 +9,21 @@ let styles = StyleSheet.create({
       flexDirection: "row",
       justifyContent: 'center',
       paddingRight: 150,
-      paddingLeft: 150
+      paddingLeft: 150,
+      flexWrap: 'wrap',
+      width: width
     },
     text: {
         color: "white",
         fontSize: 110,
+        marginBottom: 150
       },
     textContainer:  {
       marginTop: 90,  
       width: 700
     }
   });
-if(typeof document === 'undefined'){
+if(typeof document === 'undefined' || width<900 ){
 styles = StyleSheet.create({
     container: {
       alignItems: "center",

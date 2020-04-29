@@ -7,7 +7,6 @@ import { connect } from 'react-redux'
 import { getAuthToken } from '../../reducers/index'
 
 const MyApp = ({isLogged}) => (
-  <View style={styles.body}>
     <ImageBackground source={require('../../../public/img/background.jpg')} style={styles.image} imageStyle={{opacity:0.45}}>
       {
         (isLogged)?(
@@ -24,7 +23,6 @@ const MyApp = ({isLogged}) => (
       }
       
     </ImageBackground>
-  </View>
 )
 
 const AppState = ({isLogged}) => {
@@ -37,9 +35,11 @@ const AppState = ({isLogged}) => {
     );
   }
   return (
-    <ScrollView style={styles.container} contentContainerStyle={{alignItems:"center"}}>
+    <View style={{ flex: 1 }}>
+    <ScrollView style={styles.container} contentContainerStyle={{alignItems:"center", flexGrow: 1}}>
       <MyApp isLogged={isLogged}></MyApp>
     </ScrollView>
+    </View>
   )
 }; 
 

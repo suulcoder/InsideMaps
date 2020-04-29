@@ -16,6 +16,14 @@ class Spinner extends React.Component {
       loading: true
     };
   }
+
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({
+        loading: !this.state.loading
+      });
+    }, 30000);
+  }
  
   render() {
     return (

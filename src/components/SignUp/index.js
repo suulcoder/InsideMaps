@@ -15,7 +15,7 @@ const SignUp = ({Message, onSubmit, signInStatus}) => {
     const [email,changeEmail] = useState('')
     const [name,changeName] = useState('')
     const [lastname,changeLastname] = useState('')
-    const [age,changeAge] = useState(0)
+    const [age,changeAge] = useState('0')
     const [sex,changesex] = useState(true)
     const toggleSwitch = () => changesex(previousState => !previousState);
     
@@ -39,7 +39,6 @@ const SignUp = ({Message, onSubmit, signInStatus}) => {
                     className="email"
                     type="email"
                     placeholder="email*"
-                    autoCompleteType='email'
                     value={email}
                     keyboardType={'email-address'}    
                     onChangeText={changeEmail}    

@@ -19,7 +19,6 @@ const Login = ({Message ,onSubmit, loginSatus}) => {
                 type="text"
                 placeholder="email"
                 value={email}
-                autoCompleteType='email'
                 value={email}
                 keyboardType={'email-address'}    
                 onChangeText={changeEmail}

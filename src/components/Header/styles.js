@@ -30,7 +30,7 @@ let styles = StyleSheet.create({
       width: 150
   },
   });
-  if(typeof document === 'undefined'){
+  if(typeof document === 'undefined' || width<900){
       styles = StyleSheet.create({
           container:{
             alignItems: "center",

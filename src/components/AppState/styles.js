@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       flexDirection: "column",
-      height: height,
+      backgroundColor: "black",
     },
     container2: {
       flex: 1,
@@ -24,10 +24,6 @@ const styles = StyleSheet.create({
       fontSize: 100,
       fontWeight: "bold",
       marginLeft: 150
-    },
-    body: {
-      backgroundColor: "black",
-      height: height,
     }
   });
   

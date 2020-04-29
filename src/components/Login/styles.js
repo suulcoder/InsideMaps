@@ -48,7 +48,7 @@ let styles = StyleSheet.create({
         fontSize: 15,
     },
 });
-if(typeof document === 'undefined'){
+if(typeof document === 'undefined' || width<900){
     styles = StyleSheet.create({
         login: {
             flexDirection: "column",

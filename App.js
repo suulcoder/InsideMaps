@@ -9,7 +9,8 @@ import { loadState, saveState } from './src/localStorage'
 import throttle from 'lodash/throttle'
 import createSagaMiddleware from 'redux-saga';
 import mainSaga from './src/sagas';
-
+import Favicon from 'react-favicon';
+ 
 //localStorage.clear();
 const persistedState = loadState()
 const sagaMiddleware = createSagaMiddleware();
@@ -26,6 +27,7 @@ const instructions = Platform.select({
 
 const App = () => (
   <Provider store={store}>
+    <Favicon url='../public/logo/favicon.ico' />
     <AppState></AppState>
   </Provider>
 );
