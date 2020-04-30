@@ -14,8 +14,8 @@ let styles = StyleSheet.create({
     inputShort: {
         width: 70,
         height: 30,
-        backgroundColor: '#FFFFFF',
         borderRadius: 20,
+        backgroundColor: '#FFFFFF',
         fontSize: 9,
         marginRight: 15,
         marginLeft: 15,
@@ -96,7 +96,7 @@ let styles = StyleSheet.create({
         fontSize: 15,
     },
 });
-if(typeof document === 'undefined'){
+if(typeof document === 'undefined' || width<900){
     styles = StyleSheet.create({
         signUp: {
             alignItems: "center",

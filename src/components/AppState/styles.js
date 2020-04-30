@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
     image: {
       alignItems: 'center',
       flex: 1,
-      height: height,
     },
     text: {
       marginTop: 100,

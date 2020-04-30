@@ -3,7 +3,7 @@ const width = Dimensions.get('window').width;
 
 let styles = StyleSheet.create({
     container: {
-      marginTop: 100,
+      marginTop: 50,
       alignItems: "flex-start",
       alignSelf: 'stretch',
       flexDirection: "row",
@@ -36,6 +36,7 @@ styles = StyleSheet.create({
     text: {
         color: "white",
         fontSize: 55,
+        marginRight: 50
       },
     textContainer:  {
         width: 300,

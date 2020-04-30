@@ -45,6 +45,7 @@ let styles = StyleSheet.create({
             backgroundColor: '#02121B',
             height: 2,
             marginTop: 1,
+            width: width,
           },
           logo: {
             marginTop: 100,

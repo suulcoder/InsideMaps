@@ -3,25 +3,13 @@ import { ImageBackground, ScrollView, View, Text } from "react-native";
 import Header from "../Header";
 import styles from './styles'
 import BodyContent from "../BodyContent";
-import { connect } from 'react-redux'
-import { getAuthToken } from '../../reducers/index'
 
-const MyApp = ({isLogged}) => (
+const MyApp = () => (
     <ImageBackground source={require('../../../public/img/background.jpg')} style={styles.image} imageStyle={{opacity:0.45}}>
-      {
-        (isLogged)?(
-          <View>
-            <Header></Header>
-            <Text style={styles.text}> YOU ARE LOGGED </Text>
-          </View>
-        ):(
-          <View style={styles.container2}>
+      <View style={styles.container2}>
             <Header></Header>
             <BodyContent></BodyContent>
-          </View>
-        )
-      }
-      
+      </View>
     </ImageBackground>
 )
 
@@ -37,18 +25,10 @@ const AppState = ({isLogged}) => {
   return (
     <View style={{ flex: 1 }}>
     <ScrollView style={styles.container} contentContainerStyle={{alignItems:"center", flexGrow: 1}}>
-      <MyApp isLogged={isLogged}></MyApp>
+      <MyApp ></MyApp>
     </ScrollView>
     </View>
   )
 }; 
 
-export default connect(
-  state => {
-    console.log(state)
-    return({
-      isLogged: getAuthToken(state)!=null
-    })
-  },
-  undefined
-)(AppState)
+export default AppState
