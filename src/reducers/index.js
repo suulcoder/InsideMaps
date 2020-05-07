@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
 import auth, * as authSelectors from './auth';
+import maps, * as mapSelectors from './map';
 
 const reducer = combineReducers({
-  auth
+  auth,
+  maps,
 });
 
 export default reducer;
@@ -31,6 +33,17 @@ state:{
     },
     error:null
   },
+
+  maps: {
+    byId = {
+      1: {...map,isConfirmed: false},
+      5: {},
+      ...,
+    },
+    order = [1,5,....],
+    isFetching: false,
+    error: null,
+  }
 
 }
 
