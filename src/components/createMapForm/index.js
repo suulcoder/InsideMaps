@@ -6,21 +6,22 @@ import { connect } from 'react-redux';
 import * as selectors from '../../reducers';
 import * as actions from '../../actions/map';
 import { select } from "redux-saga/effects";
+import { v4 as uuidv4 } from 'uuid';
 
 const MapForm = ({isAuthenticated, onCreate}) => {
   
-  const [name, changeName] = useState('Name');
+  const [name, changeName] = useState('');
   const [description, changeDescription] = useState('');
-  const [id, changeId] = useState('');
+  const [id_place, changeId] = useState('');
   const [level, changeLevel] = useState('');
   const [file, changeFile] = useState('');
   const [qr, changeQr] = useState('');
 
   return (
-    <View>
+    <View style={styles.container}>
       <Text>Create Map</Text>
       <TextInput
-        style={styles.name}
+        style={styles.inputTxt}
         className="name"
         type="text"
         placeholder="Name"
@@ -28,52 +29,67 @@ const MapForm = ({isAuthenticated, onCreate}) => {
         onChange={e => changeName(e.target.value)}
       />
       {
-        name.length === 0 ? <Text>Ingrese un nombre correcto</Text> : <Text></Text>
+        name.length === 0 ? <Text style={styles.text}>Write a valid name</Text> : <Text></Text>
       }
       <TextInput
-        style={styles.name}
+        style={styles.inputTxt}
         className="id"
         type="text"
         placeholder="Site id"
-        value={id}
+        value={id_place}
         onChange={e => changeId(e.target.value)}
       />
+      {
+        id_place.length === 0 ? <Text style={styles.text}>Write a valid id</Text> : <Text></Text>
+      }
       <TextInput
-        style={styles.name}
+        style={styles.inputTxt}
         className="description"
         type="text"
         placeholder="Description"
         value={description}
         onChange={e => changeDescription(e.target.value)}
       />
+      {
+        description.length === 0 ? <Text style={styles.text}>Write a valid description</Text> : <Text></Text>
+      }
       <TextInput
-        style={styles.name}
+        style={styles.inputTxt}
         className="level"
         type="text"
         placeholder="Level"
         value={level}
         onChange={e => changeLevel(e.target.value)}
       />
+      {
+        level.length === 0 ? <Text style={styles.text}>Write a valid level</Text> : <Text></Text>
+      }
       <TextInput
-        style={styles.name}
+        style={styles.inputTxt}
         className="fielName"
         type="text"
         placeholder="File Name"
         value={file}
         onChange={e => changeFile(e.target.value)}
       />
+      {
+        file.length === 0 ? <Text style={styles.text}>Write a valid file name</Text> : <Text></Text>
+      }
       <TextInput
-        style={styles.name}
+        style={styles.inputTxt}
         className="qrCode"
         type="text"
-        placeholder="QR Code in here " changeIdchangeId
-        value={qr} changeIdchangeIdchangeIdchchangeIdchangeIdangeId
+        placeholder="QR Code in here "
+        value={qr} 
         onChange={e => changeQr(e.target.value)}
       />
-
+      {
+        qr.length === 0 ? <Text style={styles.text}>Write a valid qr code</Text> : <Text></Text>
+      }
       <View style={styles.button}>
-        <Button className="login_button" color='#540A08' title={'Create'} type="submit" onPress={
-          () => onCreate(name, description, id, level, file,qr)
+        <Button  style={styles.button} title={'Create'} type="submit" onPress={
+          
+          () => onCreate(name, description, id_place, level, file,qr)
         } />
       </View>
     </View>
@@ -86,18 +102,22 @@ const MapForm = ({isAuthenticated, onCreate}) => {
 export default connect(
   state => ({
     isAuthenticated: selectors.getIsAuthenticating(state),
-    error: selectors.g
+    error: selectors.getCreateError(state,)
   }),
   dispatch => ({
-    onCreate(name, description, id, level, file,qr) {
-      map = {
+    onCreate(name, description, id_place, level, file,qr) {
+      const _id = uuidv4();
+      const map = {
+        _id,
         name,
         description, 
-        id, 
+        id_place, 
         level, 
+        year:10,
         file, 
         qr
       };
+      console.log("Esti es se va: ", map);
       dispatch(actions.startCreatingMap(map));
     }
   }),

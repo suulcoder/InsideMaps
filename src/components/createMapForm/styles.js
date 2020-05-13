@@ -2,51 +2,39 @@ import { StyleSheet, Dimensions } from "react-native";
 const width = Dimensions.get('window').width;
 
 let styles = StyleSheet.create({
-    name: {
+    container: {
+        display: 'flex',
+        direction: 'column',
+        backgroundColor: 'white',
+        textAlign: 'center',
+        padding: '50px',
+        borderRadius: '5px'
+    },
+
+    inputTxt: {
         alignItems: "baseline",
         flexDirection: "row",
         justifyContent: "center",
         padding: 5,
         flexWrap: 'wrap',
         backgroundColor: 'white',
-        marginTop: '6px'
+        marginTop: '6px',
+        borderRadius: '5px',
+        borderWidth: 1,
+        borderColor: '#BFBFBF'
     },
-    user: {
-        minWidth: 150,
-        backgroundColor: '#FFFFFF',
-        borderRadius: 20,
-        fontSize: 12,
-        marginRight: 15,
-        marginTop: 5,
-        padding: 10
-    },
-    password:{
-        minWidth: 150,
-        backgroundColor: '#FFFFFF',
-        borderRadius: 20,
-        fontSize: 12,
-        marginRight: 15,
-        marginTop: 5,
-        padding: 10,
-    },
+  
     button:{
-        backgroundColor: '#540A08',
-        borderRadius: 50,
-        borderWidth: 6,
-        borderColor: '#540A08',
-        width: 150
+        backgroundColor: '#white',
+        borderRadius: 15,
+        boxShadow: '10px #000000',
+        marginTop: '20px'        
+
+
     },
-    errorText:{
-        borderColor: "red",
-        color: "white",
-        fontSize: 15,
-    },
-    section:{
-        flexDirection: "column",
-        alignItems:"center"
-    },
+
     text:{
-        color: "transparent",
+        color: 'gray',
         fontSize: 15,
     },
 });
@@ -80,7 +68,7 @@ if(typeof document === 'undefined' || width<900){
             padding: 10,
         },
         button:{
-            backgroundColor: '#540A08',
+            backgroundColor: '#2580f5',
             borderColor: '#540A08',
             borderRadius: 50,
             borderWidth: 6,

@@ -9,16 +9,17 @@ import * as actions from '../actions/map';
 import * as types from '../types/map';
 import * as selectors from '../reducers';
 
-const API_BASE_URL = 'https://inside-maps-api.herokuapp.com/api/v1/auth';
+const API_BASE_URL = 'https://inside-maps-api.herokuapp.com/api/v1/map';
 
 
 function* createMap(action) {
-  const { map } = action.payload;
-  const oldId = map.id;
+  const map  = action.payload;
+  const oldId = map._id;
+  console.log("llega el old id", oldId)
   try {
-    const isAuth = yield select(selectors.isAuthenticated)
+    //const isAuth = yield select(selectors.isAuthenticated)
 
-    if(isAuth){
+    if(true){
 
       const token = yield select(selectors.getAuthToken);
 
@@ -30,26 +31,30 @@ function* createMap(action) {
           body: action.payload,
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `JWT ${token}`,
+            //'Authorization': `JWT ${token}`,
+            'Access-Control-Allow-Origin': 'origin-list',
           },
         }
       );
 
-      if(response.status === 200){
-        const { newMap } = yield response.json();
-        yield put(actions.completeCreatingMap(oldId, newMap));
-        console.log("Se creo un nuevo mapa exitosamente!", newMap); 
+      if(response.status >= 200 && response.status <= 300){
+        const { result } = yield response.json();
+        const map = result;
+        yield put(actions.completeCreatingMap(oldId, map));
+        console.log("Se creo un nuevo mapa exitosamente!", map); 
       } else {
         console.log("Error en la respuesta!");
+        console.log("llega el estatus", response)
       }
 
     } else {
       console.log('Error de autenticación');
+
     }
 
   } catch(error) {
     console.log(error);
-    yield put(actions.failCreatingMap(error));
+    yield put(actions.failCreatingMap(oldId, error));
   }
 }
 

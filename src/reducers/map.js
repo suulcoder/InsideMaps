@@ -4,20 +4,21 @@ import omit from 'lodash/omit';
 import * as types from '../types/map';
 
 
-
 const byId = (state = {}, action) => {
   switch(action.types){
     case types.CREATE_MAP_STARTED: {
+      console.log("SI entro mucha!!!!!!!!")
       const newState = {...state};
-      newState[action.payload.id] = {
+      newState[action.payload._id] = {
         ...action.payload,
         isConfirmed: false,
       }
+      return newState;
     }
     case types.CREATE_MAP_COMPLETED: {
       const { oldId, map } = action.payload;
       const newState = omit(state, oldId);
-      newState[map.id] = {
+      newState[map._id] = {
         ...map, 
         isConfirmed: true,
       }
@@ -31,11 +32,11 @@ const byId = (state = {}, action) => {
 const order = (state=[], action) => {
   switch(action.types){
     case types.CREATE_MAP_STARTED: {
-      return [...state, action.payload.id];
+      return [...state, action.payload._id];
     }
     case types.CREATE_MAP_COMPLETED: {
       const { oldId, map } = action.payload;
-      return state.map(id => id === oldId ? map.id : id);
+      return state.map(id => id === oldId ? map._id : id);
     }
   }
   return state;
@@ -49,7 +50,7 @@ const isFetching = (state=false, action) => {
 const error = (state=null, action) => {
   switch(action.type){
     case types.CREATE_MAP_FAILED: {
-      return action.payload.erro;
+      return action.payload.error;
     }
   }
   return state;
