@@ -110,7 +110,7 @@ const SignUp = ({Message, onSubmit, signInStatus}) => {
                 {
                     signInStatus ? <Spinner/> :
                     <View style={styles.button}>
-                        <Button type="submit" color='#540A08' title='SIGN UP' 
+                        <Button type="submit" color='#2580f5' title='SIGN UP' 
                             style={styles.button} onPress={
                             () => onSubmit(name,lastname,user,email,password,age,sex, passwordConfirm)
                         }/>

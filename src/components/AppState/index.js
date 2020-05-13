@@ -5,7 +5,7 @@ import styles from './styles'
 import BodyContent from "../BodyContent";
 
 const MyApp = () => (
-    <ImageBackground source={require('../../../public/img/background.jpg')} style={styles.image} imageStyle={{opacity:0.45}}>
+    <ImageBackground source={require('../../../public/img/indoor.jpg')} style={styles.image} imageStyle={{opacity:0.45}}>
       <View style={styles.container2}>
             <Header></Header>
             <BodyContent></BodyContent>
