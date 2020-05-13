@@ -20,3 +20,23 @@ export const failCreatingMap = (oldId, error) => ({
     error,
   },
 });
+
+export const startFetchingMaps = () => ({
+  type: types.FETCH_MAP_STARTED,
+});
+
+export const completeFetchingMaps = (entities, order) => ({
+  type: types.FETCH_MAP_COMPLETED,
+  payload: {
+    entities,
+    order
+  }
+});
+
+export const failFetchingMaps = error => ({
+    type: types.FETCH_MAP_FAILED,
+    payload: {
+      error,
+    }
+});
+

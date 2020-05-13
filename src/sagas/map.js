@@ -8,14 +8,16 @@ import {
 import * as actions from '../actions/map';
 import * as types from '../types/map';
 import * as selectors from '../reducers';
+import { bodyParser } from '../modules/parser';
 
-const API_BASE_URL = 'https://inside-maps-api.herokuapp.com/api/v1/map';
+
+const API_BASE_URL = 'https://inside-maps-api.herokuapp.com/api/v1/map/';
 
 
 function* createMap(action) {
   const map  = action.payload;
   const oldId = map._id;
-  console.log("llega el old id", oldId)
+  console.log("Esto le mando desde el saga", action.payload)
   try {
     //const isAuth = yield select(selectors.isAuthenticated)
 
@@ -28,11 +30,12 @@ function* createMap(action) {
         API_BASE_URL,
         {
           method: 'POST',
-          body: action.payload,
+          body: JSON.stringify(action.payload),
           headers: {
+            //'Content-Type': 'application/x-www-form-urlencoded',
+            Accept: 'application/json',
             'Content-Type': 'application/json',
-            //'Authorization': `JWT ${token}`,
-            'Access-Control-Allow-Origin': 'origin-list',
+            'Authorization': `JWT ${token}`,
           },
         }
       );

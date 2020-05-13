@@ -8,7 +8,10 @@ let styles = StyleSheet.create({
         backgroundColor: 'white',
         textAlign: 'center',
         padding: '50px',
-        borderRadius: '5px'
+        borderRadius: '5px',
+        flexGrow : 1,
+        marginRight: '100px',
+        marginLeft: '100px'
     },
 
     inputTxt: {

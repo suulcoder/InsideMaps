@@ -6,14 +6,17 @@ let styles = StyleSheet.create({
       overflowX: "hidden",
       marginTop: 50,
       alignItems: "flex-start",
-      alignSelf: 'stretch',
+      //alignSelf: 'stretch',
       flexDirection: "row",
-      justifyContent: 'center',
+      justifyContent: 'space-around',
       paddingRight: 0,
       paddingLeft: 0,
       flexWrap: 'wrap',
       width: width
     },
+
+
+
     text: {
         color: "white",
         fontSize: 80,

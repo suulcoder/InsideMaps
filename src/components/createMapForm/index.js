@@ -14,8 +14,8 @@ const MapForm = ({isAuthenticated, onCreate}) => {
   const [description, changeDescription] = useState('');
   const [id_place, changeId] = useState('');
   const [level, changeLevel] = useState('');
-  const [file, changeFile] = useState('');
-  const [qr, changeQr] = useState('');
+  const [map_filename, changeFile] = useState('');
+  const [qr_code, changeQr] = useState('');
 
   return (
     <View style={styles.container}>
@@ -69,27 +69,34 @@ const MapForm = ({isAuthenticated, onCreate}) => {
         className="fielName"
         type="text"
         placeholder="File Name"
-        value={file}
+        value={map_filename}
         onChange={e => changeFile(e.target.value)}
       />
       {
-        file.length === 0 ? <Text style={styles.text}>Write a valid file name</Text> : <Text></Text>
+        map_filename.length === 0 ? <Text style={styles.text}>Write a valid file name</Text> : <Text></Text>
       }
       <TextInput
         style={styles.inputTxt}
         className="qrCode"
         type="text"
         placeholder="QR Code in here "
-        value={qr} 
+        value={qr_code} 
         onChange={e => changeQr(e.target.value)}
       />
       {
-        qr.length === 0 ? <Text style={styles.text}>Write a valid qr code</Text> : <Text></Text>
+        qr_code.length === 0 ? <Text style={styles.text}>Write a valid qr code</Text> : <Text></Text>
       }
       <View style={styles.button}>
         <Button  style={styles.button} title={'Create'} type="submit" onPress={
           
-          () => onCreate(name, description, id_place, level, file,qr)
+          () => {onCreate(name, description, id_place, level, map_filename,qr_code);
+                changeName('');
+                changeDescription('');
+                changeFile('');
+                changeId('');
+                changeLevel('');
+                changeQr('');
+          }
         } />
       </View>
     </View>
@@ -105,7 +112,7 @@ export default connect(
     error: selectors.getCreateError(state,)
   }),
   dispatch => ({
-    onCreate(name, description, id_place, level, file,qr) {
+    onCreate(name, description, id_place, level, map_filename,qr_code) {
       const _id = uuidv4();
       const map = {
         _id,
@@ -114,8 +121,8 @@ export default connect(
         id_place, 
         level, 
         year:10,
-        file, 
-        qr
+        map_filename, 
+        qr_code
       };
       console.log("Esti es se va: ", map);
       dispatch(actions.startCreatingMap(map));

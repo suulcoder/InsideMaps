@@ -12,9 +12,9 @@ import MapBoard from '../MapBoard';
 const BodyContent = ({isLogged}) => (
     <View style={styles.container}>
         {(isLogged)?(
-            <View style={styles.textContainer}>
-            <MapForm/>
+            <View style={styles.container}>
             <MapBoard />
+            <MapForm/>
             </View>
         ):(
             <View style={styles.container}>
