@@ -2,9 +2,12 @@ import React, {useState, useEffect} from "react";
 import styles from './styles'
 
 import { View, Text, TextInput, Button } from 'react-native';
-import { change } from "redux-form";
+import { connect } from 'react-redux';
+import * as selectors from '../../reducers';
+import * as actions from '../../actions/map';
+import { select } from "redux-saga/effects";
 
-const MapForm = () => {
+const MapForm = ({isAuthenticated, onCreate}) => {
   
   const [name, changeName] = useState('Name');
   const [description, changeDescription] = useState('');
@@ -69,7 +72,9 @@ const MapForm = () => {
       />
 
       <View style={styles.button}>
-        <Button className="login_button" color='#540A08' title={'Create'} type="submit"  />
+        <Button className="login_button" color='#540A08' title={'Create'} type="submit" onPress={
+          () => onCreate(name, description, id, level, file,qr)
+        } />
       </View>
     </View>
 
@@ -77,5 +82,24 @@ const MapForm = () => {
 };
 
 
-export default MapForm;
+
+export default connect(
+  state => ({
+    isAuthenticated: selectors.getIsAuthenticating(state),
+    error: selectors.g
+  }),
+  dispatch => ({
+    onCreate(name, description, id, level, file,qr) {
+      map = {
+        name,
+        description, 
+        id, 
+        level, 
+        file, 
+        qr
+      };
+      dispatch(actions.startCreatingMap(map));
+    }
+  }),
+)(MapForm);
 //nombre, descripcion, id del lugar, nivel, nombre del archivo, codigoqr

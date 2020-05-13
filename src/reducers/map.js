@@ -25,6 +25,7 @@ const byId = (state = {}, action) => {
     }
 
   }
+  return state;
 };
 
 const order = (state=[], action) => {
@@ -37,20 +38,21 @@ const order = (state=[], action) => {
       return state.map(id => id === oldId ? map.id : id);
     }
   }
+  return state;
 };
 
 const isFetching = (state=false, action) => {
-  switch(action.type){
-    case types.CREATE_MAP_STARTED: {
-      return true;
-    }
+  return state;
   }
-}
+
 
 const error = (state=null, action) => {
   switch(action.type){
-    case types.CREATE_MAP_FAILED: {}
+    case types.CREATE_MAP_FAILED: {
+      return action.payload.erro;
+    }
   }
+  return state;
 };
 
 export default combineReducers({
@@ -60,4 +62,8 @@ export default combineReducers({
   error,
 });
 
+
+export const getMap = (state, id) => state.byId[id];
+export const getMaps = state => state.order.map(id => getMap(state, id));
+export const getCreateError = state => state.error;
 
