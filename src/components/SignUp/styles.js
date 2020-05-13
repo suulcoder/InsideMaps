@@ -6,7 +6,7 @@ let styles = StyleSheet.create({
         alignItems: "center",
         flexDirection: "column",
         justifyContent: "center",
-        borderWidth: 3,
+        borderLeftWidth: 5,
         borderColor: '#FFFFFF',
         padding: 60,
         marginBottom: 120
