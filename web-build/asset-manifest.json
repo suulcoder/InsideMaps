@@ -1,20 +1,21 @@
 {
   "files": {
-    "app.js": "/InsideMaps/static/js/app.d255f2e4.chunk.js",
-    "app.js.map": "/InsideMaps/static/js/app.d255f2e4.chunk.js.map",
+    "app.js": "/InsideMaps/static/js/app.e3260954.chunk.js",
+    "app.js.map": "/InsideMaps/static/js/app.e3260954.chunk.js.map",
     "runtime~app.js": "/InsideMaps/static/js/runtime~app.2ce278e1.js",
     "runtime~app.js.map": "/InsideMaps/static/js/runtime~app.2ce278e1.js.map",
-    "static/js/2.244e3206.chunk.js": "/InsideMaps/static/js/2.244e3206.chunk.js",
-    "static/js/2.244e3206.chunk.js.map": "/InsideMaps/static/js/2.244e3206.chunk.js.map",
+    "static/js/2.914011b8.chunk.js": "/InsideMaps/static/js/2.914011b8.chunk.js",
+    "static/js/2.914011b8.chunk.js.map": "/InsideMaps/static/js/2.914011b8.chunk.js.map",
     "index.html": "/InsideMaps/index.html",
     "manifest.json": "/InsideMaps/manifest.json",
     "serve.json": "/InsideMaps/serve.json",
     "static/media/LOGO.png": "/InsideMaps/static/media/LOGO.00516d3e.png",
+    "static/media/indoor-map.jpg": "/InsideMaps/static/media/indoor-map.debcb37d.jpg",
     "static/media/indoor.jpg": "/InsideMaps/static/media/indoor.9b58729f.jpg"
   },
   "entrypoints": [
     "static/js/runtime~app.2ce278e1.js",
-    "static/js/2.244e3206.chunk.js",
-    "static/js/app.d255f2e4.chunk.js"
+    "static/js/2.914011b8.chunk.js",
+    "static/js/app.e3260954.chunk.js"
   ]
 }
