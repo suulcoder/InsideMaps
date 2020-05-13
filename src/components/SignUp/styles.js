@@ -6,7 +6,7 @@ let styles = StyleSheet.create({
         alignItems: "center",
         flexDirection: "column",
         justifyContent: "center",
-        borderWidth: 3,
+        borderLeftWidth: 5,
         borderColor: '#FFFFFF',
         padding: 60,
         marginBottom: 120
@@ -49,10 +49,10 @@ let styles = StyleSheet.create({
         padding: 10,
     },
     button:{
-        backgroundColor: '#540A08',
+        backgroundColor: '#2580f5',
         borderRadius: 50,
         borderWidth: 6,
-        borderColor: '#540A08',
+        borderColor: '#2580f5',
         width: 150,
         marginTop: 50
     },
@@ -144,10 +144,10 @@ if(typeof document === 'undefined' || width<900){
             padding: 15,
         },
         button:{
-            backgroundColor: '#540A08',
+            backgroundColor: '#2580f5',
             borderRadius: 50,
             borderWidth: 6,
-            borderColor: '#540A08',
+            borderColor: '#2580f5',
             width: 150,
             marginBottom: 20,
             marginTop: 50

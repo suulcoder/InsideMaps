@@ -3,24 +3,26 @@ const width = Dimensions.get('window').width;
 
 let styles = StyleSheet.create({
     container: {
+      overflowX: "hidden",
       marginTop: 50,
       alignItems: "flex-start",
       alignSelf: 'stretch',
       flexDirection: "row",
       justifyContent: 'center',
-      paddingRight: 150,
-      paddingLeft: 150,
+      paddingRight: 0,
+      paddingLeft: 0,
       flexWrap: 'wrap',
       width: width
     },
     text: {
         color: "white",
-        fontSize: 110,
+        fontSize: 80,
         marginBottom: 150
       },
     textContainer:  {
+      marginLeft:-80,
       marginTop: 90,  
-      width: 700
+      width: 530
     }
   });
 if(typeof document === 'undefined' || width<900 ){

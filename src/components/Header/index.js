@@ -13,7 +13,7 @@ const Header = ({isLogged, onSubmit}) => (
             {
                 (isLogged)?(
                     <View style={styles.button}>
-                        <Button className="login_button" color='#540A08'  title={'LOG OUT'} type="submit" onPress={
+                        <Button className="login_button" color='#2580f5'  title={'LOG OUT'} type="submit" onPress={
                             () => onSubmit()
                         }/>
                     </View>

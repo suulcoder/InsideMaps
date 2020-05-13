@@ -1,11 +1,11 @@
 {
   "files": {
-    "app.js": "/InsideMaps/static/js/app.c5c94e05.chunk.js",
-    "app.js.map": "/InsideMaps/static/js/app.c5c94e05.chunk.js.map",
+    "app.js": "/InsideMaps/static/js/app.ec88dcfe.chunk.js",
+    "app.js.map": "/InsideMaps/static/js/app.ec88dcfe.chunk.js.map",
     "runtime~app.js": "/InsideMaps/static/js/runtime~app.2ce278e1.js",
     "runtime~app.js.map": "/InsideMaps/static/js/runtime~app.2ce278e1.js.map",
-    "static/js/2.4bcfdb0f.chunk.js": "/InsideMaps/static/js/2.4bcfdb0f.chunk.js",
-    "static/js/2.4bcfdb0f.chunk.js.map": "/InsideMaps/static/js/2.4bcfdb0f.chunk.js.map",
+    "static/js/2.6d74e158.chunk.js": "/InsideMaps/static/js/2.6d74e158.chunk.js",
+    "static/js/2.6d74e158.chunk.js.map": "/InsideMaps/static/js/2.6d74e158.chunk.js.map",
     "index.html": "/InsideMaps/index.html",
     "manifest.json": "/InsideMaps/manifest.json",
     "serve.json": "/InsideMaps/serve.json",
@@ -14,7 +14,7 @@
   },
   "entrypoints": [
     "static/js/runtime~app.2ce278e1.js",
-    "static/js/2.4bcfdb0f.chunk.js",
-    "static/js/app.c5c94e05.chunk.js"
+    "static/js/2.6d74e158.chunk.js",
+    "static/js/app.ec88dcfe.chunk.js"
   ]
 }

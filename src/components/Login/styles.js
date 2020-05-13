@@ -28,10 +28,10 @@ let styles = StyleSheet.create({
         padding: 10,
     },
     button:{
-        backgroundColor: '#540A08',
+        backgroundColor: '#2580f5',
         borderRadius: 50,
         borderWidth: 6,
-        borderColor: '#540A08',
+        borderColor: '#2580f5',
         width: 150
     },
     errorText:{
@@ -78,8 +78,8 @@ if(typeof document === 'undefined' || width<900){
             padding: 10,
         },
         button:{
-            backgroundColor: '#540A08',
-            borderColor: '#540A08',
+            backgroundColor: '#2580f5',
+            borderColor: '#2580f5',
             borderRadius: 50,
             borderWidth: 6,
             width: 150,

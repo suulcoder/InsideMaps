@@ -36,7 +36,7 @@ const Login = ({Message ,onSubmit, loginSatus}) => {
                 />
                    { loginSatus ? <Spinner />:
                     <View style={styles.button}>
-                        <Button className="login_button" color='#540A08'  title={'LOGIN'} type="submit" onPress={
+                        <Button className="login_button" color='#2580f5'  title={'LOGIN'} type="submit" onPress={
                             () => onSubmit(email,password)
                         }/>
                     </View>
