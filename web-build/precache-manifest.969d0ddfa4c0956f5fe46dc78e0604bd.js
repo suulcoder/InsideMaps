@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "e21b441d2f6b94b1f20909dbd80e3633",
-    "url": "/InsideMaps/static/media/background.e21b441d.jpg"
+    "revision": "9b58729f9db4698d23fba75afd8dee15",
+    "url": "/InsideMaps/static/media/indoor.9b58729f.jpg"
   },
   {
     "revision": "00516d3e49b90397f0e07d1a64287d6d",
@@ -12,12 +12,12 @@ self.__precacheManifest = [
     "url": "/InsideMaps/static/js/runtime~app.2ce278e1.js"
   },
   {
-    "revision": "8da484d66a7b125066f7",
-    "url": "/InsideMaps/static/js/app.ec88dcfe.chunk.js"
+    "revision": "b39a4a48b08cf5d077f4",
+    "url": "/InsideMaps/static/js/app.d255f2e4.chunk.js"
   },
   {
-    "revision": "caf8ec1cfb742a3a60df",
-    "url": "/InsideMaps/static/js/2.6d74e158.chunk.js"
+    "revision": "02345677ee741abf4dc0",
+    "url": "/InsideMaps/static/js/2.244e3206.chunk.js"
   },
   {
     "revision": "d0c694b562b2208635f250762cd7fc79",
@@ -32,7 +32,7 @@ self.__precacheManifest = [
     "url": "/InsideMaps/manifest.json"
   },
   {
-    "revision": "736bee7b4dccfe6c98783630a97f82d5",
+    "revision": "547439b73948cf55eef554fb8894580d",
     "url": "/InsideMaps/index.html"
   },
   {
