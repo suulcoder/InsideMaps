@@ -18,7 +18,7 @@ const token = (state = null, action) => {
       return null;
     }
     case types.LOGOUT: {
-      return null;
+      return null ;
     }
   }
   return state;

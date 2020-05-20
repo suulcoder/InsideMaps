@@ -1,27 +1,27 @@
-import React from 'react';
-import { View, Image, Text } from "react-native";
 import { connect } from 'react-redux';
-import MapCard from '../MapCard';
 import * as selectors from '../../reducers';
-import styles from '../MapBoard/styles';
+import MapCard from '../MapCard';
+import React from 'react';
+import './styles.css';
+
 
 const MapBoard = ({maps}) => {
 
 return (
-  <View style={styles.container}>
-  <Text>Mis mapitas: </Text>
+  <div className='container'>
+  <div>Mis mapitas: </div>
   {
-    maps.length === 0 ? <Text>No hay mapas aún, intenta agregar uno nuevo, ¡Comencemos!</Text> :
+    maps.length === 0 ? <div>No hay mapas aún, intenta agregar uno nuevo, ¡Comencemos!</div> :
   
     maps.map(map => 
       <MapCard 
         key={map._id}
         name={map.name} 
-        id = {map._id}
+        id={map._id}
         level={map.level}
       />)
   }
-  </View>
+  </div>
 );
 
 }

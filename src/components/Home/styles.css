@@ -1,0 +1,21 @@
+.container {
+      overflow-x: hidden;
+      margin-top: 50;
+      align-items: flex-start;
+      flex-direction: row;
+      justify-content: space-around;
+      padding-right: 0;
+      padding-left: 0;
+      flex-wrap: wrap;
+    };
+
+.text {
+        color: white;
+        font-size: 80;
+        margin-bottom: 150
+      };
+.textContainer  {
+      margin-left:-80;
+      margin-top: 90;  
+      width: 530
+    }

@@ -1,0 +1,93 @@
+.signUp {
+    align-iItems: center;
+    flex-direction: column;
+    justify-content: center;
+    border-left-width: 5;
+    border-color: #FFFFFF;
+    padding: 60;
+    margin-bottom: 120
+};
+.inputShort {
+    width: 70;
+    height: 30;
+    border-radius: 20;
+    background-color: #FFFFFF;
+    font-size: 9;
+    margin-right: 15;
+    margin-left: 15;
+    padding: 10;
+};
+.input {
+    width: 200;
+    background-color: #FFFFFF;
+    border-radius: 20;
+    font-size: 12;
+    margin-right: 15;
+    margin-top: 12;
+    padding: 10
+};
+.inputLarge {
+    width: 420;
+    background-color: #FFFFFF;
+    border-radius: 20;
+    font-size: 12;
+    margin-right: 15;
+    margin-top: 12;
+    padding: 10
+};
+.password{
+    width: 200;
+    background-color: #FFFFFF;
+    border-radius: 20;
+    font-size: 12;
+    margin-right: 15;
+    margin-top: 12;
+    padding: 10;
+};
+.button{
+    background-color: #2580f5;
+    border-radius: 50;
+    border-width: 6;
+    border-color: #2580f5;
+    width: 150;
+    margin-top: 50
+};
+text {
+    color: white;
+    font-size: 40;
+    margin-bottom: 60
+};
+.subSection {
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    padding: 5;
+    flex-wrap: wrap
+};
+.subSection2 {
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5;
+    margin-top: 12;
+    flex-wrap: wrap
+};
+.subSection3 {
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    padding: 5;
+    flex-wrap: wrap
+};
+.textSmall{
+    color: white;
+    font-size: 15;
+};
+.textVerySmall{
+    color: white;
+    font-size: 11    ;
+};
+.errorText{
+    color: white;
+    font-size: 15;
+};

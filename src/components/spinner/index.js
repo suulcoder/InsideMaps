@@ -1,7 +1,6 @@
 import React from "react";
 import { css } from "@emotion/core";
 import ClipLoader from "react-spinners/PulseLoader";
-import { View } from "react-native";
  
 // Can be a string as well. Need to ensure each key-value pair ends with ;
 const override = css`
@@ -11,14 +10,14 @@ const override = css`
 `;
 
 const Spinner = () => (
-  <View className="skew-loader">
+  <div className="skew-loader">
     <ClipLoader
       css={override}
       size={10}
       color={"#540A08"}
       loading={true}
     />
-  </View>
+  </div>
 )
 
 export default Spinner

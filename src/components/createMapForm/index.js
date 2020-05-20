@@ -1,14 +1,14 @@
-import React, {useState, useEffect} from "react";
-import styles from './styles'
-
-import { View, Text, TextInput, Button } from 'react-native';
 import { connect } from 'react-redux';
-import * as selectors from '../../reducers';
-import * as actions from '../../actions/map';
-import { select } from "redux-saga/effects";
 import { v4 as uuidv4 } from 'uuid';
+import * as actions from '../../actions/map';
+import * as selectors from '../../reducers';
+import React, {useState} from "react";
+import './styles.css';
+import Header from '../Header';
+import {URL} from '../../configuration'
 
-const MapForm = ({isAuthenticated, onCreate}) => {
+
+const MapForm = ({onSubmit, onCreate}) => {
   
   const [name, changeName] = useState('');
   const [description, changeDescription] = useState('');
@@ -18,10 +18,13 @@ const MapForm = ({isAuthenticated, onCreate}) => {
   const [qr_code, changeQr] = useState('');
 
   return (
-    <View style={styles.container}>
-      <Text>Create Map</Text>
-      <TextInput
-        style={styles.inputTxt}
+    <div className='container'>
+      <Header/>
+      <button className="login_button" color='#2580f5' type="submit" onClick={onSubmit
+                        }>{'GO BACK'}</button>
+      <div>Create Map</div>
+      <input
+        className='inputTxt'
         className="name"
         type="text"
         placeholder="Name"
@@ -29,10 +32,10 @@ const MapForm = ({isAuthenticated, onCreate}) => {
         onChange={e => changeName(e.target.value)}
       />
       {
-        name.length === 0 ? <Text style={styles.text}>Write a valid name</Text> : <Text></Text>
+        name.length === 0 ? <div className='text'>Write a valid name</div> : <div></div>
       }
-      <TextInput
-        style={styles.inputTxt}
+      <input
+        className='inputTxt'
         className="id"
         type="text"
         placeholder="Site id"
@@ -40,10 +43,10 @@ const MapForm = ({isAuthenticated, onCreate}) => {
         onChange={e => changeId(e.target.value)}
       />
       {
-        id_place.length === 0 ? <Text style={styles.text}>Write a valid id</Text> : <Text></Text>
+        id_place.length === 0 ? <div className='text'>Write a valid id</div> : <div></div>
       }
-      <TextInput
-        style={styles.inputTxt}
+      <input
+        className='inputTxt'
         className="description"
         type="text"
         placeholder="Description"
@@ -51,10 +54,10 @@ const MapForm = ({isAuthenticated, onCreate}) => {
         onChange={e => changeDescription(e.target.value)}
       />
       {
-        description.length === 0 ? <Text style={styles.text}>Write a valid description</Text> : <Text></Text>
+        description.length === 0 ? <div className='text'>Write a valid description</div> : <div></div>
       }
-      <TextInput
-        style={styles.inputTxt}
+      <input
+        className='inputTxt'
         className="level"
         type="text"
         placeholder="Level"
@@ -62,10 +65,10 @@ const MapForm = ({isAuthenticated, onCreate}) => {
         onChange={e => changeLevel(e.target.value)}
       />
       {
-        level.length === 0 ? <Text style={styles.text}>Write a valid level</Text> : <Text></Text>
+        level.length === 0 ? <div className='text'>Write a valid level</div> : <div></div>
       }
-      <TextInput
-        style={styles.inputTxt}
+      <input
+        className='inputTxt'
         className="fielName"
         type="text"
         placeholder="File Name"
@@ -73,10 +76,10 @@ const MapForm = ({isAuthenticated, onCreate}) => {
         onChange={e => changeFile(e.target.value)}
       />
       {
-        map_filename.length === 0 ? <Text style={styles.text}>Write a valid file name</Text> : <Text></Text>
+        map_filename.length === 0 ? <div className='div'>Write a valid file name</div> : <div></div>
       }
-      <TextInput
-        style={styles.inputTxt}
+      <input
+        className='inputTxt'
         className="qrCode"
         type="text"
         placeholder="QR Code in here "
@@ -84,10 +87,10 @@ const MapForm = ({isAuthenticated, onCreate}) => {
         onChange={e => changeQr(e.target.value)}
       />
       {
-        qr_code.length === 0 ? <Text style={styles.text}>Write a valid qr code</Text> : <Text></Text>
+        qr_code.length === 0 ? <div className='text'>Write a valid qr code</div> : <div></div>
       }
-      <View style={styles.button}>
-        <Button  style={styles.button} title={'Create'} type="submit" onPress={
+      <div className='button'>
+        <button  className='button' title={'Create'} type="submit" onClick={
           
           () => {onCreate(name, description, id_place, level, map_filename,qr_code);
                 changeName('');
@@ -98,8 +101,8 @@ const MapForm = ({isAuthenticated, onCreate}) => {
                 changeQr('');
           }
         } />
-      </View>
-    </View>
+      </div>
+    </div>
 
   );
 };
@@ -108,8 +111,7 @@ const MapForm = ({isAuthenticated, onCreate}) => {
 
 export default connect(
   state => ({
-    isAuthenticated: selectors.getIsAuthenticating(state),
-    error: selectors.getCreateError(state,)
+    isLogged: selectors.getIsAuthenticating(state)!=null,
   }),
   dispatch => ({
     onCreate(name, description, id_place, level, map_filename,qr_code) {
@@ -124,9 +126,17 @@ export default connect(
         map_filename, 
         qr_code
       };
-      console.log("Esti es se va: ", map);
       dispatch(actions.startCreatingMap(map));
+    },
+    onSubmit(){
+      window.location.href = URL
     }
   }),
+  (stateToProps,disptachToProps) => {
+    if(!stateToProps.isLogged){
+        window.location.href = URL+'login/'
+    }
+    return ({...disptachToProps,...stateToProps})
+  }
 )(MapForm);
 //nombre, descripcion, id del lugar, nivel, nombre del archivo, codigoqr

@@ -1,0 +1,45 @@
+.login {
+        align-items: baseline;
+        flex-direction: row;
+        justify-content: center;
+        padding: 5;
+        flex-wrap: wrap
+    };
+.user {
+        min-width: 150;
+        background-color: #FFFFFF;
+        border-radius: 20;
+        font-size: 12;
+        margin-right: 15;
+        margin-top: 5;
+        padding: 10
+    };
+.password{
+        min-width: 150;
+        background-color: #FFFFFF;
+        border-radius: 20;
+        font-size: 12;
+        margin-right: 15;
+        margin-top: 5;
+        padding: 10;
+    };
+.button{
+        background-color: #2580f5;
+        border-radius: 50;
+        border-width: 6;
+        border-color: #2580f5;
+        width: 150
+    };
+.errorText{
+        border-color: red;
+        color: white;
+        font-size: 15;
+    };
+.section{
+        flex-direction: column;
+        align-items:center
+    };
+.text{
+        color: transparent;
+        font-size: 15;
+    };

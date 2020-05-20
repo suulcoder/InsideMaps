@@ -1,0 +1,41 @@
+.container {
+        display: flex;
+        direction: row;
+        background-color: white;
+        text-align: center;
+        padding: 50px;
+        border-radius: 5px
+    };
+
+.inputTxt {
+        align-items: baseline;
+        flex-direction: row;
+        justify-content: center;
+        padding: 5;
+        flex-wrap: wrap;
+        background-color: white;
+        margin-top: 6px;
+        border-radius: 5px;
+        border-width: 1;
+        border-color: #BFBFBF
+    };
+  
+.button{
+        background-color: white;
+        border-radius: 15;
+        box-shadow: 10px #000000;
+        margin-top: 20px  
+    };
+
+.card {
+     border-radius:10px;
+     border-width:1px;
+     border-color: gray;
+     width: 200px;
+     margin: 10px
+    };
+
+.text{
+        color: gray;
+        font-size: 15;
+    };

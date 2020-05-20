@@ -1,12 +1,11 @@
-import React, {useState, Fragment} from 'react';
 import { connect } from 'react-redux';
-import { View, TextInput, Button, Text, Switch } from "react-native";
-import styles from './styles'
 import { getError, getIsSigning } from '../../reducers'
-import * as actions from '../../actions/auth'
 import { validateEmail } from  '../../modules/validate'
-import { getIsLogging } from '../../reducers/auth';
+import Switch from "react-switch";
+import * as actions from '../../actions/auth'
+import React, {useState, Fragment} from 'react';
 import Spinner from '../spinner';
+import './styles.css';
 
 const SignUp = ({Message, onSubmit, signInStatus}) => {
     const [user,changeUser] = useState('')
@@ -17,108 +16,99 @@ const SignUp = ({Message, onSubmit, signInStatus}) => {
     const [lastname,changeLastname] = useState('')
     const [age,changeAge] = useState('0')
     const [sex,changesex] = useState(true)
-    const toggleSwitch = () => changesex(previousState => !previousState);
+    const toggleSwitch = (previousState) => changesex(!previousState);
     
     return (
         <Fragment>
-        <View>
-            <View style={styles.container2}></View>
-            <View style={styles.signUp}>
-                <Text style={styles.text}>START NOW </Text>
-                <TextInput
-                    style={styles.inputLarge}
+        <div>
+            <div className='container2'></div>
+            <div className='signUp'>
+                <div className='text'>START NOW </div>
+                <input
+                    className='inputLarge'
                     className="userSignUp"
                     type="text"
                     placeholder="username*"
                     value={user}
-                    onChangeText={changeUser}
                     onChange={e => changeUser(e.target.value)}
                 />
-                <TextInput
-                    style={styles.inputLarge}
+                <input
+                    className='inputLarge'
                     className="email"
                     type="email"
                     placeholder="email*"
-                    value={email}
-                    keyboardType={'email-address'}    
-                    onChangeText={changeEmail}    
+                    value={email}   
                     onChange={e=>changeEmail(e.target.value)}
                 />
-                <View style={styles.subSection}>
-                    <TextInput
-                        style={styles.input}
+                <div className='subSection'>
+                    <input
+                        className='input'
                         placeholder="Name*"
                         value={name}
-                        onChangeText={changeName}
                         onChange={e=>changeName(e.target.value)}
                     />
-                    <TextInput
-                        style={styles.input}
+                    <input
+                        className='input'
                         value={lastname}
                         placeholder="Lastname*"
-                        onChangeText={changeLastname}
                         onChange={e=>changeLastname(e.target.value)}
                     />
-                </View>
-                <View style={styles.subSection}>
-                    <TextInput
-                        style={styles.password}
+                </div>
+                <div className='subSection'>
+                    <input
+                        className='password'
                         className="passwordSignUp"
                         type="password"
                         secureTextEntry={true}
                         placeholder="password*"
                         value={password}
-                        onChangeText={changePassword}
                         onChange={e=>changePassword(e.target.value)}
                     />
-                    <TextInput
-                        style={styles.password}
+                    <input
+                        className='password'
                         className="passwordConfirm"
                         type="password"
                         secureTextEntry={true}
                         placeholder="password confirmation*"
                         value={passwordConfirm}
-                        onChangeText={changePasswordComfirm}
                         onChange={e=>changePasswordComfirm(e.target.value)}
                     />
-                </View>
-                <View style={styles.subSection2}>
-                    <View style={styles.subSection3}>
-                        <Text style={styles.textSmall}>AGE: </Text>
-                        <TextInput
-                            style={styles.inputShort}
+                </div>
+                <div className='subSection2'>
+                    <div className='subSection3'>
+                        <div className='textSmall'>AGE: </div>
+                        <input
+                            className='inputShort'
                             placeholder="AGE"
                             value={age}
-                            keyboardType={'numeric'}
-                            onChangeText={changeAge}
                             onChange={e=>changeAge(e.target.value)}
                         />
-                    </View>
-                    <View style={styles.subSection3}>
-                        <Text style={styles.textSmall}>SEX:  </Text>
-                        <View style={styles.subSection3}>
-                            <Text style={styles.textVerySmall}>M  </Text>
+                    </div>
+                    <div className='subSection3'>
+                        <div className='textSmall'>SEX:  </div>
+                        <div className='subSection3'>
+                            <div className='textVerySmall'>M  </div>
                             <Switch
-                                onValueChange={toggleSwitch}
+                                onChange={e=>toggleSwitch}
                                 value={sex}
                             />
-                            <Text style={styles.textVerySmall}>   F</Text>
-                        </View>
-                    </View>
-                </View>
-                <Text style={styles.errorText}>{Message}</Text>
+                            <div className='textVerySmall'>   F</div>
+                        </div>
+                    </div>
+                </div>
+                <div className='errorText'>{Message}</div>
                 {
                     signInStatus ? <Spinner/> :
-                    <View style={styles.button}>
-                        <Button type="submit" color='#2580f5' title='SIGN UP' 
-                            style={styles.button} onPress={
+                    <div className='button'>
+                        <button type="submit" color='#2580f5' 
+                            className='button' onClick={
                             () => onSubmit(name,lastname,user,email,password,age,sex, passwordConfirm)
-                        }/>
-                    </View>
+                        }>{'SIGN UP'}</button>
+                    </div>
                 }
-            </View>
-            <View style={styles.container3}></View>
-        </View>
+            </div>
+            <div className='container3'></div>
+        </div>
         </Fragment>
     )
 }
@@ -135,7 +125,7 @@ export default connect(
     dispatch => ({
         onSubmit(name,lastname,user,email,password,age,sex, passwordConfirm){
             if(user && password && lastname && name && email && age){
-                if(password==passwordConfirm){
+                if(password===passwordConfirm){
                     if(age>0 || !age){
                         if(validateEmail(email)){
                             dispatch(actions.startSignUp(name,lastname,user,email,password,age,(sex)?0:1));

@@ -1,0 +1,38 @@
+.container {
+        display: flex;
+        direction: row;
+        background-color: white;
+        text-align: center;
+        padding: 50px;
+        border-radius: 5px;
+        flex-grow: 1;
+        margin-left: 100px;
+        flex-wrap: wrap
+    };
+
+.inputTxt {
+        align-items: baseline;
+        flex-direction: row;
+        justify-content: center;
+        padding: 5;
+        flex-wrap: wrap;
+        background-color: white;
+        margin-top: 6px;
+        border-radius: 5px;
+        border-width: 1;
+        border-color: #BFBFBF
+    };
+  
+.button{
+        background-color: white;
+        border-radius: 15;
+        box-shadow: 10px #000000;
+        margin-top: 20px        
+
+
+    };
+
+.text{
+        color: gray;
+        font-size: 15;
+    };
