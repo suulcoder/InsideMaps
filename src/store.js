@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import {
   persistStore,
@@ -8,7 +8,12 @@ import storage from 'redux-persist/lib/storage';
 
 import reducer from './reducers';
 import mainSaga from './sagas';
-
+const composeEnhancers =
+  typeof window === 'object' &&
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?   
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+      // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+    }) : compose;
 
 export const configureStore = () => {
   const sagaMiddleware = createSagaMiddleware();
@@ -19,11 +24,15 @@ export const configureStore = () => {
       whitelist: ['auth'],
     },
     reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );
 
   const store = createStore(
     persistedReducer,
-    applyMiddleware(sagaMiddleware),
+    composeEnhancers(
+
+      applyMiddleware(sagaMiddleware),
+    ),
   );
 
   const persistor = persistStore(store);

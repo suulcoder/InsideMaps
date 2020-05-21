@@ -17,6 +17,10 @@ const MapForm = ({onSubmit, onCreate}) => {
   const [map_filename, changeFile] = useState('');
   const [qr_code, changeQr] = useState('');
 
+  //idplace de la vista
+  //mpa_file name  eliminarlo
+  //qr -> geneardor de qr
+
   return (
     <div className='container'>
       <Header/>
@@ -25,7 +29,6 @@ const MapForm = ({onSubmit, onCreate}) => {
       <div>Create Map</div>
       <input
         className='inputTxt'
-        className="name"
         type="text"
         placeholder="Name"
         value={name}
@@ -36,7 +39,6 @@ const MapForm = ({onSubmit, onCreate}) => {
       }
       <input
         className='inputTxt'
-        className="id"
         type="text"
         placeholder="Site id"
         value={id_place}
@@ -47,7 +49,6 @@ const MapForm = ({onSubmit, onCreate}) => {
       }
       <input
         className='inputTxt'
-        className="description"
         type="text"
         placeholder="Description"
         value={description}
@@ -58,7 +59,6 @@ const MapForm = ({onSubmit, onCreate}) => {
       }
       <input
         className='inputTxt'
-        className="level"
         type="text"
         placeholder="Level"
         value={level}
@@ -69,7 +69,6 @@ const MapForm = ({onSubmit, onCreate}) => {
       }
       <input
         className='inputTxt'
-        className="fielName"
         type="text"
         placeholder="File Name"
         value={map_filename}
@@ -80,7 +79,6 @@ const MapForm = ({onSubmit, onCreate}) => {
       }
       <input
         className='inputTxt'
-        className="qrCode"
         type="text"
         placeholder="QR Code in here "
         value={qr_code} 

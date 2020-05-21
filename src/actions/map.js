@@ -40,3 +40,24 @@ export const failFetchingMaps = error => ({
     }
 });
 
+export const startDeletingMap = id => ({
+  type: types.DELETE_MAP_STARTED,
+  payload: {
+    id
+  },
+});
+
+export const completeDeletingMap = id => ({
+  type: types.DELETE_MAP_COMPLETED,
+  payload: {
+    id
+  },
+});
+
+export const failDeletingMap = (id, error) => ({
+  type: types.DELETE_MAP_FAILED,
+  payload: {
+    error
+  }
+});
+
