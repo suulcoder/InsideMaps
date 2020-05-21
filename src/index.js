@@ -6,7 +6,11 @@ import Home from './components/Home';
 import Auth from './components/Auth';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { configureStore } from './store'
-import createMapForm from './components/createMapForm';
+import CreateMapForm from './components/CreateMapForm';
+
+import '@fortawesome/fontawesome-free/css/all.min.css'; 
+import 'bootstrap-css-only/css/bootstrap.min.css'; 
+import 'mdbreact/dist/css/mdb.css';
 
 const { store, persistor } = configureStore();
 
@@ -17,7 +21,7 @@ ReactDOM.render(
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={Auth}/>
-            <Route exact path="/map/create/" component={createMapForm}/>
+            <Route exact path="/map/create/" component={CreateMapForm}/>
           </Switch>
         </BrowserRouter>
     </PersistGate>
