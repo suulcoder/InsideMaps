@@ -47,11 +47,9 @@ export const startDeletingMap = id => ({
   },
 });
 
-export const completeDeletingMap = id => ({
+export const completeDeletingMap = () => ({
   type: types.DELETE_MAP_COMPLETED,
-  payload: {
-    id
-  },
+
 });
 
 export const failDeletingMap = (id, error) => ({

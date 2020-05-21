@@ -34,7 +34,7 @@ const byId = (state = {}, action) => {
       });
       return newState;
     }
-    case types.DELETE_MAP_COMPLETED: {
+    case types.DELETE_MAP_STARTED: {
       return omit(state, action.payload.id);
     }
     default: {
@@ -56,10 +56,9 @@ const order = (state = [], action) => {
       
       return [...state, ...action.payload.order];
     }
-    case types.DELETE_MAP_COMPLETED: {
+    case types.DELETE_MAP_STARTED: {
       return state.filter(id => id !== action.payload.id);
     }
-
     default: {
       return state;
 

@@ -1,7 +1,7 @@
 import { fork, all } from 'redux-saga/effects';
 
 import { watchLoginStarted, watchSignUpStarted } from './auth';
-import { watchCreateMap, watchFetchMaps } from './map';
+import { watchCreateMap, watchFetchMaps, watchDeleteMap} from './map';
 
 function* mainSaga() {
   yield all([
@@ -9,6 +9,7 @@ function* mainSaga() {
     fork(watchSignUpStarted),
     fork(watchCreateMap),
     fork(watchFetchMaps),
+    fork(watchDeleteMap),
   ]);
 }
 

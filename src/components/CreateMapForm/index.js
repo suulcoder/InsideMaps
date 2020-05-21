@@ -37,16 +37,7 @@ const MapForm = ({onSubmit, onCreate}) => {
       {
         name.length === 0 ? <div className='text'>Write a valid name</div> : <div></div>
       }
-      <input
-        className='inputTxt'
-        type="text"
-        placeholder="Site id"
-        value={id_place}
-        onChange={e => changeId(e.target.value)}
-      />
-      {
-        id_place.length === 0 ? <div className='text'>Write a valid id</div> : <div></div>
-      }
+
       <input
         className='inputTxt'
         type="text"
@@ -65,40 +56,14 @@ const MapForm = ({onSubmit, onCreate}) => {
         onChange={e => changeLevel(e.target.value)}
       />
       {
-        level.length === 0 ? <div className='text'>Write a valid level</div> : <div></div>
-      }
-      <input
-        className='inputTxt'
-        type="text"
-        placeholder="File Name"
-        value={map_filename}
-        onChange={e => changeFile(e.target.value)}
-      />
-      {
-        map_filename.length === 0 ? <div className='div'>Write a valid file name</div> : <div></div>
-      }
-      <input
-        className='inputTxt'
-        type="text"
-        placeholder="QR Code in here "
-        value={qr_code} 
-        onChange={e => changeQr(e.target.value)}
-      />
-      {
-        qr_code.length === 0 ? <div className='text'>Write a valid qr code</div> : <div></div>
+        level.length === 0 ? <div className='text'>Write a valid level</div> : <div/>
       }
       <div className='button'>
         <button  className='button' title={'Create'} type="submit" onClick={
           
           () => {onCreate(name, description, id_place, level, map_filename,qr_code);
-                changeName('');
-                changeDescription('');
-                changeFile('');
-                changeId('');
-                changeLevel('');
-                changeQr('');
           }
-        } />
+        } >Crear</button>
       </div>
     </div>
 
@@ -118,11 +83,11 @@ export default connect(
         _id,
         name,
         description, 
-        id_place, 
+        id_place: "5ebb5822e7179a42f1767776", 
         level, 
         year:10,
-        map_filename, 
-        qr_code
+        map_filename: 'unstringdebeiraquí', 
+        qr_code : 'unstringdeberiairaqui'
       };
       dispatch(actions.startCreatingMap(map));
     },

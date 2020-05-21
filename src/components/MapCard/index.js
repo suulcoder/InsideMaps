@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import './styles.css';
 import * as actions from '../../actions/map';
 
 
@@ -14,7 +15,6 @@ import {
 } from "mdbreact";
 
 const MapCard = ({name, level, id, onDelete}) => {
-  const myId = id;
   return (
 
     <MDBCol id={id} lg="4" md="12" className="mb-lg-0 mb-4">
@@ -33,8 +33,8 @@ const MapCard = ({name, level, id, onDelete}) => {
             <p className="grey-text">
               Level: {level}
             </p>
-            <MDBBtn color="indigo" size="sm">
-              <MDBIcon far icon="clone" className="left" /> MDBView project
+            <MDBBtn color="indigo" size="sm" onClick={() => onDelete(id)}>
+              <MDBIcon className="left" /> Delete
             </MDBBtn>
           </MDBCardBody>
         </MDBCol>

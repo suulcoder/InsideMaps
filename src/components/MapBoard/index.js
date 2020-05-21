@@ -24,9 +24,11 @@ const MapBoard = ({ maps, isFetching, onLoad }) => {
       </Link>
       
       <MDBRow className="text-center">
-        {maps.length === 0 ? (
-          <p>No hay mapas aún, intenta agregar uno nuevo, ¡Comencemos!</p>
-        ) : (
+        {isFetching && (<p>Cargando ... </p>)}
+        {maps.length === 0 && !isFetching &&(<p>No hay mapas aún, intenta agregar uno nuevo, ¡Comencemos!</p>) }
+         
+        {
+          maps.length > 0 && !isFetching && (
           maps.map((map) => (
             <MapCard
               key={map._id}
