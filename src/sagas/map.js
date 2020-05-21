@@ -46,7 +46,9 @@ function* createMap(action) {
         const { result } = yield response.json();
         const map = result;
         yield put(actions.completeCreatingMap(oldId, map));
+        window.location.href = URL
         console.log("Se creo un nuevo mapa exitosamente!", map); 
+        alert("Se creo un nuevo mapa exitosamente")
       } else {
         console.log("Error en la respuesta!");
         console.log("llega el estatus", response)

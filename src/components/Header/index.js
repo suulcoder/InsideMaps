@@ -5,13 +5,29 @@ import "./styles.css";
 import { URL } from "../../configuration";
 import { getAuthToken } from "../../reducers/index";
 
-import { MDBNavbar, MDBNavbarBrand, MDBBtn } from "mdbreact";
+import { MDBNavbar, MDBNavbarBrand, MDBBtn, MDBIcon } from "mdbreact";
 
-const Header = ({ onSubmit, color, isLogged }) => (
+import { Link } from "react-router-dom";
+
+const Header = ({ onSubmit, onReturn, nested, color, isLogged }) => (
   <MDBNavbar color={color} height="30">
-    <MDBNavbarBrand>
-      <img src={require("../../../public/logo/LOGO.png")} height="50" alt="" />
-    </MDBNavbarBrand>
+    
+    { nested ? (
+            
+              <Fragment>
+                <MDBNavbarBrand>
+                <Link to="/">
+                  <MDBIcon icon="arrow-left" className="white-text mr-4" />
+                </Link>
+                <strong className="white-text">Create Map</strong>
+              </MDBNavbarBrand>
+                
+              </Fragment>
+            ) : (
+              <MDBNavbarBrand>
+                <img src={require("../../../public/logo/LOGO.png")} height="50" alt="" />
+              </MDBNavbarBrand>
+            )}
     {
       isLogged && (
         <MDBBtn color="primary" onClick={() => onSubmit()}>
@@ -30,6 +46,9 @@ export default connect(
   (dispatch) => ({
     onSubmit() {
       dispatch(logout());
+      window.location.href = URL;
+    },
+    onReturn() {
       window.location.href = URL;
     },
   })

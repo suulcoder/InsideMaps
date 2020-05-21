@@ -15,7 +15,7 @@ import {
 const MapBoard = ({ maps, isFetching, onLoad }) => {
   useEffect(onLoad, [])
   return (
-    <section className="text-center my-5">
+    <div className="text-center">
       <h2 className="h1-responsive font-weight-bold my-5">Mis Mapas</h2>
       <Link to={`/map/create`}>
         <MDBBtn size="lg" gradient="blue" type="submit">
@@ -34,12 +34,13 @@ const MapBoard = ({ maps, isFetching, onLoad }) => {
               key={map._id}
               name={map.name}
               id={map._id}
+              description={map.description}
               level={map.level}
             />
           ))
         )}
       </MDBRow>
-    </section>
+    </div>
   );
 };
 

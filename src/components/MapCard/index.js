@@ -4,48 +4,57 @@ import { connect } from 'react-redux';
 import './styles.css';
 import * as actions from '../../actions/map';
 
+import "./styles.css"
 
 import {
   MDBCol,
   MDBCardBody,
   MDBIcon,
-  MDBBtn,
-  MDBView,
-  MDBMask,
+  MDBCard,
+   MDBCardTitle, MDBCardText, MDBCardImage
 } from "mdbreact";
 
-const MapCard = ({name, level, id, onDelete}) => {
+
+const MapCard = ({name, level, id, description, onDelete}) => {
   return (
 
-    <MDBCol id={id} lg="4" md="12" className="mb-lg-0 mb-4">
-          <MDBView className="overlay rounded z-depth-1" waves>
-            <img
-              src={require('../../../public/img/indoor-map.jpg')}
-              alt=""
-              className="img-fluid"
-            />
-            <a href="#!">
-              <MDBMask overlay="white-slight" />
-            </a>
-          </MDBView>
-          <MDBCardBody className="pb-0">
-            <h4 className="font-weight-bold my-3">{name}</h4>
+    <MDBCol md="4" style={{ marginTop: "2rem" }}>
+      <MDBCard
+      >
+        <img className="card-image-map" src={require('../../../public/img/indoor-map.jpg')} />
+      <MDBCardBody>
+            <MDBCardTitle>{name}</MDBCardTitle>
+            <hr />
             <p className="grey-text">
-              Level: {level}
-            </p>
-            <MDBBtn color="indigo" size="sm" onClick={() => onDelete(id)}>
-              <MDBIcon className="left" /> Delete
-            </MDBBtn>
+                Level: {level}
+              </p>
+            <MDBCardText>
+              {description}
+            </MDBCardText>
+            <a href='#!' className='black-text d-flex justify-content-end'>
+              <h5>
+                View
+                <MDBIcon icon='angle-double-right' className='ml-2' />
+              </h5>
+            </a>
+            <a href='#!' className='black-text d-flex justify-content-end'>
+              <h5>
+                <MDBIcon icon='trash' className='ml-2 red-text' onClick={() => onDelete(id)} />
+              </h5>
+            </a>
           </MDBCardBody>
-        </MDBCol>
+      </MDBCard>
+          
+    </MDBCol>
   );
 }
 
 export default connect(
-  (state,{name, level, id}) => ({
+  (state, {name, level, id}) => ({
   }),
   dispatch =>({
   onDelete(id){
+    console.log("Deleting ", id)
     dispatch(actions.startDeletingMap(id));
   },
 }),
