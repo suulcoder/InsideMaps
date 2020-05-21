@@ -8,7 +8,6 @@ import {
 import * as actions from '../actions/map';
 import * as types from '../types/map';
 import * as selectors from '../reducers';
-import { bodyParser } from '../modules/parser';
 
 
 const API_BASE_URL = 'https://inside-maps-api.herokuapp.com/api/v1/map/';
