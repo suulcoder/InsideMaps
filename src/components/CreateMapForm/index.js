@@ -79,6 +79,7 @@ const MapForm = ({ onCreate }) => {
                     className="form-control"
                     name="email"
                     placeholder="Level"
+                    required
                   />
                   {/* Generate QRCode with a button */}
                 </MDBCol>
@@ -117,6 +118,7 @@ export default connect(
         year: 10,
       };
       console.log(map);
+      
       //dispatch(actions.startCreatingMap(map));
     },
   }),
