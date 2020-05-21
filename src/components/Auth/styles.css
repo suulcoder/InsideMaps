@@ -1,0 +1,15 @@
+body, html {
+    height: 100%;
+    width: 100%;
+}
+
+.auth-container {
+    background-image: url("https://media.timeout.com/images/103512691/image.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.transparent {
+    background-color: transparent;
+}

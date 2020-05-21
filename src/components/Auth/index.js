@@ -3,22 +3,26 @@ import { getAuthToken } from '../../reducers';
 import { logout } from '../../actions/auth';
 import Login from "../Login";
 import SignUp from "../SignUp";
-import React from "react";
+import Header from '../Header';
+import React, { Fragment } from "react";
 import './styles.css';
 import {URL} from '../../configuration'
 
+import { MDBContainer, MDBRow, MDBCol } from 'mdbreact';
+
 const Auth = () => (
-    <div>
-        <div className='container'>
-            <div className='logo' source={require('../../../public/logo/LOGO.png')} ></div>
-            <Login/>
-        </div>
-        <div className='container'>
-                <div className='divContainer'>
-                    <div className='div'>GET INDOORS LOCATION</div>    
-                </div>
-                <SignUp></SignUp>
-            </div>
+    <div className="auth-container">
+        <Header color="special-color-dark" />
+        <MDBContainer className="transparent">
+            <MDBRow  className="transparent">
+                <MDBCol  className="transparent" md="6">
+                    <Login/>
+                </MDBCol>
+                <MDBCol  className="transparent" md="6">
+                    <SignUp/>
+                </MDBCol>
+            </MDBRow>
+        </MDBContainer>
     </div>
 );
 

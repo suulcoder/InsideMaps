@@ -1,45 +1,27 @@
-.login {
-        align-items: baseline;
-        flex-direction: row;
-        justify-content: center;
-        padding: 5;
-        flex-wrap: wrap
-    };
-.user {
-        min-width: 150;
-        background-color: #FFFFFF;
-        border-radius: 20;
-        font-size: 12;
-        margin-right: 15;
-        margin-top: 5;
-        padding: 10
-    };
-.password{
-        min-width: 150;
-        background-color: #FFFFFF;
-        border-radius: 20;
-        font-size: 12;
-        margin-right: 15;
-        margin-top: 5;
-        padding: 10;
-    };
-.button{
-        background-color: #2580f5;
-        border-radius: 50;
-        border-width: 6;
-        border-color: #2580f5;
-        width: 150
-    };
-.errorText{
-        border-color: red;
-        color: white;
-        font-size: 15;
-    };
-.section{
-        flex-direction: column;
-        align-items:center
-    };
-.text{
-        color: transparent;
-        font-size: 15;
-    };
+.form-dark .font-small {
+    font-size: 0.8rem;
+}
+
+.form-dark .md-form label {
+    color: #fff;
+}
+
+.form-dark input[type=text]:focus:not([readonly]) {
+    border-bottom: 1px solid #00C851;
+    -webkit-box-shadow: 0 1px 0 0 #00C851;
+    box-shadow: 0 1px 0 0 #00C851;
+}
+
+.form-dark input[type=text]:focus:not([readonly])+label {
+    color: #fff;
+}
+
+.form-dark input[type=password]:focus:not([readonly]) {
+    border-bottom: 1px solid #00C851;
+    -webkit-box-shadow: 0 1px 0 0 #00C851;
+    box-shadow: 0 1px 0 0 #00C851;
+}
+
+.form-dark input[type=password]:focus:not([readonly])+label {
+    color: #fff;
+}
