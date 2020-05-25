@@ -2,15 +2,18 @@ import { connect } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import * as actions from "../../actions/map";
 import * as selectors from "../../reducers";
-import React, { useState, Fragment } from "react";
+import React, { useState, useRef, Fragment } from "react";
 import Header from "../Header";
 import { URL } from "../../configuration";
 
-import ReactMapGL, { Marker } from 'react-map-gl';
+import ReactMapGL, { Marker, Popup } from 'react-map-gl';
+import DeckGL, { GeoJsonLayer } from "deck.gl";
+import Geocoder from "react-map-gl-geocoder";
 import * as mapboxConf from '../../config/mapbox';
 
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBModal, MDBModalHeader, MDBModalBody, MDBModalFooter, MDBInput } from "mdbreact";
 import "./styles.css";
+import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
 
 const INITIAL_VIEWPORT = {
   width: "100%",
@@ -21,13 +24,18 @@ const INITIAL_VIEWPORT = {
 }
 
 const MapForm = ({ onCreate }) => {
+  const [isOpen, toggleIsOpen] = useState(false)
   const [name, changeName] = useState("");
   const [description, changeDescription] = useState("");
   const [level, changeLevel] = useState("");
   const [viewport, changeViewport] = useState(INITIAL_VIEWPORT)
   const [userLocation, changeUserLocation] = useState({})
   const [markers, changeMarkers] = useState([])
-
+  const [markerName, changeMarkerName] = useState("")
+  const [searchResultLayer, changeSearchResultLayer] = useState(null)
+  
+  const mapRef = useRef()
+  
   const setUserLocation = () => {
     navigator.geolocation.getCurrentPosition(position => {
       const currentUserLocation = {
@@ -45,8 +53,11 @@ const MapForm = ({ onCreate }) => {
   }
 
   const addMarker = () => {
-    const newMarker = { ...viewport }
+    const newMarker = { longitude: viewport.longitude, latitude: viewport.latitude, name: markerName }
     changeMarkers([...markers, newMarker])
+    changeMarkerName('')
+    toggleIsOpen(false)
+    console.log(markers)
   }
 
   const loadPlaceMarkers = () => {
@@ -63,9 +74,43 @@ const MapForm = ({ onCreate }) => {
     });
   };
 
+
+  const handleGeocoderViewportChange = viewport => {
+    const geocoderDefaultOverrides = { transitionDuration: 1000 };
+
+    return changeViewport({
+      ...viewport,
+      ...geocoderDefaultOverrides
+    });
+  };
+
+  const handleOnResult = event => {
+    console.log(event.result);
+    changeSearchResultLayer(new GeoJsonLayer({
+        id: "search-result",
+        data: event.result.geometry,
+        getFillColor: [255, 0, 0, 128],
+        getRadius: 1000,
+        pointRadiusMinPixels: 10,
+        pointRadiusMaxPixels: 10
+      }));
+  };
+
+  /*
+    -- loadPopup related with a marker
+
+        <Popup
+          longitude={this.state.coordinates[0]}
+          latitude={this.state.coordinates[1]}>
+          <div style={style}>
+            <p>{this.state.info}</p>
+          </div>
+        </Popup>
+  */
+
   return (
     <Fragment>
-      <Header nested color="special-color-dark" />
+      <Header nested color="special-color-dark" />      
       <MDBContainer size="md">
         <h2 className="h1-responsive text-center font-weight-bold my-5">
           Create a new map
@@ -134,7 +179,7 @@ const MapForm = ({ onCreate }) => {
             <MDBBtn
               color="white"
               onClick={() => {
-                addMarker()
+                toggleIsOpen(true)
               }}
             >
               Add Marker
@@ -162,23 +207,55 @@ const MapForm = ({ onCreate }) => {
           </MDBCardBody>
         </MDBCard>
         <MDBCard className="mb-4">
-          <ReactMapGL {...viewport} onViewportChange={(viewport => changeViewport(viewport))} mapboxApiAccessToken={mapboxConf.TOKEN}>
-            {Object.keys(userLocation).length !== 0 ? (
-              <Marker
+          <ReactMapGL {...viewport} onViewportChange={(viewport => changeViewport(viewport))} mapboxApiAccessToken={mapboxConf.TOKEN} ref={mapRef}>
+            <Marker
                 latitude={viewport.latitude}
                 longitude={viewport.longitude}
               >
-                <img className="marker-icon" style={{ width: "30px", height: "30px" }} alt="location-icon" src="https://lh3.googleusercontent.com/proxy/mSDslWhknBBmfFh6qFE_xsPHrfJ7rGwdyhlV-zbK4_uIeRE17PWzvMqkPEbndc8z0bMfsjp8K28-6C63VDLOxGw2m3lweUGQIeQgxhRnyrUQkElEgm4NhU4jMwEJLp6VcaNDFiQOUjWYPnINHFzyVUI" />
+                <img className="marker-icon" style={{ width: "30px", height: "30px" }} alt="location-icon" src="https://i.pinimg.com/originals/b0/af/d2/b0afd2ce14ae662af20e0978d5ce5e9a.png" />
               </Marker>
-            ) : (
-                <div></div>
-              )}
+            
             {loadPlaceMarkers()}
+
+            <Geocoder
+              mapRef={mapRef}
+              onResult={handleOnResult}
+              onViewportChange={handleGeocoderViewportChange}
+              mapboxApiAccessToken={mapboxConf.TOKEN}
+              position="top-left"
+            />
+            <DeckGL {...viewport} layers={[searchResultLayer]} />
 
           </ReactMapGL>
 
         </MDBCard>
       </MDBContainer>
+
+      {/* Modal to add a new marker */}
+      <MDBModal isOpen={isOpen}  centered>
+          <MDBModalHeader>Add a new place inside map</MDBModalHeader>
+          <MDBModalBody>
+            Please enter the place name
+            <MDBInput
+                label="Place Name..."
+                group
+                type="text"
+                validate
+                labelClass="grey-text"
+                value={markerName}
+                onChange={e => changeMarkerName(e.target.value)}
+              />
+          </MDBModalBody>
+          <MDBModalFooter>
+            <MDBBtn color="red" onClick={() => toggleIsOpen(false)}>Close</MDBBtn>
+            {
+              markerName.length > 0 && (
+                <MDBBtn color="primary" onClick={() => addMarker()}>Add</MDBBtn>
+              )
+            }
+          </MDBModalFooter>
+        </MDBModal>
+
     </Fragment>
   );
 };
