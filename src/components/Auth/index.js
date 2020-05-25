@@ -12,9 +12,9 @@ import { MDBContainer, MDBRow, MDBCol } from 'mdbreact';
 
 const Auth = () => (
     <div className="auth-container">
-        <Header color="special-color-dark" />
-        <MDBContainer className="transparent">
-            <MDBRow  className="transparent">
+        <Header color="special-color-dark"  />
+        <MDBContainer style={{ backgroundColor: "transparent" }} >
+            <MDBRow  >
                 <MDBCol  className="transparent" md="6">
                     <Login/>
                 </MDBCol>

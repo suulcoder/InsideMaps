@@ -99,6 +99,7 @@ const UpdateMapForm = ({ map, onUpdate}) => {
                 </MDBBtn>
             </MDBCardBody>
           </MDBCard>
+          
         </MDBContainer>
         ) }
       
