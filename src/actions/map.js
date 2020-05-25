@@ -59,3 +59,31 @@ export const failDeletingMap = (id, error) => ({
   }
 });
 
+export const startUpdatingMap = (id, map) => ({
+  type: types.UPDATE_MAP_STARTED,
+  payload: {
+    id,
+    map,
+  }
+});
+
+export const completeUpdatingMap = (id) => ({
+  type: types.UPDATE_MAP_COMPLETED,
+  payload: {
+    id
+  },
+});
+
+export const failUpdatingMap = (error) => ({
+  type: types.UPDATE_MAP_FAILED,
+  payload: {
+    error,
+  }
+});
+
+export const selectingMap = id => ({
+  type: types.SELECT_MAP,
+  payload: {
+    id,
+  }
+});

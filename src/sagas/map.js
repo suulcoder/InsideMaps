@@ -183,3 +183,59 @@ export function* watchDeleteMap() {
     deleteMap,
   );
 }
+
+export function* updateMap(action) {
+
+  const id = action.payload.id;
+
+  try {
+    //const isAuth = yield select(selectors.isAuthenticated)
+
+    if(true){
+
+      const token = yield select(selectors.getAuthToken);
+
+      const response = yield call(
+        fetch,
+        `${API_BASE_URL}${id}`,
+        {
+          method: 'PUT',
+          body: JSON.stringify(action.payload.map),
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `JWT ${token}`,
+          },
+        }
+      );
+
+      if(response.status >= 200 && response.status <= 300){       
+        yield put(actions.completeUpdatingMap(id))
+        console.log("Se actualizó existosamente ", id);
+        alert("Se elimino actualizo el mapa");
+      } else {
+        alert("Falló la eliminacion del mapa, intente de nuevo");
+        console.log("Error en la respuesta!");
+        console.log("llega el estatus", response)
+      }
+
+    } else {
+      console.log('Error de autenticación');
+
+    }
+
+  } catch(error) {
+    console.log("Este es el error!!!!",error);
+    yield put(actions.failFetchingMaps(error));
+  }
+
+}
+
+
+export function* watchUpdateMap() {
+  yield takeEvery(
+    types.UPDATE_MAP_STARTED,
+    updateMap,
+  );
+}
+ 

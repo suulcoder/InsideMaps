@@ -36,6 +36,7 @@ const MapBoard = ({ maps, isFetching, onLoad }) => {
               id={map._id}
               description={map.description}
               level={map.level}
+              isConfirmed={map.isConfirmed}
             />
           ))
         )}

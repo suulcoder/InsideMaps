@@ -22,6 +22,9 @@ export const getMap = (state, id) => mapSelectors.getMap(state.maps, id);
 export const getMaps = state => mapSelectors.getMaps(state.maps);
 export const getCreateError = state => mapSelectors.getCreateError(state.maps);
 export const getIsFetching = state => mapSelectors.getIsFetching(state.maps);
+export const getIsUpdating = state => mapSelectors.getIsUpdating(state.maps);
+export const getSelectedMap = state => mapSelectors.getSelectedMap(state.maps);
+
 
 //como se ve nuestro estado
 

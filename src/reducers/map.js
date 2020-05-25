@@ -34,6 +34,19 @@ const byId = (state = {}, action) => {
       });
       return newState;
     }
+    case types.UPDATE_MAP_STARTED: {
+      const { id, map } = action.payload;
+      const newState = {...state};
+      newState[id] = {...map, isConfirmed:false};
+      return newState;
+    }
+
+    case types.UPDATE_MAP_COMPLETED: {
+      const { id } = action.payload;
+      const newState = { ...state};
+      newState[id].isConfirmed = true;
+      return newState;
+    }
     case types.DELETE_MAP_STARTED: {
       return omit(state, action.payload.id);
     }
@@ -84,6 +97,17 @@ const isFetching = (state = false, action) => {
   }
 };
 
+const isUpdating = (state=null, action) => {
+  switch (action.type) {
+    case types.UPDATE_MAP_STARTED : {
+      return true
+    }
+    default : {
+      return state;
+    }
+  }
+}
+
 
 const error = (state = null, action) => {
   switch (action.type) {
@@ -103,10 +127,23 @@ const error = (state = null, action) => {
 
 };
 
+const selectedMap = (state = null , action) => {
+  switch (action.type) {
+    case types.SELECT_MAP : {
+      return action.payload.id;
+    }
+    default: {
+      return state;
+    }
+  }
+}
+
 export default combineReducers({
   byId,
   order,
   isFetching,
+  isUpdating,
+  selectedMap,
   error,
 });
 
@@ -115,5 +152,7 @@ export const getMap = (state, id) => state.byId[id];
 export const getMaps = state => state.order.map(id => getMap(state, id));
 export const getCreateError = state => state.error;
 export const getIsFetching = state => state.isFetching;
+export const getIsUpdating = state => state.isUpdating;
+export const getSelectedMap = state => getMap(state, state.selectedMap);
 
 
