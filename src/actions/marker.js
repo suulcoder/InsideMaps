@@ -19,6 +19,25 @@ export const failFetchingMarkers = error => ({
     },
 });
 
+export const startFetchingMarkersbyMap = () => ({
+    type: types.MAKER_FETCHING_BY_MAP_STARETED,
+  });
+
+export const completeFetchingMarkersByMap = (entities, order) => ({
+    type: types.MARKERS_FETCHING_BY_MAP_COMPLETED,
+    payload: {
+        entities,
+        order,
+    },
+    });
+
+export const failFetchingMarkersByMap = error => ({
+    type: types.MARKERS_FETCHING_BY_MAP_FAILED,
+    payload: {
+        error,
+    },
+});
+
 export const startAddingMarker = (Marker) => ({
     type: types.MARKER_ADDITION_STARTED,
     payload: Marker,

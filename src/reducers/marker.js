@@ -18,6 +18,18 @@ const byId = (state = {}, action) => {
 
       return newState;
     }
+    case types.MARKERS_FETCHING_BY_MAP_COMPLETED: {
+        const { entities, order } = action.payload;
+        const newState = { ...state };
+        order.forEach(id => {
+          newState[id] = {
+            ...entities[id],
+            isConfirmed: true,
+          };
+        });
+  
+        return newState;
+      }
     case types.MARKER_ADDITION_STARTED: {
       const newState = { ...state };
       newState[action.payload.id] = {
@@ -44,14 +56,17 @@ const byId = (state = {}, action) => {
 const order = (state = [], action) => {
   switch(action.type) {
     case types.MARKERS_FETCHING_COMPLETED: {
-      return [...state,...action.payload.order];
+      return action.payload.order;
     }
+    case types.MARKERS_FETCHING_BY_MAP_COMPLETED: {
+        return action.payload.order;
+      }
     case types.MARKER_ADDITION_STARTED:{
         return [...state, action.payload.id] 
     }
     case types.MARKER_ADDITION_COMPLETED: {
-      const { oldId, comment } = action.payload;
-      return state.map(id => id === oldId ? comment.id : id);
+      const { oldId, marker } = action.payload;
+      return state.map(id => id === oldId ? marker.id : id);
     }
     default: {
       return state;
@@ -70,6 +85,24 @@ const isFetching = (state = false, action) => {
     case types.MARKERS_FETCHING_FAILED: {
       return false;
     }
+    case types.MAKER_FETCHING_BY_MAP_STARETED: {
+      return true;
+    }
+    case types.MARKERS_FETCHING_BY_MAP_COMPLETED: {
+      return false;
+    }
+    case types.MARKERS_FETCHING_BY_MAP_FAILED: {
+      return false;
+    }
+    case types.MARKER_ADDITION_STARTED: {
+      return true;
+    }
+    case types.MARKER_ADDITION_COMPLETED: {
+      return false;
+    }
+    case types.MARKER_ADDITION_FAILED: {
+      return false;
+    }
     default: {
       return state;
     }
@@ -79,16 +112,25 @@ const isFetching = (state = false, action) => {
 const error = (state = null, action) => {
   switch(action.type) {
     case types.MARKERS_FETCHING_FAILED: {
-      return null;
+      return action.payload.error;
     }
     case types.MARKER_ADDITION_FAILED:{
-        return null;
+        return action.payload.error;
+    }
+    case types.MARKERS_FETCHING_BY_MAP_FAILED:{
+        return action.payload.error;
     }
     case types.MARKERS_FETCHING_COMPLETED: {
       return null;
     }
     case types.MARKER_ADDITION_COMPLETED: {
       return null;
+    }
+    case types.MARKERS_FETCHING_BY_MAP_COMPLETED: {
+        return null;
+    }
+    case types.MAKER_FETCHING_BY_MAP_STARETED: {
+        return null;
     }
     case types.MARKER_ADDITION_STARTED: {
         return null;

@@ -67,7 +67,6 @@ const MapForm = ({ onCreate, markers, changeMarkers, fetch }) => {
     changeMarkers({ longitude: viewport.longitude, latitude: viewport.latitude, name: markerName, id: v4() })
     changeMarkerName('')
     toggleIsOpen(false)
-    console.log(markers)
   }
 
   const loadPlaceMarkers = () => {

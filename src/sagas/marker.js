@@ -46,7 +46,7 @@ import * as schemas from '../schemas/marker';
             );
           } else {
             const { non_field_errors } = yield response.json();
-            yield put(actions.failFetchingMarkers(non_field_errors[0]));
+            //yield put(actions.failFetchingMarkers(non_field_errors[0]));
           }
         }
       } catch (error) {
@@ -61,6 +61,50 @@ import * as schemas from '../schemas/marker';
     );
   }
 
+  function* markerByMapFetch(action) {
+    try {
+        const isAuth = true
+        if (isAuth) {
+          const token = yield select(selectors.getAuthToken);
+          const id = yield select(selectors.getSelectedMap)
+          const response = yield call(
+            fetch,
+            `${API_BASE_URL}map/${id}/marker/`,
+            {
+              method: 'GET',
+              headers:{
+                'Content-Type': 'application/json',
+                'Authorization': `JWT ${token}`,
+              },
+            }
+          );
+          if (response.status === 200) {
+            const jsonResult = yield response.json();
+            const normalized = normalize(jsonResult, schemas.markers);
+            console.log(normalized)
+            yield put(
+            actions.completeFetchingMarkers(
+                normalized.entities.markers,
+                normalized.result
+            ),
+            );
+          } else {
+            const { non_field_errors } = yield response.json();
+            //yield put(actions.failFetchingMarkers(non_field_errors[0]));
+          }
+        }
+      } catch (error) {
+        yield put(actions.failFetchingMarkers('CONNECTION FAILED'));
+      }
+  }
+  
+  export function* watchMarkerByMapFetch() {
+    yield takeEvery(
+      types.MAKER_FETCHING_BY_MAP_STARETED,
+      markerByMapFetch,
+    );
+  }
+
 
 function* addMarker(action) {
     try {
@@ -72,7 +116,7 @@ function* addMarker(action) {
           `${API_BASE_URL}marker/`,
           {
             method: 'POST',
-            body: JSON.stringify({...action.payload, coordinate:[action.payload.longitude,action.payload.latitude]}),
+            body: JSON.stringify({...action.payload}),
             headers:{
               'Content-Type': 'application/json',
               'Authorization': `JWT ${token}`,
@@ -85,16 +129,16 @@ function* addMarker(action) {
           yield put(
             actions.completeAddingMarker(
               action.payload.id,
-              marker,
+              action.payload,
             ),
           );
         } else {
           const { non_field_errors } = yield response.json();
-          yield put(actions.failAddingMarker(non_field_errors[0]));
+          //yield put(actions.failAddingMarker(non_field_errors[0]));
         }
       }
     } catch (error) {
-      yield put(actions.failAddingMarker('Falló horrible la conexión mano'));
+      //yield put(actions.failAddingMarker('Falló horrible la conexión mano'));
     }
   }
 
