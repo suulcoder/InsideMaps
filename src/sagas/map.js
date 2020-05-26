@@ -10,6 +10,7 @@ import * as actions from '../actions/map';
 import * as types from '../types/map';
 import * as selectors from '../reducers';
 import * as schemas from '../schemas/map';
+import {URL} from '../configuration'
 import { bodyParser } from '../modules/parser';
 
 

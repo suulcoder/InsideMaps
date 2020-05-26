@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4, v4 } from "uuid";
 import * as actions from "../../actions/map";
 import * as selectors from "../../reducers";
-import React, { useState, useRef, Fragment } from "react";
+import React, { useState, useRef, Fragment, useEffect } from "react";
 import Header from "../Header";
 import { URL } from "../../configuration";
 
@@ -14,6 +14,7 @@ import * as mapboxConf from '../../config/mapbox';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBModal, MDBModalHeader, MDBModalBody, MDBModalFooter, MDBInput } from "mdbreact";
 import "./styles.css";
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
+import { startAddingMarker, startFetchingMarkers } from "../../actions/marker";
 
 const INITIAL_VIEWPORT = {
   width: "100%",
@@ -23,14 +24,24 @@ const INITIAL_VIEWPORT = {
   zoom: 16
 }
 
-const MapForm = ({ onCreate }) => {
+const MapForm = ({ onCreate, markers, changeMarkers, fetch }) => {
+
+  // useEffect(                                                 //I commented this because api response is not getting this structure { longitude: viewport.longitude, latitude: viewport.latitude, name: markerName, id: v4() }
+  //   () => {
+  //     const interval = setInterval(fetch, 10000);
+  //     return () => {
+  //       clearInterval(interval);
+  //     };
+  //   },
+  //   []
+  // );
+
   const [isOpen, toggleIsOpen] = useState(false)
   const [name, changeName] = useState("");
   const [description, changeDescription] = useState("");
   const [level, changeLevel] = useState("");
   const [viewport, changeViewport] = useState(INITIAL_VIEWPORT)
   const [userLocation, changeUserLocation] = useState({})
-  const [markers, changeMarkers] = useState([])
   const [markerName, changeMarkerName] = useState("")
   const [searchResultLayer, changeSearchResultLayer] = useState(null)
   
@@ -53,8 +64,7 @@ const MapForm = ({ onCreate }) => {
   }
 
   const addMarker = () => {
-    const newMarker = { longitude: viewport.longitude, latitude: viewport.latitude, name: markerName }
-    changeMarkers([...markers, newMarker])
+    changeMarkers({ longitude: viewport.longitude, latitude: viewport.latitude, name: markerName, id: v4() })
     changeMarkerName('')
     toggleIsOpen(false)
     console.log(markers)
@@ -262,9 +272,12 @@ const MapForm = ({ onCreate }) => {
 
 // Set institution id explicit here, or in map sagas...
 export default connect(
-  (state) => ({
+  (state) => {
+    console.log(state.marker)
+    return ({
     isLogged: selectors.getIsAuthenticating(state) != null,
-  }),
+    markers: selectors.getMarkers(state)
+  })},
   (dispatch) => ({
     onCreate(name, description, level) {
       const _id = uuidv4();
@@ -280,6 +293,12 @@ export default connect(
       };
       dispatch(actions.startCreatingMap(map));
     },
+    changeMarkers(entity){
+      dispatch(startAddingMarker(entity))
+    },
+    fetch(){
+      dispatch(startFetchingMarkers())
+    }
   }),
   (stateToProps, disptachToProps) => {
     if (!stateToProps.isLogged) {
