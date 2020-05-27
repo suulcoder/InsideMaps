@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { v4 as uuidv4, v4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import * as actions from "../../actions/map";
 import * as selectors from "../../reducers";
 import React, { useState, useRef, Fragment, useEffect } from "react";
@@ -7,7 +7,7 @@ import Header from "../Header";
 import { URL } from "../../configuration";
 
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
-import DeckGL, { GeoJsonLayer } from "deck.gl";
+import DeckGL, { GeoJsonLayer, Viewport } from "deck.gl";
 import Geocoder from "react-map-gl-geocoder";
 import * as mapboxConf from '../../config/mapbox';
 
@@ -25,6 +25,8 @@ const INITIAL_VIEWPORT = {
 }
 
 const MapForm = ({ onCreate, markers, changeMarkers, fetch }) => {
+
+  const mapID = uuidv4();
 
   // useEffect(                                                 //I commented this because api response is not getting this structure { longitude: viewport.longitude, latitude: viewport.latitude, name: markerName, id: v4() }
   //   () => {
@@ -64,7 +66,7 @@ const MapForm = ({ onCreate, markers, changeMarkers, fetch }) => {
   }
 
   const addMarker = () => {
-    changeMarkers({ longitude: viewport.longitude, latitude: viewport.latitude, name: markerName, id: v4() })
+    changeMarkers({ longitude: viewport.longitude, latitude: viewport.latitude, name: markerName, id: uuidv4(),  location: { type: "Point", coordinates: [viewport.longitude, viewport.latitude]} })
     changeMarkerName('')
     toggleIsOpen(false)
   }
@@ -205,7 +207,7 @@ const MapForm = ({ onCreate, markers, changeMarkers, fetch }) => {
               color="primary"
               type="submit"
               onClick={() => {
-                onCreate(name, description, level);
+                onCreate(mapID, name, description, level, [viewport.longitude, viewport.latitude]);
                 changeName("");
                 changeDescription("");
                 changeLevel("");
@@ -278,8 +280,7 @@ export default connect(
     markers: selectors.getMarkers(state)
   })},
   (dispatch) => ({
-    onCreate(name, description, level) {
-      const _id = uuidv4();
+    onCreate(_id, name, description, level, coordinates) {
       const map = {
         _id,
         name,
@@ -287,8 +288,12 @@ export default connect(
         id_place: "5ebb5822e7179a42f1767776",
         level,
         year: 10,
-        map_filename: `lemandoestodisintoporquesinotruena${_id}`,
-        qr_code: `lemandoestodisintoporquesinotruena${_id}`
+        location: {
+          type: "Point",
+          coordinates: coordinates
+        }
+        //map_filename: `lemandoestodisintoporquesinotruena${_id}`,
+        //qr_code: `lemandoestodisintoporquesinotruena${_id}`
       };
       dispatch(actions.startCreatingMap(map));
     },

@@ -10,11 +10,11 @@ import * as actions from '../actions/map';
 import * as types from '../types/map';
 import * as selectors from '../reducers';
 import * as schemas from '../schemas/map';
-import {URL} from '../configuration'
+import {URL, API_URL} from '../configuration'
 import { bodyParser } from '../modules/parser';
 
 
-const API_BASE_URL = 'https://inside-maps-api.herokuapp.com/api/v1/map/';
+const API_BASE_URL = `${API_URL}/map/`;
 
 
 function* createMap(action) {
@@ -42,6 +42,8 @@ function* createMap(action) {
           },
         }
       );
+
+      console.log(action.payload)
 
       if(response.status >= 200 && response.status <= 300){
         const { result } = yield response.json();
@@ -213,7 +215,7 @@ export function* updateMap(action) {
       if(response.status >= 200 && response.status <= 300){       
         yield put(actions.completeUpdatingMap(id))
         console.log("Se actualizó existosamente ", id);
-        alert("Se elimino actualizo el mapa");
+        alert("Se actualizo el mapa");
       } else {
         alert("Falló la eliminacion del mapa, intente de nuevo");
         console.log("Error en la respuesta!");

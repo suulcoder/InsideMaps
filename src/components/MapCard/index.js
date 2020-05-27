@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import './styles.css';
 import * as actions from '../../actions/map';
-import * as selectors from "../../reducers";
 
 import "./styles.css"
 
@@ -12,19 +11,25 @@ import {
   MDBCardBody,
   MDBIcon,
   MDBCard,
-   MDBCardTitle, MDBCardText, MDBCardImage
+   MDBCardTitle, MDBCardText
 } from "mdbreact";
+
+
+import { Link } from "react-router-dom";
 
 
 const MapCard = ({name, level, id, description, isConfirmed, onDelete, onSelectMap}) => {
   return (
 
-    <MDBCol md="4" style={{ marginTop: "2rem" }}>
-      <MDBCard
+    <MDBCol  md="4" style={{ marginTop: "2rem" }}>
+      <MDBCard 
       >
-        <img className="card-image-map" src={require('../../../public/img/indoor-map.jpg')} onClick={() => onSelectMap(id)} />
+        <img className="card-image-map" alt="map-image" src={require('../../../public/img/indoor-map.jpg')} onClick={() => onSelectMap(id)} />
       <MDBCardBody>
+
+      <Link to={`/map/${id}/update`}>
             <MDBCardTitle>{name}</MDBCardTitle>
+          </Link>
             <hr />
             <p className="grey-text">
                 Level: {level}
@@ -35,12 +40,12 @@ const MapCard = ({name, level, id, description, isConfirmed, onDelete, onSelectM
             <MDBCardText>
               {description}
             </MDBCardText>
-            <a href='#!' className='black-text d-flex justify-content-end'>
+            <Link to={`/map/${id}/update`} className='black-text d-flex justify-content-end'>
               <h5>
                 View
                 <MDBIcon icon='angle-double-right' className='ml-2' />
               </h5>
-            </a>
+            </Link>
             <a href='#!' className='black-text d-flex justify-content-end'>
               <h5>
                 <MDBIcon icon='trash' className='ml-2 red-text' onClick={() => onDelete(id)} />

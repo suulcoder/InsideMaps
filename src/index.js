@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import Home from './components/Home';
 import Auth from './components/Auth';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { configureStore } from './store'
 import CreateMapForm from './components/CreateMapForm';
 import UpdateMapForm from './components/UpdateMapForm';
@@ -23,7 +23,8 @@ ReactDOM.render(
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={Auth}/>
             <Route exact path="/map/create/" component={CreateMapForm}/>
-            <Route exact path="/map/update/" component={UpdateMapForm} />
+            <Route exact path="/map/:id/update/" component={UpdateMapForm} />
+            <Route render={() => <Redirect to="/" />} />
           </Switch>
         </BrowserRouter>
     </PersistGate>

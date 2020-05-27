@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import omit from 'lodash/omit';
 
 import * as types from '../types/map';
-
+import union from 'lodash/union'
 
 const byId = (state = {}, action) => {
   switch (action.type) {
@@ -66,8 +66,8 @@ const order = (state = [], action) => {
       return state.map(id => id === oldId ? map._id : id);
     }
     case types.FETCH_MAP_COMPLETED: {
-      
-      return [...state, ...action.payload.order];
+      //return [...state, ...action.payload.order];
+      return union(...state, action.payload.order);
     }
     case types.DELETE_MAP_STARTED: {
       return state.filter(id => id !== action.payload.id);

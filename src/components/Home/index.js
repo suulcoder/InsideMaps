@@ -12,10 +12,8 @@ import { MDBBtn, MDBIcon } from "mdbreact";
 const Home = () => (
   <Fragment>
     <Header color="special-color-dark" />
-    <div className="container">
+    
       <MapBoard />
-      
-    </div>
   </Fragment>
 );
 
