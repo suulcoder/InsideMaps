@@ -21,7 +21,7 @@ export const configureStore = () => {
     {
       key: 'rootx',
       storage,
-      whitelist: ['auth','maps'],
+      whitelist: ['auth','maps', 'marker'],
     },
     reducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

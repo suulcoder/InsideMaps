@@ -9,7 +9,7 @@ import { MDBNavbar, MDBNavbarBrand, MDBBtn, MDBIcon } from "mdbreact";
 
 import { Link } from "react-router-dom";
 
-const Header = ({ onSubmit, onReturn, nested, color, isLogged }) => (
+const Header = ({ onSubmit, onReturn, nested, title, color, isLogged }) => (
   <MDBNavbar color={color} height="30">
     
     { nested ? (
@@ -19,7 +19,7 @@ const Header = ({ onSubmit, onReturn, nested, color, isLogged }) => (
                 <Link to="/">
                   <MDBIcon icon="arrow-left" className="white-text mr-4" />
                 </Link>
-                <strong className="white-text">Create Map</strong>
+                <strong className="white-text">{title}</strong>
               </MDBNavbarBrand>
                 
               </Fragment>

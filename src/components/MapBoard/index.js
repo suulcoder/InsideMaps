@@ -26,7 +26,7 @@ const MapBoard = ({ maps, isFetching, onLoad }) => {
       
       <MDBRow >
         {isFetching && (<p>Cargando ... </p>)}
-        {maps.length === 0 && !isFetching &&(<p>No hay mapas aún, intenta agregar uno nuevo, ¡Comencemos!</p>) }
+        {maps.length === 0 && !isFetching &&(<p >No hay mapas aún, intenta agregar uno nuevo, ¡Comencemos!</p>) }
          
         {
           maps.length > 0 && !isFetching && (

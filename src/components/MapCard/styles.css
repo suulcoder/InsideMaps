@@ -1,3 +1,7 @@
 .card-image-map {
     height: 300px;
 }
+
+.map-link {
+    cursor: pointer;
+}

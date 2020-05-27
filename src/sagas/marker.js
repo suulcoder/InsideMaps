@@ -66,10 +66,13 @@ import * as schemas from '../schemas/marker';
         const isAuth = true
         if (isAuth) {
           const token = yield select(selectors.getAuthToken);
-          const id = yield select(selectors.getSelectedMap)
+          const map = yield select(selectors.getSelectedMap);
+
+          console.log("Retrieving from ", `${API_BASE_URL}map/${map._id}/markers/`)
+
           const response = yield call(
             fetch,
-            `${API_BASE_URL}map/${id}/marker/`,
+            `${API_BASE_URL}map/${map._id}/markers/`,
             {
               method: 'GET',
               headers:{
@@ -80,13 +83,14 @@ import * as schemas from '../schemas/marker';
           );
           if (response.status === 200) {
             const jsonResult = yield response.json();
-            const normalized = normalize(jsonResult, schemas.markers);
-            console.log(normalized)
+            //alert("Retrieved: " + jsonResult)
+            const normalized = normalize(jsonResult.result, schemas.markers);
+            //console.log(normalized)
             yield put(
-            actions.completeFetchingMarkers(
-                normalized.entities.markers,
-                normalized.result
-            ),
+              actions.completeFetchingMarkers(
+                  normalized.entities.markers,
+                  normalized.result
+              ),
             );
           } else {
             const { non_field_errors } = yield response.json();

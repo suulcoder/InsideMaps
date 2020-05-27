@@ -6,8 +6,8 @@ import React, { useState, useRef, Fragment, useEffect } from "react";
 import Header from "../Header";
 import { URL } from "../../configuration";
 
-import ReactMapGL, { Marker, Popup } from 'react-map-gl';
-import DeckGL, { GeoJsonLayer, Viewport } from "deck.gl";
+import ReactMapGL, { Marker } from 'react-map-gl';
+import DeckGL, { GeoJsonLayer } from "deck.gl";
 import Geocoder from "react-map-gl-geocoder";
 import * as mapboxConf from '../../config/mapbox';
 
@@ -76,8 +76,8 @@ const MapForm = ({ onCreate, markers, changeMarkers, fetch }) => {
       return (
         <Marker
           key={uuidv4()}
-          latitude={parseFloat(spot.latitude)}
-          longitude={parseFloat(spot.longitude)}
+          latitude={parseFloat(spot.location.coordinates[1])}
+          longitude={parseFloat(spot.location.coordinates[0])}
         >
           <img style={{ width: "30px", height: "30px" }} src="https://es.seaicons.com/wp-content/uploads/2015/06/map-marker-icon.png" alt="marker" />
         </Marker>
@@ -121,7 +121,7 @@ const MapForm = ({ onCreate, markers, changeMarkers, fetch }) => {
 
   return (
     <Fragment>
-      <Header nested color="special-color-dark" />      
+      <Header nested title="Create Map" color="special-color-dark" />      
       <MDBContainer size="md">
         <h2 className="h1-responsive text-center font-weight-bold my-5">
           Create a new map
