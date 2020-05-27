@@ -7,14 +7,16 @@ import Header from "../Header";
 import { URL } from "../../configuration";
 
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody } from "mdbreact";
+import * as markerActions from "../../actions/marker";
 
-const UpdateMapForm = ({ map, onUpdate}) => {
+const UpdateMapForm = ({ map, onUpdate, onMarkerFetch}) => {
+  useEffect(() => {onMarkerFetch()} , [])
   const [name, changeName] = useState(map.name);
   const [description, changeDescription] = useState(map.description);
   const [level, changeLevel] = useState(map.level);
 
   // Set institution id explicit here, or in map sagas...
-
+  
   return (
     <Fragment>
     
@@ -121,6 +123,9 @@ export default connect(
       };
       dispatch(actions.startUpdatingMap(id, map));
     },
+    onMarkerFetch(){
+      dispatch(markerActions.startFetchingMarkersbyMap())
+    }
   })
 )(UpdateMapForm);
 //nombre, descripcion, id del lugar, nivel, nombre del archivo, codigoqr
