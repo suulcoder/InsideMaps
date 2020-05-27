@@ -66,13 +66,11 @@ import * as schemas from '../schemas/marker';
         const isAuth = true
         if (isAuth) {
           const token = yield select(selectors.getAuthToken);
-          const map = yield select(selectors.getSelectedMap);
-
-          console.log("Retrieving from ", `${API_BASE_URL}map/${map._id}/markers/`)
-
+          const selectedMap = yield select(selectors.getSelectedMap)
+          console.log(selectedMap)
           const response = yield call(
             fetch,
-            `${API_BASE_URL}map/${map._id}/markers/`,
+            `${API_BASE_URL}map/${selectedMap._id}/markers`,
             {
               method: 'GET',
               headers:{
@@ -81,11 +79,12 @@ import * as schemas from '../schemas/marker';
               },
             }
           );
+          console.log(response.status)
           if (response.status === 200) {
-            const jsonResult = yield response.json();
-            //alert("Retrieved: " + jsonResult)
+            console.log(response.status)
+            const jsonResult = yield response.json()
             const normalized = normalize(jsonResult.result, schemas.markers);
-            //console.log(normalized)
+            console.log(normalized)
             yield put(
               actions.completeFetchingMarkers(
                   normalized.entities.markers,

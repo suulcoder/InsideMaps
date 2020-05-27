@@ -23,10 +23,12 @@ const MapBoard = ({ maps, isFetching, onLoad }) => {
           Crear mapa <MDBIcon className="white-text" icon="plus" /> 
         </MDBBtn>
       </Link>
+
+      {isFetching && (<p>Cargando ... </p>)}
+        {maps.length === 0 && !isFetching &&(<p >No hay mapas aún, intenta agregar uno nuevo, ¡Comencemos!</p>) }
       
       <MDBRow >
-        {isFetching && (<p>Cargando ... </p>)}
-        {maps.length === 0 && !isFetching &&(<p >No hay mapas aún, intenta agregar uno nuevo, ¡Comencemos!</p>) }
+        
          
         {
           maps.length > 0 && !isFetching && (
