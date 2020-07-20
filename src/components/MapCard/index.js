@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 
 import './styles.css';
 import * as actions from '../../actions/map';
+import * as selectors from '../../reducers';
 
 import "./styles.css"
 
@@ -23,7 +24,7 @@ import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
 import { Link, Re } from "react-router-dom";
 
 
-const MapCard = ({name, location, level, id, description, isConfirmed, onDelete, onSelectMap}) => {
+const MapCard = ({name, location, level, id, description, isConfirmed, onDelete, onSelectMap, isAuth}) => {
   
   const history = useHistory();
 
@@ -67,9 +68,11 @@ const MapCard = ({name, location, level, id, description, isConfirmed, onDelete,
               </h5>
             </div>
             <a href='#!' className='black-text d-flex justify-content-end'>
+              {isAuth && 
               <h5>
                 <MDBIcon icon='trash' className='ml-2 red-text' onClick={() => onDelete(id)} />
               </h5>
+              }
             </a>
           </MDBCardBody>
       </MDBCard>
@@ -80,6 +83,7 @@ const MapCard = ({name, location, level, id, description, isConfirmed, onDelete,
 
 export default connect(
   (state, {name, level, id, isConfirmed}) => ({
+    isAuth: selectors.getRole(state) === 1 ? true : false,
   }),
   dispatch =>({
   onDelete(id){

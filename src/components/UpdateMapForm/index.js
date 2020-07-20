@@ -16,7 +16,7 @@ import Geocoder from "react-map-gl-geocoder";
 import * as mapboxConf from '../../config/mapbox';
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
 
-const UpdateMapForm = ({ map, markers, onUpdate, onLoad}) => {
+const UpdateMapForm = ({ map, markers, onUpdate, onLoad, isAuth}) => {
   
   useEffect(() => {
     onLoad()
@@ -119,6 +119,7 @@ const UpdateMapForm = ({ map, markers, onUpdate, onLoad}) => {
                     value={name}
                     onChange={(e) => changeName(e.target.value)}
                     required
+                    disabled={isAuth ? false : true}
                   />
                   <div className="valid-feedback">Valid name</div>
                 </MDBCol>
@@ -138,6 +139,7 @@ const UpdateMapForm = ({ map, markers, onUpdate, onLoad}) => {
                     value={description}
                     onChange={(e) => changeDescription(e.target.value)}
                     required
+                    disabled={isAuth ? false : true}
                   />
                   <div className="valid-feedback">Valid description</div>
                 </MDBCol>
@@ -157,11 +159,12 @@ const UpdateMapForm = ({ map, markers, onUpdate, onLoad}) => {
                     name="email"
                     placeholder="Level"
                     required
+                    disabled={isAuth ? false : true}
                   />
                   {/* Generate QRCode with a button */}
                 </MDBCol>
               </MDBRow>
-                <MDBBtn
+                {isAuth && <MDBBtn
                   color="primary"
                   type="submit"
                   onClick={() => {
@@ -172,7 +175,7 @@ const UpdateMapForm = ({ map, markers, onUpdate, onLoad}) => {
                   }}
                 >
                   Update
-                </MDBBtn>
+                </MDBBtn>}
             </MDBCardBody>
           </MDBCard>
           <MDBCard className="mb-4">
@@ -209,7 +212,8 @@ const UpdateMapForm = ({ map, markers, onUpdate, onLoad}) => {
 export default connect(
   (state) => ({
       map: selectors.getSelectedMap(state),
-      markers: selectors.getMarkers(state)
+      markers: selectors.getMarkers(state),
+      isAuth : selectors.getRole(state) === 1 ? true : false,
   }),
   (dispatch) => ({
     onUpdate(name, description, level, id, coordinates) {

@@ -13,16 +13,18 @@ import {
 
 import { Link } from "react-router-dom";
 
-const MapBoard = ({ maps, isFetching, onLoad }) => {
+const MapBoard = ({ maps, isFetching, onLoad, isAuth}) => {
   useEffect(onLoad, [])
   return (
     <div  style={{ padding: "6rem" }} className="text-center">
       <h2 className="h1-responsive font-weight-bold my-5">Mis Mapas</h2>
-      <Link to={`/map/create`}>
+
+      {isAuth && 
+      <Link to={`/map/createplace`}>
         <MDBBtn size="lg" gradient="blue" type="submit">
           Crear mapa <MDBIcon className="white-text" icon="plus" /> 
         </MDBBtn>
-      </Link>
+      </Link>}
 
       {isFetching && (<p>Cargando ... </p>)}
         {maps.length === 0 && !isFetching &&(<p >No hay mapas aún, intenta agregar uno nuevo, ¡Comencemos!</p>) }
@@ -53,7 +55,7 @@ export default connect(
   (state) => ({
     maps: selectors.getMaps(state),
     isFetching: selectors.getIsFetching(state),
-    
+    isAuth: selectors.getRole(state) === 1 ? true : false,
   }),
   dispatch =>({
   onLoad(){

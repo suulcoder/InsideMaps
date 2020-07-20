@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { configureStore } from './store'
 import CreateMapForm from './components/CreateMapForm';
 import UpdateMapForm from './components/UpdateMapForm';
+import CreatePlace from './components/CreatePlace';
 
 import '@fortawesome/fontawesome-free/css/all.min.css'; 
 import 'bootstrap-css-only/css/bootstrap.min.css'; 
@@ -24,6 +25,7 @@ ReactDOM.render(
             <Route exact path="/login" component={Auth}/>
             <Route exact path="/map/create/" component={CreateMapForm}/>
             <Route exact path="/map/:id/update/" component={UpdateMapForm} />
+            <Route exact path="/map/createplace" component={CreatePlace} />
             <Route render={() => <Redirect to="/" />} />
           </Switch>
         </BrowserRouter>

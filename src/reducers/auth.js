@@ -1,3 +1,4 @@
+import jwtDecode from 'jwt-decode';
 import { combineReducers } from 'redux';
 
 import * as types from '../types/auth';
@@ -97,6 +98,17 @@ const error = (state = null, action) => {
   return state;
 };
 
+const decoded = (state = null, action) => {
+  switch(action.type) {
+    case types.AUTHENTICATION_COMPLETED: {
+      return jwtDecode(action.payload.token);
+    }
+    default : {
+      return state;
+    }
+  }
+}
+
 const isAuthenticating = combineReducers({
   login,
   signup,
@@ -105,7 +117,8 @@ const isAuthenticating = combineReducers({
 const auth = combineReducers({
   token,
   isAuthenticating,
-  error
+  error,
+  decoded
 });
 
 export default auth;
@@ -116,3 +129,4 @@ export const getIsAuthenticatingError = state => state.error;
 export const getError = state => state.error;
 export const getIsLogging = state =>  state.isAuthenticating.login;
 export const getIsSigning = state => state.isAuthenticating.signup;
+export const getRole = state => state.decoded ? state.decoded.role : null;
