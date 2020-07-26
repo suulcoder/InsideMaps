@@ -3,6 +3,7 @@ import { fork, all } from 'redux-saga/effects';
 import { watchLoginStarted, watchSignUpStarted } from './auth';
 import { watchCreateMap, watchFetchMaps, watchDeleteMap, watchUpdateMap} from './map';
 import { watchMarkerAddition, watchMarkerFetch, watchMarkerByMapFetch} from './marker';
+import { watchUploadFile } from './places';
 
 function* mainSaga() {
   yield all([
@@ -15,6 +16,7 @@ function* mainSaga() {
     fork(watchMarkerAddition),
     fork(watchMarkerFetch),
     fork(watchMarkerByMapFetch),
+    fork(watchUploadFile),
   ]);
 }
 
