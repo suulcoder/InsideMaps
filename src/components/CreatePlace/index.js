@@ -17,6 +17,15 @@ const CreatePlace = ({isUploading, fileError, onUpload}) => {
     const [selectedFile, setSelectedFile] = useState(undefined);
     const [error, changeError] = useState('');
 
+    var props = ["id","name","latitude","longitude","items"]
+    const hasAllProperties = (props) =>{
+        for (var i = 0; i < props.length; i++) {
+            if (!selectedFile.hasOwnProperty(props[i]))
+                return false;
+        }
+        return true;
+    };
+
     const uploadFile = () => {
      
 
