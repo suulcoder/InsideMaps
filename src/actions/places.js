@@ -14,6 +14,9 @@ export const completeUploadingFile = () => ({
 });
 
 
-export const failedUploadingFile = () => ({
+export const failedUploadingFile = error => ({
     type: types.UPLOAD_PLACES_FAILED,
+    payload: {
+        error,
+    }
 });

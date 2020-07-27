@@ -1,6 +1,7 @@
 import React, { Fragment, useState} from 'react';
 
 import { connect } from "react-redux";
+import trim from 'lodash/trim';
 
 import './styles.css'
 
@@ -39,8 +40,14 @@ const CreatePlace = ({isUploading, fileError, onUpload}) => {
     
             }
             else {
-                onUpload(selectedFile);
-                changeError("");
+                let reader = new FileReader();
+                reader.readAsText(selectedFile);
+                reader.onload = e => {
+                    const file = {data : e.target.result};
+                    const refactoredFile = trim(file.data, '\t\n');
+                    onUpload(refactoredFile);
+                    changeError("");
+                }
                 //TODO: CHECK FOR WELL FORMAT DATA
             }
         }
@@ -98,7 +105,7 @@ export default connect(
     dispatch => ({
         onUpload(file){
             console.log(file);
-            //dispatch(actions.uploadFile(file));
+            dispatch(actions.startUploadingFile(file));
         }
     })
 )(CreatePlace);
