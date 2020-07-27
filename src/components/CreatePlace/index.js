@@ -1,4 +1,5 @@
 import React, { Fragment, useState} from 'react';
+
 import { connect } from "react-redux";
 
 import './styles.css'
@@ -17,9 +18,10 @@ const CreatePlace = ({isUploading, fileError, onUpload}) => {
     const [error, changeError] = useState('');
 
     var props = ["id","name","latitude","longitude","items"]
-    const hasAllProperties = (props) =>{
+
+    exports.hasAllProperties = (obj) => {
         for (var i = 0; i < props.length; i++) {
-            if (!selectedFile.hasOwnProperty(props[i]))
+            if (!obj.hasOwnProperty(props[i]))
                 return false;
         }
         return true;
