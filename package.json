@@ -7,14 +7,20 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
+    "chai": "^4.2.0",
     "chart.js": "^2.9.3",
+<<<<<<< HEAD
     "cucumber": "^6.0.5",
+=======
+    "chia": "0.0.1",
+>>>>>>> f9cc42100d8236c09d060176e73054ac0ab3c65e
     "deck.gl": "^8.1.7",
     "html2canvas": "^1.0.0-rc.5",
     "jspdf": "^1.5.3",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.15",
     "mdbreact": "^4.26.1",
+    "mocha": "^8.0.1",
     "normalizr": "^3.6.0",
     "puppeteer": "^5.2.1",
     "react": "^16.13.0",
@@ -42,7 +48,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "./node_modules/.bin/mocha './src/test/createPlace-test.js' --reporter spec",
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:5000",
