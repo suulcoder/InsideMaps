@@ -1,5 +1,11 @@
 {
   "name": "insidemaps",
+  "jest": {
+    "verbose": true,
+    "transform": {
+      "\\.js$": "<rootDir>/node_modules/babel-jest"
+    }
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,6 +14,8 @@
     "@testing-library/user-event": "^7.1.2",
     "ace-builds": "^1.4.12",
     "axios": "^0.19.2",
+    "babel-plugin-transform-es2015-destructuring": "^6.23.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "chai": "^4.2.0",
     "chart.js": "^2.9.3",
     "chia": "0.0.1",
@@ -17,6 +25,7 @@
     "draft-js-code": "^0.3.0",
     "draft-js-code-editor-plugin": "^0.2.1",
     "html2canvas": "^1.0.0-rc.5",
+    "jest-cli": "^26.4.0",
     "jspdf": "^1.5.3",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.15",
@@ -51,7 +60,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "./node_modules/.bin/mocha './src/test/createPlace-test.js' --reporter spec",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:5000",
@@ -69,5 +78,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "babel-jest": "^26.3.0",
+    "jest": "^26.4.0",
+    "regenerator-runtime": "^0.13.7"
   }
 }
