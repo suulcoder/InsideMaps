@@ -19,8 +19,6 @@ const API_BASE_URL = `${API_URL}map`;
 
 
 function* uploadFile(action) {
-    console.log("Esto le mando:", action.payload.file);
-
 try {
 
     const token = yield select(selectors.getAuthToken);
@@ -37,14 +35,13 @@ try {
         }, 
     },  
     );
-    if (response.satus >= 200 && response.status <= 300) {
-    const { message } = yield response.json();
-    console.log(message);
-    yield put(actions.completeUploadingFile());
-    } else {
-    const { message } = yield response.json();
-    
-    yield put(actions.failedUploadingFile("Trono grueso"));   
+    if (response.satus >300) {
+        const { message } = yield response.json();
+        console.log("Respuesta ---->" , response)
+        yield put(actions.failedUploadingFile("Trono grueso"));   
+    }
+    else {
+        yield put(actions.completeUploadingFile());
     }
 } catch (error) {
     yield put(actions.failedUploadingFile(error)); 

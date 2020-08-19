@@ -38,6 +38,8 @@ export const getError_Marker = state =>  markerSelectors.getError_Marker(state.m
 export const getIsUploading = state =>  placesFileSelectors.getIsUploading(state.placesFile);
 export const getUploadError = state => placesFileSelectors.getUploadError(state.placesFile);
 export const getIsUploaded = state => placesFileSelectors.getIsUploaded(state.placesFile);
+export const getSuccessUpload = state => placesFileSelectors.getSuccessUpload(state.placesFile);
+
 
 //como se ve nuestro estado
 
