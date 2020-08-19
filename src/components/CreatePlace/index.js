@@ -10,6 +10,11 @@ import * as selectors from '../../reducers';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody } from "mdbreact";
 import Header from "../Header";
 
+import AceEditor from "react-ace";
+import "ace-builds/src-noconflict/mode-json";
+import "ace-builds/src-noconflict/theme-monokai";
+import { change } from 'redux-form';
+
 
 const CreatePlace = ({isUploading, fileError, onUpload}) => {
 
@@ -17,6 +22,7 @@ const CreatePlace = ({isUploading, fileError, onUpload}) => {
     
     const [selectedFile, setSelectedFile] = useState(undefined);
     const [error, changeError] = useState('');
+    const [jsonData, changeJsonData] = useState('');
 
     var props = ["id","name","latitude","longitude","items"]
 
@@ -27,6 +33,30 @@ const CreatePlace = ({isUploading, fileError, onUpload}) => {
         }
         return true;
     };
+
+    const handleChangeEditor = (newData) => {
+        if(!jsonData) {
+            changeJsonData('');
+        }
+
+        changeJsonData(newData);
+    }
+
+    const handleChange = (file) => {
+        if (!jsonData) {
+            changeJsonData('')
+        }
+        if(file.type === "application/json"){
+            setSelectedFile(file);
+            let reader = new FileReader();
+            reader.readAsText(file);
+            reader.onload = e => {
+                const dataInFile = {data : e.target.result};
+                const refactoredFile = trim(dataInFile.data, '\t\n');
+                changeJsonData(refactoredFile);
+            }
+        }
+    }
 
     const uploadFile = () => {
      
@@ -40,19 +70,13 @@ const CreatePlace = ({isUploading, fileError, onUpload}) => {
     
             }
             else {
-                let reader = new FileReader();
-                reader.readAsText(selectedFile);
-                reader.onload = e => {
-                    const file = {data : e.target.result};
-                    const refactoredFile = trim(file.data, '\t\n');
-                    onUpload(refactoredFile);
-                    changeError("");
+                    onUpload(jsonData);
+
                 }
-                //TODO: CHECK FOR WELL FORMAT DATA
             }
         }
 
-    }
+    
 
     return (
         <Fragment>
@@ -78,7 +102,7 @@ const CreatePlace = ({isUploading, fileError, onUpload}) => {
                                     className="form-control"
                                     placeholder="File"
                                     required
-                                    onChange={e => setSelectedFile(e.target.files[0])}
+                                    onChange={e => handleChange(e.target.files[0])}
                                     accept=".json"
                                 />
                                 {error.length > 0 ? <label>{error}</label> : <label></label>}
@@ -88,6 +112,15 @@ const CreatePlace = ({isUploading, fileError, onUpload}) => {
                         >
                             Upload File
                         </MDBBtn>
+                        <AceEditor
+                            onChange={handleChangeEditor}
+                            placeholder='Copy json  file here'
+                            value={jsonData}
+                            mode="json"
+                            theme="monokai"
+                            name="code_editor"
+                            editorProps={{ $blockScrolling: true }}
+                        />
                             </MDBCol>
                         </MDBRow>                        
               </MDBCardBody>
@@ -104,7 +137,6 @@ export default connect(
     }),
     dispatch => ({
         onUpload(file){
-            console.log(file);
             dispatch(actions.startUploadingFile(file));
         }
     })
