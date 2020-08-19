@@ -8,6 +8,7 @@ import * as selectors from '../../reducers';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody } from "mdbreact";
 import Header from "../Header";
 import Notification from '../Notification';
+import Spinner from '../Spinner';
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-json";
 import "ace-builds/src-noconflict/theme-monokai";
@@ -102,12 +103,15 @@ const CreatePlace = ({ isUploading, fileError, onUpload, success}) => {
                                         accept=".json"
                                     />
                                     {error.length > 0 ? <label>{error}</label> : <label></label>}
-                                    <MDBBtn
+                                    {!isUploading ? <MDBBtn
                                         color="green"
                                         onClick={uploadFile}
                                     >
                                         Upload File
                                     </MDBBtn>
+                                    :
+                                    <Spinner />
+                                    }
                                     {
                                     success &&
                                     <Notification messageText={success} />
