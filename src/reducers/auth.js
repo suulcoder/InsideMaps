@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 
 import * as types from '../types/auth';
 
-const token = (state = null, action) => {
+export const token = (state = null, action) => {
   switch (action.type) {
 
     case types.AUTHENTICATION_STARTED: {
@@ -25,7 +25,7 @@ const token = (state = null, action) => {
   return state;
 };
 
-const login = (state = null, action) => {
+export const login = (state = null, action) => {
   switch(action.type){
     
     case types.AUTHENTICATION_STARTED: {
@@ -49,7 +49,7 @@ const login = (state = null, action) => {
   return state
 }
 
-const signup = (state=null, action) => {
+export const signup = (state=null, action) => {
   switch(action.type){
     
     case types.AUTHENTICATION_STARTED: {
@@ -76,7 +76,7 @@ const signup = (state=null, action) => {
 
 
 
-const error = (state = null, action) => {
+export const error = (state = null, action) => {
   switch (action.type) {
 
     case types.AUTHENTICATION_STARTED: {
@@ -98,7 +98,7 @@ const error = (state = null, action) => {
   return state;
 };
 
-const decoded = (state = null, action) => {
+export const decoded = (state = null, action) => {
   switch(action.type) {
     case types.AUTHENTICATION_COMPLETED: {
       return jwtDecode(action.payload.token);
