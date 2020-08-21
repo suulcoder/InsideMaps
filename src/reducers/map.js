@@ -4,7 +4,7 @@ import omit from 'lodash/omit';
 import * as types from '../types/map';
 import union from 'lodash/union'
 
-const byId = (state = {}, action) => {
+export const byId = (state = {}, action) => {
   switch (action.type) {
     case types.CREATE_MAP_STARTED: {
       const newState = { ...state };
