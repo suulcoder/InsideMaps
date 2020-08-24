@@ -26,6 +26,14 @@ const MapBoard = ({ maps, isFetching, onLoad, isAuth}) => {
         </MDBBtn>
       </Link>}
 
+
+      {isAuth && 
+      <Link to={`/map/qrgen`}>
+        <MDBBtn size="lg" gradient="blue" type="submit">
+          Crear QR <MDBIcon className="white-text" icon="qrcode" /> 
+        </MDBBtn>
+      </Link>}
+
       {isFetching && (<p>Cargando ... </p>)}
         {maps.length === 0 && !isFetching &&(<p >No hay mapas aún, intenta agregar uno nuevo, ¡Comencemos!</p>) }
       
@@ -55,7 +63,7 @@ export default connect(
   (state) => ({
     maps: selectors.getMaps(state),
     isFetching: selectors.getIsFetching(state),
-    isAuth: selectors.getRole(state) === 1 ? true : false,
+    isAuth: selectors.getRole(state) === 2 ? true : false,
   }),
   dispatch =>({
   onLoad(){
