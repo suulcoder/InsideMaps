@@ -68,13 +68,13 @@ const QRGenerator = () => {
                             <MDBInput
                                 label="Ingrese identificador"
                             ></MDBInput>
-                            <MDBBtn
+                            <MDBLink
                                 outline
-                                color="success"
+                                color="primary"
                             >
-                                <MDBIcon icon="qrcode" className="mr-1 green-text"/>
+                                <MDBIcon icon="qrcode" className="mr-1 blue-text"/>
                                 Generar
-                            </MDBBtn>
+                            </MDBLink>
                         </MDBCol>
                     </MDBRow>
                 </MDBCard>
