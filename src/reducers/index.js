@@ -4,12 +4,14 @@ import auth, * as authSelectors from './auth';
 import maps, * as mapSelectors from './map';
 import marker, * as markerSelectors from './marker'
 import placesFile, * as placesFileSelectors from './places';
+import qrCode, * as qrCodeSelectors from './qrcode';
 
 const reducer = combineReducers({
   auth,
   maps,
   marker,
-  placesFile
+  placesFile,
+  qrCode
 });
 
 export default reducer;
@@ -40,6 +42,7 @@ export const getUploadError = state => placesFileSelectors.getUploadError(state.
 export const getIsUploaded = state => placesFileSelectors.getIsUploaded(state.placesFile);
 export const getSuccessUpload = state => placesFileSelectors.getSuccessUpload(state.placesFile);
 
+export const getQrData = state => qrCodeSelectors.getQrData(state.qrCode);
 
 //como se ve nuestro estado
 
