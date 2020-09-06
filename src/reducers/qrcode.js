@@ -17,19 +17,19 @@ const data = (state={}, action) => {
 
 const error = (state=null, action) => {
     switch (action.type) {
-        case types.FETCH_QR_DATA_FAILED : {
-            return action.payload.error;
-        }
-
+        
         case types.FETCH_QR_DATA_STARTED : {
             return null;
         }
-
+        
         case types.FETCH_QR_DATA_COMPLETED : {
             return null;
         }
+        case types.FETCH_QR_DATA_FAILED : {
+            return action.payload.error;
+        }
         default: {
-            return state
+            return state;
         }
     }
 }
@@ -62,7 +62,8 @@ export default combineReducers({
 });
 
 export const getQrData = state => state.data;
-
+export const getIsFetchingQr = state => state.isFetching;
+export const getQrFetchError = state => state.error;
 
 
 
