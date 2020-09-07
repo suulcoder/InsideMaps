@@ -4,6 +4,7 @@ import { watchLoginStarted, watchSignUpStarted } from './auth';
 import { watchCreateMap, watchFetchMaps, watchDeleteMap, watchUpdateMap} from './map';
 import { watchMarkerAddition, watchMarkerFetch, watchMarkerByMapFetch} from './marker';
 import { watchUploadFile } from './places';
+import { watchGetNodesData } from './qrcode';
 
 function* mainSaga() {
   yield all([
@@ -17,6 +18,7 @@ function* mainSaga() {
     fork(watchMarkerFetch),
     fork(watchMarkerByMapFetch),
     fork(watchUploadFile),
+    fork(watchGetNodesData),
   ]);
 }
 

@@ -1,11 +1,10 @@
 import { connect } from "react-redux";
 import React, { useState, useRef, Fragment, useEffect } from "react";
 import Header from "../Header";
-import { URL } from "../../configuration";
 import Spinner from '../../components/Spinner';
 
 import * as actions from '../../actions/qrcode';
-import { getQrData, getIsFetchingQr } from '../../reducers';
+import { getQrData, getIsFetchingQr, getSelectedMap } from '../../reducers';
 
 import QRCode from 'qrcode.react';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBModal, MDBModalHeader, MDBModalBody, MDBModalFooter, MDBInput, MDBIcon, MDBLink} from "mdbreact";
@@ -14,10 +13,14 @@ import "ace-builds/src-noconflict/mode-json";
 import "ace-builds/src-noconflict/theme-monokai";
 
 
-const QRGenerator = ({ isFetching, qrData, fetchData }) => {
-    
+const QRGenerator = ({ isFetching, qrData, fetchData, mapId}) => {
+
+    // useEffect(() => (
+    //     fetchData(mapId)
+    // ), [])
+
     const [qrValue, changeQrValue] = useState('');
-    const [id, changeId] = useState('');
+    const [name, changeName] = useState('');
     const handleEditor = (newData) => {
         changeQrValue(newData);
     }
@@ -35,11 +38,6 @@ const QRGenerator = ({ isFetching, qrData, fetchData }) => {
         document.body.removeChild(downloadLink);
     }
 
-    const handleFetch = () => {
-        if(id) {
-            fetchData(id);
-        }
-    }
 
     return (
         <Fragment>
@@ -75,13 +73,14 @@ const QRGenerator = ({ isFetching, qrData, fetchData }) => {
                     <MDBRow className="container pt-0">
                         <MDBCol md="4">
                                 <MDBInput
-                                    label="Ingrese identificador"
-                                    onChange={e => changeId(e.target.value)}
+                                    label="Ingrese nombre"
+                                    value={name}
+                                    onChange={e => changeName(e.target.value)}
                                 ></MDBInput>
                                 <MDBLink
                                     outline
                                     color="primary"
-                                    onClick={handleFetch}    
+                                    onClick={() => fetchData(mapId)}    
                                 >
                                     <MDBIcon 
                                         icon="qrcode" 
@@ -100,16 +99,17 @@ const QRGenerator = ({ isFetching, qrData, fetchData }) => {
     )
 }
 
-//export default QRGenerator;
 
 export default connect(
     state => ({
         isFetching: getIsFetchingQr(state),
         qrData: getQrData(state),
+        mapId: getSelectedMap(state).id_place
     }),
     dispatch => ({
         fetchData(id) {
-            dispatch(actions.startFetchingQrData(id))
+            console.log("Esto le mando desde el componente", id)
+            dispatch(actions.startFetchingQrData("5f55ba50c7bcde0024934791"))
         }
     })
 )(QRGenerator);

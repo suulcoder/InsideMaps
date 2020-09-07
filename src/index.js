@@ -27,7 +27,7 @@ ReactDOM.render(
             <Route exact path="/map/create/" component={CreateMapForm}/>
             <Route exact path="/map/:id/update/" component={UpdateMapForm} />
             <Route exact path="/map/createplace" component={CreatePlace} />
-            <Route exact path="/map/qrgen" component={QRGenerator} />
+            <Route exact path="/map/:id/qrgen" component={QRGenerator} />
             <Route render={() => <Redirect to="/" />} />
           </Switch>
         </BrowserRouter>
