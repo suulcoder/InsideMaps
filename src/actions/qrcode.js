@@ -10,7 +10,7 @@ export const startFetchingQrData = (id) => ({
 export const completeFetchingQrData = (data) => ({
     type: types.FETCH_QR_DATA_COMPLETED,
     payload: {
-        data
+        data,
     }
 });
 

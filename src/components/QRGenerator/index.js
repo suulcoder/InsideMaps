@@ -15,9 +15,9 @@ import "ace-builds/src-noconflict/theme-monokai";
 
 const QRGenerator = ({ isFetching, qrData, fetchData, mapId}) => {
 
-    // useEffect(() => (
-    //     fetchData(mapId)
-    // ), [])
+    useEffect(() => (
+        fetchData(mapId)
+    ), [])
 
     const [qrValue, changeQrValue] = useState('');
     const [name, changeName] = useState('');
@@ -36,6 +36,21 @@ const QRGenerator = ({ isFetching, qrData, fetchData, mapId}) => {
         document.body.appendChild(downloadLink);
         downloadLink.click();
         document.body.removeChild(downloadLink);
+    }
+
+    const findQrData = () => {
+        const keys = Object.keys(qrData);
+        const node = keys.filter(i => qrData[i]["name"] === name);
+        if (node.length < 1) {
+            alert(`No hay nodos con el nombre ${name} revisa que hayas ingresado correctamente porfavor`);
+            changeQrValue(''); 
+        }
+
+        else { 
+            changeQrValue(''); 
+            changeQrValue(JSON.stringify(qrData[node[0]]));
+        }
+
     }
 
 
@@ -80,7 +95,7 @@ const QRGenerator = ({ isFetching, qrData, fetchData, mapId}) => {
                                 <MDBLink
                                     outline
                                     color="primary"
-                                    onClick={() => fetchData(mapId)}    
+                                    onClick={findQrData}    
                                 >
                                     <MDBIcon 
                                         icon="qrcode" 

@@ -15,6 +15,7 @@ const data = (state={}, action) => {
     }
 }
 
+
 const error = (state=null, action) => {
     switch (action.type) {
         
