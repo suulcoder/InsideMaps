@@ -43,6 +43,10 @@ const MapCard = ({name, location, level, id, description, isConfirmed, onDelete,
     history.push(`/map/${id}/update`);
   }
 
+  const handleCreateQr = () => {
+    onSelectMap(id);
+    history.push(`/map/${id}/qrgen`)
+  }
   return (
 
     <MDBCol  md="4" style={{ marginTop: "2rem" }}>
@@ -73,6 +77,12 @@ const MapCard = ({name, location, level, id, description, isConfirmed, onDelete,
                 <MDBIcon icon='trash' className='ml-2 red-text' onClick={() => onDelete(id)} />
               </h5>
               }
+            <div onClick={() => handleCreateQr(id)} className='map-link black-text d-flex justify-content-end'>
+              <h5>
+                Generate Qr Codes
+                <MDBIcon icon='qrcode' className='ml-2' />
+              </h5>
+              </div>
             </a>
           </MDBCardBody>
       </MDBCard>
