@@ -61,7 +61,7 @@ const QRGenerator = ({ isFetching, qrData, fetchData, mapId}) => {
                 <h2 className="h1-responsive text-center font-weight-bold my-5">
                     QR code generator
                 </h2>
-                {!isFetching ? (
+                {!isFetching && qrData ? (
                 <MDBCard className="dark-grey-text">
                     <MDBRow className="container pb-0">
                         <MDBCol md="6">
@@ -119,12 +119,13 @@ export default connect(
     state => ({
         isFetching: getIsFetchingQr(state),
         qrData: getQrData(state),
-        mapId: getSelectedMap(state).id_place
+        mapId: getSelectedMap(state)._id
     }),
     dispatch => ({
         fetchData(id) {
-            console.log("Esto le mando desde el componente", id)
-            dispatch(actions.startFetchingQrData("5f55ba50c7bcde0024934791"))
+            console.log("Esto le mando desde el el componente", id)
+            dispatch(actions.startFetchingQrData(id))
         }
-    })
+    }), 
+    
 )(QRGenerator);

@@ -45,7 +45,7 @@ export const getSuccessUpload = state => placesFileSelectors.getSuccessUpload(st
 export const getQrData = state => qrCodeSelectors.getQrData(state.qrCode);
 export const getIsFetchingQr = state => qrCodeSelectors.getIsFetchingQr(state.qrCode);
 export const getQrFetchError = state => qrCodeSelectors.getIsFetchingQr(state.qrCode);
-
+export const getCoordinates = state => qrCodeSelectors.getCoordinates(state.qrCode);
 //como se ve nuestro estado
 
 /* 

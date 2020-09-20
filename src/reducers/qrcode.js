@@ -15,6 +15,16 @@ const data = (state={}, action) => {
     }
 }
 
+const order = (state=[], action) => {
+    switch(action.type) {
+        case types.FETCH_QR_DATA_COMPLETED : {
+            return [...state, ...action.payload.order];
+        }
+        default: {
+            return state;
+        }
+    }
+}
 
 const error = (state=null, action) => {
     switch (action.type) {
@@ -60,11 +70,13 @@ export default combineReducers({
     data,
     error,
     isFetching,
+    order,
 });
 
 export const getQrData = state => state.data;
 export const getIsFetchingQr = state => state.isFetching;
 export const getQrFetchError = state => state.error;
+export const getCoordinates = state => state.order.map(id => ({x:state.data[id].coordinates[0], y: state.data[id].coordinates[1]}));
 
 
 

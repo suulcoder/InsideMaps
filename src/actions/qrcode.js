@@ -7,10 +7,11 @@ export const startFetchingQrData = (id) => ({
     }
 });
 
-export const completeFetchingQrData = (data) => ({
+export const completeFetchingQrData = (data, order) => ({
     type: types.FETCH_QR_DATA_COMPLETED,
     payload: {
         data,
+        order,
     }
 });
 
