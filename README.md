@@ -4,7 +4,7 @@ Para este proyecto, se presenta una solución al recurrente problema de dificult
 
 
 ## Project Status
-Development (6th Sprint Scrum)
+Development (7th Sprint Scrum)
 
 ## Installation and Setup Instructions
 
