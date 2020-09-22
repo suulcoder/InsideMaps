@@ -48,7 +48,7 @@ export default connect(
     isFetching: selectors.getIsFetchingQr(state),
     nodes: selectors.getQrData(state),
     mapId: selectors.getSelectedMap(state)._id,
-    coords: selectors.getCoordinates(state),
+    coords: selectors.getCoordinates(state, 1),
   }),
   dispatch => ({
     fetchData(id) {
