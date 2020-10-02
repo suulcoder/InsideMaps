@@ -3,13 +3,13 @@ import { logout } from "../../actions/auth";
 import React, { Fragment } from "react";
 import "./styles.css";
 import { URL } from "../../configuration";
-import { getAuthToken } from "../../reducers/index";
+import { getAuthToken, getRole } from "../../reducers/index";
 
-import { MDBNavbar, MDBNavbarBrand, MDBBtn, MDBIcon } from "mdbreact";
+import { MDBNavbar, MDBNavbarBrand, MDBBtn, MDBIcon, MDBRow } from "mdbreact";
 
 import { Link } from "react-router-dom";
 
-const Header = ({ onSubmit, onReturn, nested, title, color, isLogged }) => (
+const Header = ({ onSubmit, onReturn, nested, title, color, isLogged, isAuth }) => (
   <MDBNavbar color={color} height="30">
     
     { nested ? (
@@ -28,13 +28,24 @@ const Header = ({ onSubmit, onReturn, nested, title, color, isLogged }) => (
                 <img src={require("../../../public/logo/LOGO.png")} height="50" alt="" />
               </MDBNavbarBrand>
             )}
-    {
-      isLogged && (
-        <MDBBtn color="primary" onClick={() => onSubmit()}>
-          Logout
-        </MDBBtn>
-      )
-    }    
+            <MDBRow class="navbar-nav ml-auto">
+            {isLogged && isAuth && 
+              <Link to={`/stats`}>
+                <MDBBtn color="primary" type="submit">
+                  Estadísticas <MDBIcon className="white-text" icon="chart-bar" /> 
+                </MDBBtn>
+              </Link>}
+              {
+              isLogged && (
+                <MDBBtn color="primary" onClick={() => onSubmit()}>
+                  Logout
+                </MDBBtn>
+              ) 
+            }            
+    </MDBRow>
+       
+    
+    
   </MDBNavbar>
 );
 
@@ -42,6 +53,7 @@ const Header = ({ onSubmit, onReturn, nested, title, color, isLogged }) => (
 export default connect(
   (state) => ({
     isLogged: getAuthToken(state) != null,
+    isAuth: getRole(state) === 2 ? true : false,
   }),
   (dispatch) => ({
     onSubmit() {

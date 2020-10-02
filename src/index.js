@@ -10,6 +10,7 @@ import CreateMapForm from './components/CreateMapForm';
 import UpdateMapForm from './components/UpdateMapForm';
 import CreatePlace from './components/CreatePlace';
 import QRGenerator from './components/QRGenerator';
+import Stats from './components/Stats';
 
 import '@fortawesome/fontawesome-free/css/all.min.css'; 
 import 'bootstrap-css-only/css/bootstrap.min.css'; 
@@ -28,6 +29,7 @@ ReactDOM.render(
             <Route exact path="/map/:id/update/" component={UpdateMapForm} />
             <Route exact path="/map/createplace" component={CreatePlace} />
             <Route exact path="/map/:id/qrgen" component={QRGenerator} />
+            <Route exact path="/stats" component={Stats}/>
             <Route render={() => <Redirect to="/" />} />
           </Switch>
         </BrowserRouter>
