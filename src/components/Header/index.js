@@ -30,6 +30,12 @@ const Header = ({ onSubmit, onReturn, nested, title, color, isLogged, isAuth }) 
             )}
             <MDBRow class="navbar-nav ml-auto">
             {isLogged && isAuth && 
+              <Link to={`/reports`}>
+                <MDBBtn color="primary" type="submit">
+                  Errores <MDBIcon className="white-text" icon="bug" /> 
+                </MDBBtn>
+              </Link>}
+            {isLogged && isAuth && 
               <Link to={`/stats`}>
                 <MDBBtn color="primary" type="submit">
                   Estadísticas <MDBIcon className="white-text" icon="chart-bar" /> 
