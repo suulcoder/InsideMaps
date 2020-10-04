@@ -14,7 +14,7 @@ import { API_URL } from '../configuration';
 import * as actions from '../actions/qrcode';
 import * as selectors from '../reducers';
 import * as types from '../types/qrcode';
-
+import * as schemas from '../schemas/qrcode';
 
 
 
@@ -37,9 +37,12 @@ function* getNodesData(action) {
     },  
     );
     if (response.status === 200) {
-        const { result } = yield response.json();
-        const order = Object.keys(result);
-        yield put(actions.completeFetchingQrData(result, order));   
+        const jsonResult = yield response.json();
+        const {
+            entities: { nodes },
+            result,
+        } = normalize(jsonResult.result, schemas.nodes);
+        yield put(actions.completeFetchingQrData(nodes, result));   
     }
     else {
         yield put(actions.failFetchingQrData("Error server"));

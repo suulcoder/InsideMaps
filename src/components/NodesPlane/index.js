@@ -1,16 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from "react-redux";
 
 import Chart from 'chart.js';
+import { Scatter } from 'react-chartjs-2';
+import 'chartjs-plugin-dragdata';
 
 import * as selectors from "../../reducers";
 
-const NodesPlane = ({ nodes, filteredCoords , level, isFetching }) => {
+const NodesPlane = ({ filteredCoords }) => {
 
     const chartRef = React.createRef();
 
     useEffect(() => {
-        if(!isFetching) {
 
             const ctx = chartRef.current.getContext("2d");
             Chart.defaults.global.elements.point.backgroundColor = '#2F6C9F';
@@ -20,15 +21,27 @@ const NodesPlane = ({ nodes, filteredCoords , level, isFetching }) => {
                 type: 'scatter',
                 data: {
                     datasets: [{
-                        data: filteredCoords,
+                        data: [],
                         label: "Localidades"
                     }]
                 },
                 options: {
+                    dragData: true,
+                    dragX:true,
+                    dragDataRound: 2,
+                    onDragStart: function(e, element) {
+                        console.log("Comenzo drag")
+                    },
+                    onDrag: function(e, datasetIndex, index, value) {
+                        e.target.style.cursor = 'default'
+                    },
+                    onDragEnd: function(e, datasetIndex, index, value) {
+                        e.target.style.cursor = 'default'
+                    },
                     tooltips: {
                         callbacks: {
                             title: function (tooltipItem, data) {
-                                return nodes[tooltipItem[0].index].name.toUpperCase();
+                                return filteredCoords[tooltipItem[0].index].name;
                             }
                         }
                     },
@@ -44,13 +57,12 @@ const NodesPlane = ({ nodes, filteredCoords , level, isFetching }) => {
                     }
                 }
             });
-    
+
             myChart.data.datasets[0].data = filteredCoords;
             console.log("Desde el nodesplane",filteredCoords);
             myChart.update();
-        }
         
-    }, [level, isFetching]);
+    }, [filteredCoords]);
 
     return (
         <div>
@@ -62,12 +74,10 @@ const NodesPlane = ({ nodes, filteredCoords , level, isFetching }) => {
     );
 }
 
-// export default NodesPlane;
 
 export default connect(
     (state, {level}) => ({
         filteredCoords: selectors.getCoordinatesByLevel(state, level),
-        isFetching: selectors.getIsFetchingQr(state),
     }),
     undefined
 )(NodesPlane);

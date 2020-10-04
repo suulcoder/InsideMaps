@@ -76,8 +76,12 @@ export default combineReducers({
 export const getQrData = state => state.data;
 export const getIsFetchingQr = state => state.isFetching;
 export const getQrFetchError = state => state.error;
-export const getCoordinatesByLevel = (state, level) => state.order.map((id, i) => { if(state.data[i].level == level)  {return  {x:state.data[i].coordinates[0], y: state.data[i].coordinates[1]}} else { return {}}});
-export const getCoordinates = state => state.order.map(id => ({x:state.data[id].coordinates[0], y: state.data[id].coordinates[1]}));
 export const getOrder = state => state.order;
-
-
+export const getCoordinatesByLevel = (state, level) => state.order.filter(id => 
+    state.data[id].level == level)
+        .map(filteredId => 
+            ({
+                x:state.data[filteredId].coordinates[0],
+                y:state.data[filteredId].coordinates[1],
+                name: state.data[filteredId].name,
+            }));
