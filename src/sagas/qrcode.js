@@ -59,3 +59,41 @@ yield takeEvery(
     getNodesData,
 );
 }
+
+
+
+function* updateNodesData(action) {
+    try {
+    console.log("llega --------------------");
+    const token = yield select(selectors.getAuthToken);
+
+    const response = yield call(
+    fetch,  
+    `${API_URL}marker/${action.payload.id}`,
+    {
+        method: 'PUT',
+        body: JSON.stringify(action.payload.node),
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `JWT ${token}`,  
+        }, 
+    },  
+    );
+    if (response.status === 200) {
+        yield put(actions.completeUpdatingQrData());   
+    }
+    else {
+        yield put(actions.failUpdatingQrData("Error server"));
+    }
+} catch (error) {
+    yield put(actions.failUpdatingQrData("Error in fetch")); 
+}
+}
+
+
+export function* watchUpdateNodesData() {
+yield takeEvery(
+    types.UPDATE_NODES_STARTED,
+    updateNodesData,
+);
+}

@@ -84,6 +84,5 @@ export const getCoordinatesByLevel = (state, level) => state.order.filter(id =>
             ({
                 x:state.data[filteredId].coordinates[0],
                 y:state.data[filteredId].coordinates[1],
-                name: state.data[filteredId].name,
-                id: filteredId,
+                ... state.data[filteredId]
             }));

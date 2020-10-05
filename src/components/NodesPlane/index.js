@@ -7,12 +7,24 @@ import 'chartjs-plugin-dragdata';
 import {  MDBBtn , MDBLink } from "mdbreact";
 
 import * as selectors from "../../reducers";
+import * as actions from '../../actions/qrcode';
 
-const NodesPlane = ({ filteredCoords, level }) => {
+const NodesPlane = ({ filteredCoords, level, updateNodes}) => {
 
     const chartRef = React.createRef();
     const [hasUpdate, changeHasUpdate] = useState(false);
     const [newPositions, updateNewPositions] = useState([]);
+
+    const handleUpdate = () => {
+        const refactoredNewPositions = newPositions.map(node => 
+            ({...node, coordinates:[node.x, node.y, 0]}));
+        changeHasUpdate(false);
+        console.log(refactoredNewPositions);
+        refactoredNewPositions.forEach(n => {
+            updateNodes(n._id, n);
+        })
+            
+    }
 
 
     useEffect(() => {
@@ -84,7 +96,7 @@ const NodesPlane = ({ filteredCoords, level }) => {
         <div>
             {
                 hasUpdate ?
-                    <button onClick={() => console.log(newPositions)} >Update</button>
+                    <MDBBtn onClick={handleUpdate} >Update</MDBBtn>
                 : 
                 <span></span>
             }
@@ -99,5 +111,9 @@ export default connect(
     (state, {level}) => ({
         filteredCoords: selectors.getCoordinatesByLevel(state, level),
     }),
-    undefined
+    dispatch => ({
+        updateNodes (id, node) {
+            dispatch(actions.startUpdatingQrData(id, node));
+        }
+    })
 )(NodesPlane);
