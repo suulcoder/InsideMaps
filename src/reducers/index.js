@@ -48,9 +48,9 @@ export const getQrData = state => qrCodeSelectors.getQrData(state.qrCode);
 export const getIsFetchingQr = state => qrCodeSelectors.getIsFetchingQr(state.qrCode);
 export const getQrFetchError = state => qrCodeSelectors.getIsFetchingQr(state.qrCode);
 
-export const getErrorData = state => reportSelectors.state.data;
-export const getIsFetchingErrorData = state => reportSelectors.state.isFetching;
-export const getErrorFetchError = state => reportSelectors.state.error;
+export const getErrorData = state => reportSelectors.getErrorData(state.reports);
+export const getIsFetchingErrorData = state => reportSelectors.getIsFetchingErrorData(state.reports);
+export const getErrorFetchError = state => reportSelectors.getErrorFetchError(state.reports);
 
 //como se ve nuestro estado
 
