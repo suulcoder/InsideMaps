@@ -4,12 +4,16 @@ import { connect } from "react-redux";
 import Chart from 'chart.js';
 import { Scatter } from 'react-chartjs-2';
 import 'chartjs-plugin-dragdata';
+import {  MDBBtn , MDBLink } from "mdbreact";
 
 import * as selectors from "../../reducers";
 
-const NodesPlane = ({ filteredCoords }) => {
+const NodesPlane = ({ filteredCoords, level }) => {
 
     const chartRef = React.createRef();
+    const [hasUpdate, changeHasUpdate] = useState(false);
+    const [newPositions, updateNewPositions] = useState([]);
+
 
     useEffect(() => {
 
@@ -21,7 +25,7 @@ const NodesPlane = ({ filteredCoords }) => {
                 type: 'scatter',
                 data: {
                     datasets: [{
-                        data: [],
+                        data: filteredCoords,
                         label: "Localidades"
                     }]
                 },
@@ -30,13 +34,15 @@ const NodesPlane = ({ filteredCoords }) => {
                     dragX:true,
                     dragDataRound: 2,
                     onDragStart: function(e, element) {
-                        console.log("Comenzo drag")
+                        console.log("Comenzo drag");
+                        changeHasUpdate(true);
                     },
                     onDrag: function(e, datasetIndex, index, value) {
-                        e.target.style.cursor = 'default'
+                        e.target.style.cursor = 'default';
                     },
                     onDragEnd: function(e, datasetIndex, index, value) {
                         e.target.style.cursor = 'default'
+                        updateNewPositions(newPositions => [...newPositions, value]);
                     },
                     tooltips: {
                         callbacks: {
@@ -57,12 +63,16 @@ const NodesPlane = ({ filteredCoords }) => {
                     }
                 }
             });
-
-            myChart.data.datasets[0].data = filteredCoords;
+            // myChart.data.datasets.forEach((dataset) => {
+            //     dataset.data.pop();
+            // })
+            // myChart.data.datasets.forEach((dataset) => {
+            //     dataset.data.push(filteredCoords)
+            // });
             console.log("Desde el nodesplane",filteredCoords);
             myChart.update();
         
-    }, [filteredCoords]);
+    }, [level]);
 
     return (
         <div>
@@ -70,6 +80,16 @@ const NodesPlane = ({ filteredCoords }) => {
                 id='nodesPlane'
                 ref={chartRef}
             />
+        
+        <div>
+            {
+                hasUpdate ?
+                    <button onClick={() => console.log(newPositions)} >Update</button>
+                : 
+                <span></span>
+            }
+        </div>
+
         </div>
     );
 }

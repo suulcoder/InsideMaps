@@ -18,7 +18,8 @@ const data = (state={}, action) => {
 const order = (state=[], action) => {
     switch(action.type) {
         case types.FETCH_QR_DATA_COMPLETED : {
-            return [...state, ...action.payload.order];
+            const newState = action.payload.order;
+            return newState;
         }
         default: {
             return state;
@@ -84,4 +85,5 @@ export const getCoordinatesByLevel = (state, level) => state.order.filter(id =>
                 x:state.data[filteredId].coordinates[0],
                 y:state.data[filteredId].coordinates[1],
                 name: state.data[filteredId].name,
+                id: filteredId,
             }));

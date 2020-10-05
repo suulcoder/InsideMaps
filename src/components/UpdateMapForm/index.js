@@ -40,8 +40,6 @@ const UpdateForm = ({ isFetching, nodes, mapId, fetchData, order }) => {
               <MDBCol>
                 <label>Filter by level</label>
                 <MDBInput type="number" min={1} max={10} placeholder="nivel" value={level} onChange={e => changeLevel(e.target.value)}/>
-                <label>Filter by level</label>
-                <MDBBtn>Update</MDBBtn>
               </MDBCol>
             </MDBRow>
           </MDBCardBody>
