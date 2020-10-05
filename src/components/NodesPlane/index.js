@@ -1,16 +1,33 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from "react-redux";
 
 import Chart from 'chart.js';
+import { Scatter } from 'react-chartjs-2';
+import 'chartjs-plugin-dragdata';
+import {  MDBBtn , MDBLink } from "mdbreact";
 
 import * as selectors from "../../reducers";
+import * as actions from '../../actions/qrcode';
 
-const NodesPlane = ({ nodes, filteredCoords , level, isFetching }) => {
+const NodesPlane = ({ filteredCoords, level, updateNodes}) => {
 
     const chartRef = React.createRef();
+    const [hasUpdate, changeHasUpdate] = useState(false);
+    const [newPositions, updateNewPositions] = useState([]);
+
+    const handleUpdate = () => {
+        const refactoredNewPositions = newPositions.map(node => 
+            ({...node, coordinates:[node.x, node.y, 0]}));
+        changeHasUpdate(false);
+        console.log(refactoredNewPositions);
+        refactoredNewPositions.forEach(n => {
+            updateNodes(n._id, n);
+        })
+            
+    }
+
 
     useEffect(() => {
-        if(!isFetching) {
 
             const ctx = chartRef.current.getContext("2d");
             Chart.defaults.global.elements.point.backgroundColor = '#2F6C9F';
@@ -25,10 +42,24 @@ const NodesPlane = ({ nodes, filteredCoords , level, isFetching }) => {
                     }]
                 },
                 options: {
+                    dragData: true,
+                    dragX:true,
+                    dragDataRound: 2,
+                    onDragStart: function(e, element) {
+                        console.log("Comenzo drag");
+                        changeHasUpdate(true);
+                    },
+                    onDrag: function(e, datasetIndex, index, value) {
+                        e.target.style.cursor = 'default';
+                    },
+                    onDragEnd: function(e, datasetIndex, index, value) {
+                        e.target.style.cursor = 'default'
+                        updateNewPositions(newPositions => [...newPositions, value]);
+                    },
                     tooltips: {
                         callbacks: {
                             title: function (tooltipItem, data) {
-                                return nodes[tooltipItem[0].index].name.toUpperCase();
+                                return filteredCoords[tooltipItem[0].index].name;
                             }
                         }
                     },
@@ -44,13 +75,16 @@ const NodesPlane = ({ nodes, filteredCoords , level, isFetching }) => {
                     }
                 }
             });
-    
-            myChart.data.datasets[0].data = filteredCoords;
+            // myChart.data.datasets.forEach((dataset) => {
+            //     dataset.data.pop();
+            // })
+            // myChart.data.datasets.forEach((dataset) => {
+            //     dataset.data.push(filteredCoords)
+            // });
             console.log("Desde el nodesplane",filteredCoords);
             myChart.update();
-        }
         
-    }, [level, isFetching]);
+    }, [level]);
 
     return (
         <div>
@@ -58,16 +92,28 @@ const NodesPlane = ({ nodes, filteredCoords , level, isFetching }) => {
                 id='nodesPlane'
                 ref={chartRef}
             />
+        
+        <div>
+            {
+                hasUpdate ?
+                    <MDBBtn onClick={handleUpdate} >Update</MDBBtn>
+                : 
+                <span></span>
+            }
+        </div>
+
         </div>
     );
 }
 
-// export default NodesPlane;
 
 export default connect(
     (state, {level}) => ({
         filteredCoords: selectors.getCoordinatesByLevel(state, level),
-        isFetching: selectors.getIsFetchingQr(state),
     }),
-    undefined
+    dispatch => ({
+        updateNodes (id, node) {
+            dispatch(actions.startUpdatingQrData(id, node));
+        }
+    })
 )(NodesPlane);

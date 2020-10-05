@@ -21,3 +21,25 @@ export const failFetchingQrData = (error) => ({
         error
     }
 });
+
+
+export const startUpdatingQrData = (id, node) => ({
+    type: types.UPDATE_NODES_STARTED,
+    payload: {
+        id,
+        node,
+    }
+});
+
+export const completeUpdatingQrData = () => ({
+    type: types.UPDATE_NODES_COMPLETED,
+
+});
+
+export const failUpdatingQrData = (error) => ({
+    type: types.UPDATE_NODES_STARTED,
+    payload: {
+        error
+    }
+});
+
