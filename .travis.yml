@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+	-11.6.0
+	-10.16.3
+cache: npm
+
+install:
+	- yarn ci
+
+script:
+	- yarn test
+	- yarn run build
+
+deploy:
+	- provider: pages
+	skip-cleanup: true
+	github_token: $GITHUB_TOKEN
+	on:
+		branch: gh-pages
