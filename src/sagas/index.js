@@ -5,7 +5,6 @@ import { watchCreateMap, watchFetchMaps, watchDeleteMap, watchUpdateMap} from '.
 import { watchMarkerAddition, watchMarkerFetch, watchMarkerByMapFetch} from './marker';
 import { watchUploadFile } from './places';
 import { watchGetNodesData, watchUpdateNodesData } from './qrcode';
-import { watchGetNodesData } from './qrcode';
 import { watchGetErrorData } from './reports';
 
 function* mainSaga() {
