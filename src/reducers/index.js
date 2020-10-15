@@ -5,13 +5,15 @@ import maps, * as mapSelectors from './map';
 import marker, * as markerSelectors from './marker'
 import placesFile, * as placesFileSelectors from './places';
 import qrCode, * as qrCodeSelectors from './qrcode';
+import reports, * as reportSelectors from './reports';
 
 const reducer = combineReducers({
   auth,
   maps,
   marker,
   placesFile,
-  qrCode
+  qrCode,
+  reports
 });
 
 export default reducer;
@@ -45,9 +47,13 @@ export const getSuccessUpload = state => placesFileSelectors.getSuccessUpload(st
 export const getQrData = state => qrCodeSelectors.getQrData(state.qrCode);
 export const getIsFetchingQr = state => qrCodeSelectors.getIsFetchingQr(state.qrCode);
 export const getQrFetchError = state => qrCodeSelectors.getIsFetchingQr(state.qrCode);
-export const getCoordinates = state => qrCodeSelectors.getCoordinates(state.qrCode);
 export const getCoordinatesByLevel = (state, level) => qrCodeSelectors.getCoordinatesByLevel(state.qrCode, level);
-export const getOrder = state => qrCodeSelectors.getOrder(state.qrCode);
+export const getOrder = state => qrCodeSelectors.getOrder(state);
+
+
+export const getErrorData = state => reportSelectors.getErrorData(state.reports);
+export const getIsFetchingErrorData = state => reportSelectors.getIsFetchingErrorData(state.reports);
+export const getErrorFetchError = state => reportSelectors.getErrorFetchError(state.reports);
 
 //como se ve nuestro estado
 
