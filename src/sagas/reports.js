@@ -24,7 +24,7 @@ import {
     
         const response = yield call(
         fetch,  
-        `${API_URL}errorReport`,
+        `${API_URL}error-report`,
         {
             method: 'GET',
             headers: {
@@ -34,7 +34,7 @@ import {
         },  
         );
         if (response.status === 200) {
-            const { result } = yield response.json();
+            const result = yield response.json();
             yield console.log("Respuesta ---->" , result)
             yield put(actions.completeFetchingErrorData(result));   
         }
