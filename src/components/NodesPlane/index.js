@@ -9,7 +9,7 @@ import {  MDBBtn , MDBLink } from "mdbreact";
 import * as selectors from "../../reducers";
 import * as actions from '../../actions/qrcode';
 
-const NodesPlane = ({ filteredCoords, level, updateNodes}) => {
+const NodesPlane = ({ filteredCoords, level, updateNodes, handleChangeNode}) => {
 
     const chartRef = React.createRef();
     const [hasUpdate, changeHasUpdate] = useState(false);
@@ -39,14 +39,20 @@ const NodesPlane = ({ filteredCoords, level, updateNodes}) => {
                     datasets: [{
                         data: filteredCoords,
                         label: "Localidades"
-                    }]
+                    }],
+
                 },
                 options: {
                     dragData: true,
                     dragX:true,
                     dragDataRound: 2,
+                    onClick: function(e, datasetIndex, index, value) {
+                        if(datasetIndex.length > 0){
+                            handleChangeNode(filteredCoords[datasetIndex[0]._index]);
+                            console.log("was clicked", filteredCoords[datasetIndex[0]._index])
+                        }
+                    },
                     onDragStart: function(e, element) {
-                        console.log("Comenzo drag");
                         changeHasUpdate(true);
                     },
                     onDrag: function(e, datasetIndex, index, value) {
@@ -72,16 +78,11 @@ const NodesPlane = ({ filteredCoords, level, updateNodes}) => {
                     },
                     legend: {
                         display: false,
-                    }
+                    },
+
                 }
             });
-            // myChart.data.datasets.forEach((dataset) => {
-            //     dataset.data.pop();
-            // })
-            // myChart.data.datasets.forEach((dataset) => {
-            //     dataset.data.push(filteredCoords)
-            // });
-            console.log("Desde el nodesplane",filteredCoords);
+
             myChart.update();
         
     }, [level]);
@@ -96,7 +97,7 @@ const NodesPlane = ({ filteredCoords, level, updateNodes}) => {
         <div>
             {
                 hasUpdate ?
-                    <MDBBtn onClick={handleUpdate} >Update</MDBBtn>
+                    <MDBBtn onClick={handleUpdate} >Update Positions</MDBBtn>
                 : 
                 <span></span>
             }

@@ -13,13 +13,47 @@ import range from '../../modules/range';
 import "./styles.css";
 
 
-const UpdateForm = ({ isFetching, nodes, mapId, fetchData, order }) => {
+const UpdateForm = ({ isFetching, nodes, mapId, fetchData, order, updateNodeFields}) => {
   
   const [level, changeLevel] = useState(1);
+
+  const [isUpdateSelected, changeUpdateSelected] = useState(false);
+
+  const [nodeLevel, changeNodeLevel] = useState('');
+
+  const [nodeName, changeNodeName] = useState('');
+
+  const [nodeType, changeNodeType] = useState('');
+
+  const [selectedNode, changeSelectedNode] = useState({});
 
   useEffect(() => 
       fetchData(mapId),
       []);
+
+
+  const handleChangeNode = (node) => {
+    
+    changeSelectedNode(node);
+    changeNodeLevel(node.level);
+    changeNodeName(node.name);
+    changeNodeType(node.type);
+    changeUpdateSelected(true);
+
+  }
+
+  const handleNodeUpdate = () => {
+
+    const updatedNode = { ...selectedNode, 
+      name: nodeName,
+      type: nodeType,
+      level: nodeLevel
+    }
+    changeUpdateSelected(false);
+      console.log(updatedNode);
+
+    updateNodeFields(updatedNode._id, updatedNode)
+  }
 
   return(
     <Fragment>
@@ -33,13 +67,26 @@ const UpdateForm = ({ isFetching, nodes, mapId, fetchData, order }) => {
             <MDBRow className="container">
               <MDBCol md="8" className="mb-3">
                 {!isFetching   ? 
-                <NodesPlane level={level} nodes={nodes} order={order} /> :
+                <NodesPlane level={level} nodes={nodes} order={order} handleChangeNode={handleChangeNode}/> :
                 <Spinner />
                 }
               </MDBCol>
               <MDBCol>
                 <label>Filter by level</label>
                 <MDBInput type="number" min={1} max={10} placeholder="nivel" value={level} onChange={e => changeLevel(e.target.value)}/>
+                {
+                  isUpdateSelected && (
+                    <div>
+                      <label>Name</label>
+                      <MDBInput type="text" min={1} max={10} placeholder="Name" value={nodeName} onChange={e => changeNodeName(e.target.value)}/>
+                      <label>Level</label>
+                      <MDBInput type="text" min={1} max={10} placeholder="Level" value={nodeLevel} onChange={e => changeNodeLevel(e.target.value)}/>
+                      <label>Type</label>
+                      <MDBInput type="text" min={1} max={10} placeholder="Node Type" value={nodeType} onChange={e => changeNodeType(e.target.value)}/>
+                      <MDBBtn onClick={handleNodeUpdate} >Save</MDBBtn>
+                    </div>
+                  )
+                }
               </MDBCol>
             </MDBRow>
           </MDBCardBody>
@@ -59,7 +106,10 @@ export default connect(
   }),
   dispatch => ({
     fetchData(id) {
-      dispatch(actions.startFetchingQrData(id))
-  }
+      dispatch(actions.startFetchingQrData(id));
+  },
+    updateNodeFields(id, node) {
+      dispatch(actions.startUpdatingQrData(id, node));
+    }
   })
 )(UpdateForm);
