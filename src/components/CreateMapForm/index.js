@@ -2,19 +2,14 @@ import { connect } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import * as actions from "../../actions/map";
 import * as selectors from "../../reducers";
-import React, { useState, useRef, Fragment, useEffect } from "react";
+import React, { useState, useRef, Fragment } from "react";
 import Header from "../Header";
 import { URL } from "../../configuration";
 
-import ReactMapGL, { Marker } from 'react-map-gl';
-import DeckGL, { GeoJsonLayer } from "deck.gl";
-import Geocoder from "react-map-gl-geocoder";
-import * as mapboxConf from '../../config/mapbox';
-
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBModal, MDBModalHeader, MDBModalBody, MDBModalFooter, MDBInput } from "mdbreact";
 import "./styles.css";
-import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
 import { startAddingMarker, startFetchingMarkers } from "../../actions/marker";
+import Map from "../Map";
 
 const INITIAL_VIEWPORT = {
   width: "100%",
@@ -71,21 +66,6 @@ const MapForm = ({ onCreate, markers, changeMarkers, fetch }) => {
     toggleIsOpen(false)
   }
 
-  const loadPlaceMarkers = () => {
-    return markers.map(spot => {
-      return (
-        <Marker
-          key={uuidv4()}
-          latitude={parseFloat(spot.location.coordinates[1])}
-          longitude={parseFloat(spot.location.coordinates[0])}
-        >
-          <img style={{ width: "30px", height: "30px" }} src="https://es.seaicons.com/wp-content/uploads/2015/06/map-marker-icon.png" alt="marker" />
-        </Marker>
-      );
-    });
-  };
-
-
   const handleGeocoderViewportChange = viewport => {
     const geocoderDefaultOverrides = { transitionDuration: 1000 };
 
@@ -93,18 +73,6 @@ const MapForm = ({ onCreate, markers, changeMarkers, fetch }) => {
       ...viewport,
       ...geocoderDefaultOverrides
     });
-  };
-
-  const handleOnResult = event => {
-    console.log(event.result);
-    changeSearchResultLayer(new GeoJsonLayer({
-        id: "search-result",
-        data: event.result.geometry,
-        getFillColor: [255, 0, 0, 128],
-        getRadius: 1000,
-        pointRadiusMinPixels: 10,
-        pointRadiusMaxPixels: 10
-      }));
   };
 
   /*
@@ -218,27 +186,11 @@ const MapForm = ({ onCreate, markers, changeMarkers, fetch }) => {
           </MDBCardBody>
         </MDBCard>
         <MDBCard className="mb-4">
-          <ReactMapGL {...viewport} onViewportChange={(viewport => changeViewport(viewport))} mapboxApiAccessToken={mapboxConf.TOKEN} ref={mapRef}>
-            <Marker
-                latitude={viewport.latitude}
-                longitude={viewport.longitude}
-              >
-                <img className="marker-icon" style={{ width: "30px", height: "30px" }} alt="location-icon" src="https://i.pinimg.com/originals/b0/af/d2/b0afd2ce14ae662af20e0978d5ce5e9a.png" />
-              </Marker>
-            
-            {loadPlaceMarkers()}
-
-            <Geocoder
-              mapRef={mapRef}
-              onResult={handleOnResult}
-              onViewportChange={handleGeocoderViewportChange}
-              mapboxApiAccessToken={mapboxConf.TOKEN}
-              position="top-left"
-            />
-            <DeckGL {...viewport} layers={[searchResultLayer]} />
-
-          </ReactMapGL>
-
+          <Map
+            containerElement={<div style={{ height: INITIAL_VIEWPORT.height }} />}
+            mapElement={<div style={{ height: INITIAL_VIEWPORT.height }} />}
+            STATIC_VIEWPORT={INITIAL_VIEWPORT}
+          ></Map>
         </MDBCard>
       </MDBContainer>
 
