@@ -22,15 +22,15 @@ const CreatePlace = ({ isUploading, fileError, onUpload, success}) => {
     const [error, changeError] = useState('');
     const [jsonData, changeJsonData] = useState('');
 
-    var props = ["id", "name", "latitude", "longitude", "items"]
+    //var props = ["id", "name", "latitude", "longitude", "items"]
 
-    exports.hasAllProperties = (obj) => {
-        for (var i = 0; i < props.length; i++) {
-            if (!obj.hasOwnProperty(props[i]))
-                return false;
-        }
-        return true;
-    };
+    // exports.hasAllProperties = (obj) => {
+    //     for (var i = 0; i < props.length; i++) {
+    //         if (!obj.hasOwnProperty(props[i]))
+    //             return false;
+    //     }
+    //     return true;
+    // };
 
     const handleChangeEditor = (newData) => {
         if (!jsonData) {
