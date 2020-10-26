@@ -1,14 +1,13 @@
-import React, { useState, Fragment, useRef, useEffect } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import { connect } from "react-redux";
 
 import * as actions from "../../actions/qrcode";
 import * as selectors from "../../reducers";
 
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBInput } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBInput } from "mdbreact";
 import Header from "../Header";
 import NodesPlane from "../NodesPlane";
 import Spinner from '../../components/Spinner';
-import range from '../../modules/range';
 
 import "./styles.css";
 

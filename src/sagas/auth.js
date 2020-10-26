@@ -2,15 +2,10 @@ import {
   call,
   takeEvery,
   put,
-  // race,
-  // all,
-  delay,
-  select,
 } from 'redux-saga/effects';
 
 import * as actions from '../actions/auth';
 import * as types from '../types/auth';
-import axios from 'axios';
 import { bodyParser } from '../modules/parser';
 
 
