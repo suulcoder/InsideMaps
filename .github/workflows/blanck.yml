@@ -19,5 +19,5 @@ jobs:
       - name: Build React App
         run: npm install && npm run build
       - name: Deploy app build to S3 bucket
-        run: aws s3 sync . s3://react-github-actions --acl public-read
+        run: aws s3 sync . s3://insidemaps
         working-directory: react-github-actions-build
