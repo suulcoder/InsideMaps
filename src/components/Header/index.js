@@ -25,7 +25,7 @@ const Header = ({ onSubmit, onReturn, nested, title, color, isLogged, isAuth }) 
               </Fragment>
             ) : (
               <MDBNavbarBrand>
-                <img src={require("../../../public/logo/LOGO.png")} height="50" alt="" />
+                <img src={require("../../public/LOGO.png")} height="50" alt="" />
               </MDBNavbarBrand>
             )}
             <MDBRow class="navbar-nav ml-auto">

@@ -46,7 +46,7 @@
     "react-iframe": "^1.8.0",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "0.9.x",
+    "react-scripts": "1.0.17",
     "react-simple-code-editor": "^0.11.0",
     "react-spinners": "^0.8.3",
     "react-switch": "^5.0.1",
