@@ -10,8 +10,7 @@ import * as actions from '../actions/map';
 import * as types from '../types/map';
 import * as selectors from '../reducers';
 import * as schemas from '../schemas/map';
-import {URL, API_URL} from '../configuration'
-import { bodyParser } from '../modules/parser';
+import {URL, API_URL} from '../configuration';
 
 
 const API_BASE_URL = `${API_URL}/map/`;

@@ -2,9 +2,6 @@ import {
     call,
     takeEvery,
     put,
-    // race,
-    // all,
-    delay,
     select,
   } from 'redux-saga/effects';
 
@@ -45,7 +42,7 @@ import * as schemas from '../schemas/marker';
             ),
             );
           } else {
-            const { non_field_errors } = yield response.json();
+            //const { non_field_errors } = yield response.json();
             //yield put(actions.failFetchingMarkers(non_field_errors[0]));
           }
         }
@@ -92,7 +89,7 @@ import * as schemas from '../schemas/marker';
               ),
             );
           } else {
-            const { non_field_errors } = yield response.json();
+            //const { non_field_errors } = yield response.json();
             //yield put(actions.failFetchingMarkers(non_field_errors[0]));
           }
         }
@@ -128,7 +125,7 @@ function* addMarker(action) {
         );
   
         if (response.status === 201) {
-          const marker = yield response.json();
+          //const marker = yield response.json();
           yield put(
             actions.completeAddingMarker(
               action.payload.id,
@@ -136,7 +133,7 @@ function* addMarker(action) {
             ),
           );
         } else {
-          const { non_field_errors } = yield response.json();
+          //const { non_field_errors } = yield response.json();
           //yield put(actions.failAddingMarker(non_field_errors[0]));
         }
       }

@@ -1,11 +1,10 @@
 import { connect } from "react-redux";
-import React, { useState, useRef, Fragment, useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import Header from "../Header";
-import Spinner from '../Spinner';
 import * as selectors from "../../reducers";
 import * as actions from '../../actions/reports';
 
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBTable,MDBTableBody, MDBTableHead, MDBModalHeader, MDBModalBody, MDBModalFooter, MDBInput, MDBIcon, MDBLink} from "mdbreact";
+import { MDBContainer, MDBTable,MDBTableBody, MDBTableHead,} from "mdbreact";
 
 
 const Reports = ({ errors, isFetching, onLoad, isAuth}) => {

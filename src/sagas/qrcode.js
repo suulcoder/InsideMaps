@@ -2,13 +2,10 @@ import {
 call,
 takeEvery,
 put,
-// race,
-// all,
-delay,
 select,
 } from 'redux-saga/effects';
 
-import { normalize, schema } from 'normalizr';
+import { normalize } from 'normalizr';
 
 import { API_URL } from '../configuration';
 import * as actions from '../actions/qrcode';

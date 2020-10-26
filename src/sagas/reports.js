@@ -2,11 +2,8 @@ import {
     call,
     takeEvery,
     put,
-    delay,
     select,
     } from 'redux-saga/effects';
-    
-    import { normalize } from 'normalizr';
     
     import { API_URL } from '../configuration';
     import * as actions from '../actions/reports';

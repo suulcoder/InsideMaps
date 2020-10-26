@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { connect } from "react-redux";
 
 import Chart from 'chart.js';
-import { Scatter } from 'react-chartjs-2';
 import 'chartjs-plugin-dragdata';
-import {  MDBBtn , MDBLink } from "mdbreact";
+import {  MDBBtn } from "mdbreact";
 
 import * as selectors from "../../reducers";
 import * as actions from '../../actions/qrcode';

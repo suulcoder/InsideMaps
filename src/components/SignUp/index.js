@@ -3,7 +3,7 @@ import { getError, getIsSigning } from "../../reducers";
 import { validateEmail } from "../../modules/validate";
 import Switch from "react-switch";
 import * as actions from "../../actions/auth";
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import Spinner from "../Spinner";
 import "./styles.css";
 

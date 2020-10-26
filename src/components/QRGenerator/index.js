@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import React, { useState, useRef, Fragment, useEffect } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import Header from "../Header";
 import Spinner from '../../components/Spinner';
 
@@ -7,7 +7,7 @@ import * as actions from '../../actions/qrcode';
 import { getQrData, getIsFetchingQr, getSelectedMap } from '../../reducers';
 
 import QRCode from 'qrcode.react';
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBModal, MDBModalHeader, MDBModalBody, MDBModalFooter, MDBInput, MDBIcon, MDBLink} from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBInput, MDBIcon, MDBLink} from "mdbreact";
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-json";
 import "ace-builds/src-noconflict/theme-monokai";

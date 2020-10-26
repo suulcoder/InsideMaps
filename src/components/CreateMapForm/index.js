@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import * as actions from "../../actions/map";
 import * as selectors from "../../reducers";
-import React, { useState, useRef, Fragment } from "react";
+import React, { useState, Fragment } from "react";
 import Header from "../Header";
 import { URL } from "../../configuration";
 
@@ -38,25 +38,20 @@ const MapForm = ({ onCreate, markers, changeMarkers, fetch }) => {
   const [description, changeDescription] = useState("");
   const [level, changeLevel] = useState("");
   const [viewport, changeViewport] = useState(INITIAL_VIEWPORT)
-  const [userLocation, changeUserLocation] = useState({})
   const [markerName, changeMarkerName] = useState("")
-  const [searchResultLayer, changeSearchResultLayer] = useState(null)
-  
-  const mapRef = useRef()
   
   const setUserLocation = () => {
     navigator.geolocation.getCurrentPosition(position => {
-      const currentUserLocation = {
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude
-      };
+      // const currentUserLocation = {
+      //   latitude: position.coords.latitude,
+      //   longitude: position.coords.longitude
+      // };
       const newViewport = {
         ...INITIAL_VIEWPORT,
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
       }
       changeViewport(newViewport)
-      changeUserLocation(currentUserLocation)
     })
   }
 
@@ -66,14 +61,14 @@ const MapForm = ({ onCreate, markers, changeMarkers, fetch }) => {
     toggleIsOpen(false)
   }
 
-  const handleGeocoderViewportChange = viewport => {
-    const geocoderDefaultOverrides = { transitionDuration: 1000 };
+  // const handleGeocoderViewportChange = viewport => {
+  //   const geocoderDefaultOverrides = { transitionDuration: 1000 };
 
-    return changeViewport({
-      ...viewport,
-      ...geocoderDefaultOverrides
-    });
-  };
+  //   return changeViewport({
+  //     ...viewport,
+  //     ...geocoderDefaultOverrides
+  //   });
+  // };
 
   /*
     -- loadPopup related with a marker
