@@ -2,12 +2,14 @@ import { connect } from "react-redux";
 import React, { useState, useRef, Fragment, useEffect } from "react";
 import Header from "../Header";
 import Spinner from '../Spinner';
+import * as selectors from "../../reducers";
+import * as actions from '../../actions/stats';
 
 
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBModal, MDBModalHeader, MDBModalBody, MDBModalFooter, MDBInput, MDBIcon, MDBLink} from "mdbreact";
 import { Bar } from "react-chartjs-2";
 
-const Stats = () => {
+const Stats = ({ data, isFetching, onLoad, isAuth}) => {
     const state = {
         dataBar: {
           labels: [3, 15, 11],
@@ -76,4 +78,15 @@ const Stats = () => {
     )
 }
 
-export default Stats
+export default connect(
+  (state) => ({
+    data: selectors.getStats(state),
+    isFetching: selectors.getIsFetchingStats(state),
+    isAuth: selectors.getRole(state) === 2 ? true : false,
+  }),
+  dispatch =>({
+  onLoad(){
+    dispatch(actions.startFetchingStats());
+  },
+}),
+)(Stats);

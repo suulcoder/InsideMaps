@@ -6,6 +6,7 @@ import marker, * as markerSelectors from './marker'
 import placesFile, * as placesFileSelectors from './places';
 import qrCode, * as qrCodeSelectors from './qrcode';
 import reports, * as reportSelectors from './reports';
+import stats, * as statsSelectors from './stats';
 
 const reducer = combineReducers({
   auth,
@@ -13,7 +14,8 @@ const reducer = combineReducers({
   marker,
   placesFile,
   qrCode,
-  reports
+  reports,
+  stats
 });
 
 export default reducer;
@@ -55,6 +57,9 @@ export const getErrorData = state => reportSelectors.getErrorData(state.reports)
 export const getIsFetchingErrorData = state => reportSelectors.getIsFetchingErrorData(state.reports);
 export const getErrorFetchError = state => reportSelectors.getErrorFetchError(state.reports);
 
+export const getStats = state => statsSelectors.getStats(state.stats);
+export const getIsFetchingStats = state => statsSelectors.getIsFetchingStats(state.stats);
+export const getErrorFetchStats = state => statsSelectors.getErrorFetchStats(state.stats);
 //como se ve nuestro estado
 
 /* 
