@@ -32,7 +32,7 @@ const UpdateForm = ({ isFetching, nodes, mapId, fetchData, order }) => {
           <MDBCardBody className="z-depth-2">
             <MDBRow className="container">
               <MDBCol md="8" className="mb-3">
-                {!isFetching   ? 
+                {isFetching   ? 
                 <NodesPlane level={level} nodes={nodes} order={order} /> :
                 <Spinner />
                 }

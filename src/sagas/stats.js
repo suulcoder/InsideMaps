@@ -33,7 +33,7 @@ import {
         },  
         );
         if (response.status === 200) {
-            const result = yield response.json();
+            const { result } = yield response.json();
             yield console.log("Respuesta ---->" , result)
             yield put(actions.completeFetchingStats(result));   
         }
