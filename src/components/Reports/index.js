@@ -21,10 +21,11 @@ const Reports = ({ errors, isFetching, onLoad, isAuth}) => {
                 {isFetching && (<p>Cargando ... </p>)}
         {errors === null && !isFetching &&(<p >No hay errores reportados aún</p>) }
             </MDBContainer>
-            <MDBTable>
-                <MDBTableHead>
+            <MDBTable hover>
+                <MDBTableHead color="unique-color" textWhite>
                     <tr>
                     <th>User Id</th>
+                    <th>Nombre</th>
                     <th>Fecha</th>
                     <th>Descripción</th>
                     </tr>
@@ -34,6 +35,7 @@ const Reports = ({ errors, isFetching, onLoad, isAuth}) => {
                     errors.map((error) => (
                         <tr>
                         <td>{error.user_id}</td>
+                        <td>{error.name}</td>
                         <td>{error.date}</td>
                         <td>{error.description}</td>    
                         </tr>
