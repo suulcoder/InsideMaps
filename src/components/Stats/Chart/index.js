@@ -6,7 +6,7 @@ import { Bar } from "react-chartjs-2";
 const Chart = ({collection}) => {
     const state = {
         dataBar: {
-          labels: [collection[0]._id, collection[1]._id, collection[2]._id],
+          labels: [collection[0].name, collection[1].name, collection[2].name],
           datasets: [
             {
               label: "No. Visitas",
