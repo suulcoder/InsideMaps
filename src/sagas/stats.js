@@ -9,14 +9,13 @@ import {
     import { normalize } from 'normalizr';
     
     import { API_URL } from '../configuration';
-    import * as actions from '../actions/reports';
+    import * as actions from '../actions/stats';
     import * as selectors from '../reducers';
-    import * as types from '../types/reports';
+    import * as types from '../types/stats';
     
     
-    function* getErrorData(action) {
+    function* getStats(action) {
         try {
-        //console.log("Esto le mando desde el sagas", `${API_URL}map/${action.payload.id}/markers`)
             
         const token = yield select(selectors.getAuthToken);
     
@@ -24,7 +23,7 @@ import {
     
         const response = yield call(
         fetch,  
-        `${API_URL}error-report`,
+        `${API_URL}logbook/stats/most-visited`,
         {
             method: 'GET',
             headers: {
@@ -34,23 +33,23 @@ import {
         },  
         );
         if (response.status === 200) {
-            const result = yield response.json();
+            const { result } = yield response.json();
             yield console.log("Respuesta ---->" , result)
-            yield put(actions.completeFetchingErrorData(result));   
+            yield put(actions.completeFetchingStats(result));   
         }
         else {
-            yield put(actions.failFetchingErrorData("Error server"));
+            yield put(actions.failFetchingStats("Error server"));
         }
     } catch (error) {
-        yield put(actions.failFetchingErrorData("Error in fetch")); 
+        yield put(actions.failFetchingStats("Error in fetch")); 
     }
     }
     
     
-    export function* watchGetErrorData() {
+    export function* watchGetStats() {
     yield takeEvery(
-        types.FETCH_ERROR_DATA_STARTED,
-        getErrorData,
+        types.FETCH_STATS_STARTED,
+        getStats,
     );
     }
     

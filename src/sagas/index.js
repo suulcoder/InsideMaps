@@ -6,6 +6,8 @@ import { watchMarkerAddition, watchMarkerFetch, watchMarkerByMapFetch} from './m
 import { watchUploadFile } from './places';
 import { watchGetNodesData, watchUpdateNodesData } from './qrcode';
 import { watchGetErrorData } from './reports';
+import { watchGetStats } from './stats';
+
 
 function* mainSaga() {
   yield all([
@@ -22,6 +24,7 @@ function* mainSaga() {
     fork(watchGetNodesData),
     fork(watchUpdateNodesData),
     fork(watchGetErrorData),
+    fork(watchGetStats),
   ]);
 }
 
