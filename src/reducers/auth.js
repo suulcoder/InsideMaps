@@ -21,8 +21,9 @@ export const token = (state = null, action) => {
     case types.LOGOUT: {
       return null ;
     }
+    default:
+      return state;
   }
-  return state;
 };
 
 export const login = (state = null, action) => {
@@ -45,8 +46,9 @@ export const login = (state = null, action) => {
     case types.LOGOUT:{
       return null;
     }
+    default:
+      return state;
   }
-  return state
 }
 
 export const signup = (state=null, action) => {
@@ -69,9 +71,9 @@ export const signup = (state=null, action) => {
     case types.LOGOUT:{
       return null;
     }
+    default:
+      return state;
   }
-  return state;
-
 }
 
 
@@ -94,8 +96,9 @@ export const error = (state = null, action) => {
     case types.LOGOUT:{
       return null;
     }
+    default:
+      return state;
   }
-  return state;
 };
 
 export const decoded = (state = null, action) => {

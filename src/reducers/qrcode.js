@@ -79,10 +79,10 @@ export const getIsFetchingQr = state => state.isFetching;
 export const getQrFetchError = state => state.error;
 export const getOrder = state => state.order;
 export const getCoordinatesByLevel = (state, level) => state.order.filter(id => 
-    state.data[id].level == level)
+    state.data[id].level === level)
         .map(filteredId => 
             ({
                 x:state.data[filteredId].coordinates[0],
                 y:state.data[filteredId].coordinates[1],
-                ... state.data[filteredId]
+                ...state.data[filteredId]
             }));

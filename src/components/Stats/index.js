@@ -1,5 +1,4 @@
-import { connect } from "react-redux";
-import React, { useState, useRef, Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 import Header from "../Header";
 import Spinner from '../Spinner';
 import * as selectors from "../../reducers";

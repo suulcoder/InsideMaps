@@ -16,25 +16,18 @@ import {
    MDBCardTitle, MDBCardText
 } from "mdbreact";
 
-import ReactMapGL, { Marker } from 'react-map-gl';
-import * as mapboxConf from '../../config/mapbox';
-import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
-
-
-import { Link, Re } from "react-router-dom";
+import Map from '../Map';
 
 
 const MapCard = ({name, location, level, id, description, isConfirmed, onDelete, onSelectMap, isAuth}) => {
   
   const history = useHistory();
 
-  console.log(location)
-
   const STATIC_VIEWPORT = {
     width: "100%",
     height: "300px",
-    latitude: location.coordinates[1],
-    longitude: location.coordinates[0],
+    lat: location.coordinates[1],
+    long: location.coordinates[0],
     zoom: 16
   }
 
@@ -52,7 +45,11 @@ const MapCard = ({name, location, level, id, description, isConfirmed, onDelete,
     <MDBCol  md="4" style={{ marginTop: "2rem" }}>
       <MDBCard 
       >
-        <ReactMapGL {...STATIC_VIEWPORT}  mapboxApiAccessToken={mapboxConf.TOKEN} />
+        <Map
+          containerElement={<div style={{ height: STATIC_VIEWPORT.height }} />}
+          mapElement={<div style={{ height: STATIC_VIEWPORT.height }} />}
+          STATIC_VIEWPORT={STATIC_VIEWPORT}
+        />
         <MDBCardBody>
             <MDBCardTitle className="map-link" onClick={() => handleSelectMapAndNavidate()}>{name}</MDBCardTitle>
             <hr />

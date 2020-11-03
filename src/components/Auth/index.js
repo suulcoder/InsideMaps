@@ -1,10 +1,9 @@
 import { connect } from 'react-redux';
 import { getAuthToken } from '../../reducers';
-import { logout } from '../../actions/auth';
 import Login from "../Login";
 import SignUp from "../SignUp";
 import Header from '../Header';
-import React, { Fragment } from "react";
+import React from "react";
 import './styles.css';
 import {URL} from '../../configuration'
 

@@ -2,16 +2,12 @@ import {
 call,
 takeEvery,
 put,
-// race,
-// all,
-delay,
 select,
 } from 'redux-saga/effects';
 
 import * as actions from '../actions/places';
 import * as selectors from '../reducers';
 import * as types from '../types/places';
-import axios from 'axios';  
 import { API_URL } from '../configuration';
 
 
@@ -36,7 +32,7 @@ try {
     },  
     );
     if (response.satus >300) {
-        const { message } = yield response.json();
+        //const { message } = yield response.json();
         console.log("Respuesta ---->" , response)
         yield put(actions.failedUploadingFile("Trono grueso"));   
     }

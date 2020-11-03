@@ -5,9 +5,6 @@ import MapBoard from "../MapBoard";
 import React, { Fragment } from "react";
 import "./styles.css";
 import { URL } from "../../configuration";
-import UpdateMapForm from '../UpdateMapForm';
-
-import { MDBBtn, MDBIcon } from "mdbreact";
 
 const Home = () => (
   <Fragment>
