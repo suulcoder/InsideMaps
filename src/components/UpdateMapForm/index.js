@@ -4,7 +4,14 @@ import { connect } from "react-redux";
 import * as actions from "../../actions/qrcode";
 import * as selectors from "../../reducers";
 
-import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBInput } from "mdbreact";
+import { 
+  MDBContainer, 
+  MDBRow, 
+  MDBCol, 
+  MDBCard, 
+  MDBCardBody, 
+  MDBInput,
+  MDBBtn } from "mdbreact";
 import Header from "../Header";
 import NodesPlane from "../NodesPlane";
 import Spinner from '../../components/Spinner';

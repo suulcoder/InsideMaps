@@ -1,19 +1,14 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import Header from "../Header";
-import Spinner from '../Spinner';
 import * as selectors from "../../reducers";
 import * as actions from '../../actions/stats';
 import Chart from "./Chart"
+import { connect } from "react-redux";
 
+import { MDBContainer} from "mdbreact";
 
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBModal, MDBModalHeader, MDBModalBody, MDBModalFooter, MDBInput, MDBIcon, MDBLink} from "mdbreact";
-import { Bar } from "react-chartjs-2";
-
-const Stats = ({ data, isFetching, onLoad, isAuth}) => {
-    useEffect(onLoad, [])
-    console.log(data)
-    
-    
+const Stats = ({ data, isFetching, onLoad}) => {
+    useEffect(onLoad, [])  
     
     return(
         <Fragment>
@@ -32,14 +27,14 @@ const Stats = ({ data, isFetching, onLoad, isAuth}) => {
 }
 
 export default connect(
-  (state) => ({
+  state => ({
     data: selectors.getStats(state),
     isFetching: selectors.getIsFetchingStats(state),
     isAuth: selectors.getRole(state) === 2 ? true : false,
   }),
-  dispatch =>({
-  onLoad(){
-    dispatch(actions.startFetchingStats());
-  },
-}),
+  dispatch => ({
+    onLoad() {
+      dispatch(actions.startFetchingStats());
+    },
+  }),
 )(Stats);
