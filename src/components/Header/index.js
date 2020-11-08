@@ -28,7 +28,7 @@ const Header = ({ onSubmit, onReturn, nested, title, color, isLogged, isAuth }) 
                 <img src={require("../../public/LOGO.png")} height="50" alt="" />
               </MDBNavbarBrand>
             )}
-            <MDBRow class="navbar-nav ml-auto">
+            <MDBRow className="navbar-nav ml-auto">
             {isLogged && isAuth && 
               <Link to={`/reports`}>
                 <MDBBtn color="primary" rounded type="submit">

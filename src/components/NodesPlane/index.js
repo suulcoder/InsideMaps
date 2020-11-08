@@ -86,6 +86,8 @@ const NodesPlane = ({ filteredCoords, level, updateNodes, handleChangeNode}) => 
         
     }, [level]);
 
+    console.log(filteredCoords)
+
     return (
         <div>
             <canvas

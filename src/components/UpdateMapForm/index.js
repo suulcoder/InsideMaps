@@ -20,17 +20,15 @@ import "./styles.css";
 
 
 const UpdateForm = ({ isFetching, nodes, mapId, fetchData, order, updateNodeFields}) => {
+
+  console.log(nodes, order, isFetching)
   
   const [level, changeLevel] = useState(1);
 
   const [isUpdateSelected, changeUpdateSelected] = useState(false);
-
   const [nodeLevel, changeNodeLevel] = useState('');
-
   const [nodeName, changeNodeName] = useState('');
-
   const [nodeType, changeNodeType] = useState('');
-
   const [selectedNode, changeSelectedNode] = useState({});
 
   useEffect(() => 
@@ -72,7 +70,7 @@ const UpdateForm = ({ isFetching, nodes, mapId, fetchData, order, updateNodeFiel
           <MDBCardBody className="z-depth-2">
             <MDBRow className="container">
               <MDBCol md="8" className="mb-3">
-                {isFetching   ? 
+                {!isFetching   ? 
                 <NodesPlane level={level} nodes={nodes} order={order} handleChangeNode={handleChangeNode}/> :
                 <Spinner />
                 }
