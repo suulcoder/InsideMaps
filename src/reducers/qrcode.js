@@ -52,15 +52,10 @@ const isFetching = (state=false, action) => {
         case types.FETCH_QR_DATA_STARTED: {
             return true;
         }
-        
-        case types.FETCH_QR_DATA_COMPLETED: {
-            return false;
-        }
-
+        case types.FETCH_QR_DATA_COMPLETED: 
         case types.FETCH_QR_DATA_FAILED: {
             return false;
         }
-
         default: {
             return state;
         }
