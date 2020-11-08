@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 import React, { useState, Fragment, useEffect } from "react";
 import { connect } from "react-redux";
 
@@ -21,8 +22,6 @@ import "./styles.css";
 
 const UpdateForm = ({ isFetching, nodes, mapId, fetchData, order, updateNodeFields}) => {
 
-  console.log(nodes, order, isFetching)
-  
   const [level, changeLevel] = useState(1);
 
   const [isUpdateSelected, changeUpdateSelected] = useState(false);
@@ -77,14 +76,14 @@ const UpdateForm = ({ isFetching, nodes, mapId, fetchData, order, updateNodeFiel
               </MDBCol>
               <MDBCol>
                 <label>Filter by level</label>
-                <MDBInput type="number" min={1} max={10} placeholder="nivel" value={level} onChange={e => changeLevel(e.target.value)}/>
+                <MDBInput type="number" min={1} max={10} placeholder="nivel" value={level} onChange={e => changeLevel(parseInt(e.target.value))}/>
                 {
                   isUpdateSelected && (
                     <div>
                       <label>Name</label>
                       <MDBInput type="text" min={1} max={10} placeholder="Name" value={nodeName} onChange={e => changeNodeName(e.target.value)}/>
                       <label>Level</label>
-                      <MDBInput type="text" min={1} max={10} placeholder="Level" value={nodeLevel} onChange={e => changeNodeLevel(e.target.value)}/>
+                      <MDBInput type="text" min={1} max={10} placeholder="Level" value={nodeLevel} onChange={e => changeNodeLevel(parseInt(e.target.value))}/>
                       <label>Type</label>
                       <MDBInput type="text" min={1} max={10} placeholder="Node Type" value={nodeType} onChange={e => changeNodeType(e.target.value)}/>
                       <MDBBtn onClick={handleNodeUpdate} >Save</MDBBtn>
