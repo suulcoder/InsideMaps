@@ -60,7 +60,7 @@ const UpdateForm = ({ isFetching, nodes, mapId, fetchData, order, updateNodeFiel
 
   return(
     <Fragment>
-      <Header nested title="Update Map" color="special-color-dark" />
+      <Header nested title="Actualizar mapa" color="special-color-dark" />
       <MDBContainer size="md" >
         <h2 className="h1-responsive text-center font-weight-bold my-5">
           Nodes in Plane

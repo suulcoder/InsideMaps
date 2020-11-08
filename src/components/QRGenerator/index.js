@@ -59,7 +59,7 @@ const QRGenerator = ({ isFetching, qrData, fetchData, mapId}) => {
             <Header nested title="QR Generator" color="special-color-dark" />
             <MDBContainer size="md">
                 <h2 className="h1-responsive text-center font-weight-bold my-5">
-                    QR code generator
+                    Generación de QR's
                 </h2>
                 {!isFetching && qrData ? (
                 <MDBCard className="dark-grey-text">

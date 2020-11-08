@@ -38,7 +38,7 @@ const SignUp = ({ Message, onSubmit, signInStatus }) => {
               </h3>
             </div>
             <MDBInput
-              label="Your username*"
+              label="Usuario*"
               group
               type="text"
               validate
@@ -47,7 +47,7 @@ const SignUp = ({ Message, onSubmit, signInStatus }) => {
               onChange={(e) => changeUser(e.target.value)}
             />
             <MDBInput
-              label="Your email*"
+              label="Correo*"
               group
               type="email"
               validate
@@ -56,7 +56,7 @@ const SignUp = ({ Message, onSubmit, signInStatus }) => {
               onChange={(e) => changeEmail(e.target.value)}
             />
             <MDBInput
-              label="Your first name*"
+              label="Nombre*"
               group
               type="text"
               validate
@@ -65,7 +65,7 @@ const SignUp = ({ Message, onSubmit, signInStatus }) => {
               onChange={(e) => changeName(e.target.value)}
             />
             <MDBInput
-              label="Your lastname*"
+              label="Apellido*"
               group
               type="text"
               validate
@@ -74,7 +74,7 @@ const SignUp = ({ Message, onSubmit, signInStatus }) => {
               onChange={(e) => changeLastname(e.target.value)}
             />
             <MDBInput
-              label="Your password"
+              label="Contraseña"
               group
               type="password"
               validate
@@ -83,7 +83,7 @@ const SignUp = ({ Message, onSubmit, signInStatus }) => {
                   onChange={(e) => changePassword(e.target.value)}
             />
             <MDBInput
-              label="Confirm your password"
+              label="Confirmar contraseña"
               group
               type="password"
               validate
@@ -93,11 +93,11 @@ const SignUp = ({ Message, onSubmit, signInStatus }) => {
             />
             <MDBRow className="d-flex align-items-center mb-4 mt-5">
                 <MDBCol md="5" className="d-flex align-items-start">
-                    <div className="textSmall">AGE: </div>
+                    <div className="textSmall">Edad: </div>
                     <MDBInput
                         type="number"
                         className="inputShort"
-                        placeholder="AGE"
+                        placeholder="Edad"
                         value={age}
                         onChange={(e) => changeAge(e.target.value)}
                     />
@@ -132,7 +132,7 @@ const SignUp = ({ Message, onSubmit, signInStatus }) => {
                         )
                       }
                     >
-                      Sign Up
+                      Registrarme
                     </MDBBtn>
                   </div>
                 )}

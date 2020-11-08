@@ -64,7 +64,7 @@ const MapCard = ({name, location, level, id, description, isConfirmed, onDelete,
             </MDBCardText>
             <div onClick={() => handleSelectMapAndNavidate()} className='map-link black-text d-flex justify-content-end'>
               <h5>
-                View
+                Ver
                 <MDBIcon icon='angle-double-right' className='ml-2' />
               </h5>
             </div>
@@ -76,7 +76,7 @@ const MapCard = ({name, location, level, id, description, isConfirmed, onDelete,
               }
             <div onClick={() => handleCreateQr(id)} className='map-link black-text d-flex justify-content-end'>
               <h5>
-                Generate Qr Codes
+                Generar Código QR
                 <MDBIcon icon='qrcode' className='ml-2' />
               </h5>
               </div>
