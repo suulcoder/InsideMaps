@@ -43,8 +43,8 @@ const Header = ({ onSubmit, onReturn, nested, title, color, isLogged, isAuth }) 
               </Link>}
               {
               isLogged && (
-                <MDBBtn color="primary" onClick={() => onSubmit()}>
-                  Logout
+                <MDBBtn color="danger" onClick={() => onSubmit()}>
+                  Salir
                 </MDBBtn>
               ) 
             }            

@@ -35,7 +35,7 @@ const Login = ({ Message, onSubmit, loginSatus }) => {
                 </h3>
               </div>
               <MDBInput
-                label="Your email"
+                label="Correo"
                 group
                 type="text"
                 validate
@@ -44,7 +44,7 @@ const Login = ({ Message, onSubmit, loginSatus }) => {
                 onChange={e => changeEmail(e.target.value)}
               />
               <MDBInput
-                label="Your password"
+                label="Contraseña"
                 group
                 type="password"
                 validate
@@ -66,7 +66,7 @@ const Login = ({ Message, onSubmit, loginSatus }) => {
                                 onClick={
                                     () => onSubmit(email,password)
                                 }
-                            >Sign In</MDBBtn>
+                            >Entrar</MDBBtn>
                         </div>
                     }
                 </div>
@@ -93,12 +93,12 @@ export default connect(
         if (validateEmail(email)) {
           dispatch(actions.startLogin(email, password));
         } else {
-          dispatch(actions.failLogin("WRITE A VALID EMAIL", 0));
+          dispatch(actions.failLogin("Escribe un email válido", 0));
         }
       } else if (!email) {
-        dispatch(actions.failLogin("EMAIL FIELD MUST NOT BE EMPTY", 0));
+        dispatch(actions.failLogin("El campo de email debe estar lleno", 0));
       } else if (!password) {
-        dispatch(actions.failLogin("PASSWORD FIELD MUST NOT BE EMPTY", 0));
+        dispatch(actions.failLogin("El campo de contraseña no puede estar vacío", 0));
       }
     },
   })
