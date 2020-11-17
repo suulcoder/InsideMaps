@@ -12,7 +12,6 @@ import * as actions from '../actions/qrcode';
 import * as selectors from '../reducers';
 import * as types from '../types/qrcode';
 import * as schemas from '../schemas/qrcode';
-import { toast } from 'react-toastify';
 
 
 function* getNodesData(action) {
