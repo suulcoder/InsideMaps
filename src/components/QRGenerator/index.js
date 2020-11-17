@@ -38,13 +38,14 @@ const QRGenerator = ({ isFetching, qrData, fetchData, mapId}) => {
         document.body.appendChild(downloadLink);
         downloadLink.click();
         document.body.removeChild(downloadLink);
+        toast.success("QR code generated successfully!", {position: toast.POSITION.BOTTOM_RIGHT});
     }
 
     const findQrData = () => {
         const keys = Object.keys(qrData);
         const node = keys.filter(i => qrData[i]["name"] === name);
         if (node.length < 1) {
-            alert(`No hay nodos con el nombre ${name} revisa que hayas ingresado correctamente porfavor`);
+            toast.info(`No ${name} found. Please check again`, {position: toast.POSITION.BOTTOM_RIGHT});
             changeQrValue(''); 
         }
 
@@ -63,7 +64,6 @@ const QRGenerator = ({ isFetching, qrData, fetchData, mapId}) => {
                 <h2 className="h1-responsive text-center font-weight-bold my-5">
                     QR code generator
                 </h2>
-                <button type="button" onClick={() => toast('basic notify')}>Presinomae</button>
                 {!isFetching && qrData ? (
                 <MDBCard className="dark-grey-text">
                     <MDBRow className="container pb-0">

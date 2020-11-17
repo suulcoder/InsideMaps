@@ -5,6 +5,7 @@ put,
 select,
 } from 'redux-saga/effects';
 
+import { toast} from 'react-toastify';
 import { normalize } from 'normalizr';
 import { API_URL } from '../configuration';
 import * as actions from '../actions/qrcode';
@@ -42,9 +43,12 @@ function* getNodesData(action) {
     }
     else {
         yield put(actions.failFetchingQrData("Error server"));
+        yield put(toast.error("Error please try to refresh the page"));
+
     }
 } catch (error) {
-    yield put(actions.failFetchingQrData("Error in fetch")); 
+    yield put(actions.failFetchingQrData("Error in fetch"));
+    yield put(toast.error("Error please try to refresh the page"));
 }
 }
 
