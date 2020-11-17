@@ -10,7 +10,7 @@ class Notification extends Component {
         fade
         icon="bell"
         iconClassName="text-primary"
-        title="Inside Mpas"
+        title="Inside Maps"
         message={this.props.messageText}
         style={{
             width:"500px",

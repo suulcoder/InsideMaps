@@ -77,25 +77,25 @@ const CreatePlace = ({ isUploading, fileError, onUpload, success}) => {
     
     return (
         <Fragment>
-                <Header nested title="Create Place" color="special-color-dark" />
+                <Header nested title="Crear mapa" color="special-color-dark" />
                 <MDBContainer size="md">
                     <h2 className="h1-responsive text-center font-weight-bold my-5">
-                        Create new place
+                        Crear nuevo mapa
                     </h2>
                     <MDBCard className="dark-grey-text">
                         <MDBCardBody className="z-depth-2">
                             <MDBRow className="container">
-                                <MDBCol md="4" className="mb-3">
+                                <MDBCol md="6" className="mb-3">
                                     <label
                                         htmlFor="defaultFormRegisterNameEx"
                                         className="grey-text"
                                     >
-                                        Upload file
+                                        Carga el archivo del mapa en JSON
                                     </label>
                                     <input
                                         name="file"
                                         type="file"
-                                        id="defaultFormRegisterFile"
+                                        id="defaultFormRegisterNameEx"
                                         className="form-control"
                                         placeholder="File"
                                         required
@@ -107,7 +107,7 @@ const CreatePlace = ({ isUploading, fileError, onUpload, success}) => {
                                         color="green"
                                         onClick={uploadFile}
                                     >
-                                        Upload File
+                                        Cargar y visualizar
                                     </MDBBtn>
                                     :
                                     <Spinner />
@@ -118,7 +118,7 @@ const CreatePlace = ({ isUploading, fileError, onUpload, success}) => {
                                     }
                                     <AceEditor
                                         onChange={handleChangeEditor}
-                                        placeholder='Copy json  file here'
+                                        placeholder='Copiar el archivo JSON aqui'
                                         value={jsonData}
                                         mode="json"
                                         theme="monokai"

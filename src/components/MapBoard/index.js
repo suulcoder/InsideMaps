@@ -19,14 +19,19 @@ const MapBoard = ({ maps, isFetching, onLoad, isAuth}) => {
     <div  style={{ padding: "6rem" }} className="text-center">
       <h2 className="h1-responsive font-weight-bold my-5">Mis Mapas</h2>
 
-      {isAuth && 
+      {isAuth && !isFetching &&
       <Link to={`/map/createplace`}>
         <MDBBtn size="lg" gradient="blue" type="submit">
           Crear mapa <MDBIcon className="white-text" icon="plus" /> 
         </MDBBtn>
-      </Link>}
+      </Link>
+      }
 
-      {isFetching && (<p>Cargando ... </p>)}
+      {isFetching && (
+        <div className="spinner-grow text-primary" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
+      )}
         {maps.length === 0 && !isFetching &&(<p >No hay mapas aún, intenta agregar uno nuevo, ¡Comencemos!</p>) }
       
       <MDBRow >

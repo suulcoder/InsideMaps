@@ -33,7 +33,6 @@ try {
     );
     if (response.satus >300) {
         //const { message } = yield response.json();
-        console.log("Respuesta ---->" , response)
         yield put(actions.failedUploadingFile("Trono grueso"));   
     }
     else {

@@ -63,7 +63,7 @@ const UpdateForm = ({ isFetching, nodes, mapId, fetchData, order, updateNodeFiel
       <Header nested title="Actualizar mapa" color="special-color-dark" />
       <MDBContainer size="md" >
         <h2 className="h1-responsive text-center font-weight-bold my-5">
-          Nodes in Plane
+          Plano 2D
         </h2>
         <MDBCard className="dark-grey-text">
           <MDBCardBody className="z-depth-2">
@@ -75,18 +75,18 @@ const UpdateForm = ({ isFetching, nodes, mapId, fetchData, order, updateNodeFiel
                 }
               </MDBCol>
               <MDBCol>
-                <label>Filter by level</label>
+                <label>Filtrar por nivel</label>
                 <MDBInput type="number" min={1} max={10} placeholder="nivel" value={level} onChange={e => changeLevel(parseInt(e.target.value))}/>
                 {
                   isUpdateSelected && (
                     <div>
-                      <label>Name</label>
+                      <label>Nombre del lugar</label>
                       <MDBInput type="text" min={1} max={10} placeholder="Name" value={nodeName} onChange={e => changeNodeName(e.target.value)}/>
-                      <label>Level</label>
+                      <label>Nivel</label>
                       <MDBInput type="text" min={1} max={10} placeholder="Level" value={nodeLevel} onChange={e => changeNodeLevel(parseInt(e.target.value))}/>
-                      <label>Type</label>
+                      <label>Tipo</label>
                       <MDBInput type="text" min={1} max={10} placeholder="Node Type" value={nodeType} onChange={e => changeNodeType(e.target.value)}/>
-                      <MDBBtn onClick={handleNodeUpdate} >Save</MDBBtn>
+                      <MDBBtn onClick={handleNodeUpdate} >Guardar</MDBBtn>
                     </div>
                   )
                 }

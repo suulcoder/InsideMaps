@@ -32,16 +32,10 @@ const Header = ({ onSubmit, onReturn, nested, title, color, isLogged, isAuth }) 
             {isLogged && isAuth && 
               <Link to={`/reports`}>
                 <MDBBtn color="primary" rounded type="submit">
-                  Errores <MDBIcon className="white-text" icon="bug" /> 
+                  Reportes <MDBIcon className="white-text" icon="chart-bar" /> 
                 </MDBBtn>
               </Link>}
-            {isLogged && isAuth && 
-              <Link to={`/stats`}>
-                <MDBBtn color="primary" rounded type="submit">
-                  Estadísticas <MDBIcon className="white-text" icon="chart-bar" /> 
-                </MDBBtn>
-              </Link>}
-              {
+            {
               isLogged && (
                 <MDBBtn color="danger" onClick={() => onSubmit()}>
                   Salir
