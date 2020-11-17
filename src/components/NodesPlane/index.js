@@ -7,6 +7,7 @@ import {  MDBBtn } from "mdbreact";
 
 import * as selectors from "../../reducers";
 import * as actions from '../../actions/qrcode';
+import { values } from 'lodash';
 
 const NodesPlane = ({ filteredCoords, level, updateNodes, handleChangeNode}) => {
 
@@ -14,17 +15,11 @@ const NodesPlane = ({ filteredCoords, level, updateNodes, handleChangeNode}) => 
     const [hasUpdate, changeHasUpdate] = useState(false);
     const [newPositions, updateNewPositions] = useState([]);
 
-    const handleUpdate = () => {
-        const refactoredNewPositions = newPositions.map(node => 
-            ({...node, coordinates:[node.x, node.y, 0]}));
-        changeHasUpdate(false);
-        console.log(refactoredNewPositions);
-        refactoredNewPositions.forEach(n => {
-            updateNodes(n._id, n);
-        })
-            
+    const handleUpdate = (value) => {
+        console.log(value);
+        const refactoredNewPositions = {...value, coordinates:[value.x, value.y, 0]};
+        updateNodes(refactoredNewPositions._id, refactoredNewPositions);
     }
-
 
     useEffect(() => {
 
@@ -57,9 +52,9 @@ const NodesPlane = ({ filteredCoords, level, updateNodes, handleChangeNode}) => 
                     onDrag: function(e, datasetIndex, index, value) {
                         e.target.style.cursor = 'default';
                     },
-                    onDragEnd: function(e, datasetIndex, index, value) {
+                    onDragEnd: async function(e, datasetIndex, index, value) {
                         e.target.style.cursor = 'default'
-                        updateNewPositions(newPositions => [...newPositions, value]);
+                        handleUpdate(value);
                     },
                     tooltips: {
                         callbacks: {
@@ -92,15 +87,6 @@ const NodesPlane = ({ filteredCoords, level, updateNodes, handleChangeNode}) => 
                 id='nodesPlane'
                 ref={chartRef}
             />
-        
-        <div>
-            {
-                hasUpdate ?
-                    <MDBBtn onClick={handleUpdate} >Update Positions</MDBBtn>
-                : 
-                <span></span>
-            }
-        </div>
 
         </div>
     );

@@ -12,7 +12,8 @@ import * as actions from '../actions/qrcode';
 import * as selectors from '../reducers';
 import * as types from '../types/qrcode';
 import * as schemas from '../schemas/qrcode';
-
+import { toast } from 'rea'
+//TODO ADD TOAST NOTIFICATION TO THIS SAGAS (SPECIALLY UPDATE)
 
 
 function* getNodesData(action) {

@@ -11,6 +11,8 @@ import * as types from '../types/maker';
 import { API_URL } from '../configuration';
 import { normalize } from 'normalizr';
 import * as schemas from '../schemas/marker';
+import { toast } from 'react-toastify';
+
   
   const API_BASE_URL =  API_URL;
   
