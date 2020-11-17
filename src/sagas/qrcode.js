@@ -12,8 +12,7 @@ import * as actions from '../actions/qrcode';
 import * as selectors from '../reducers';
 import * as types from '../types/qrcode';
 import * as schemas from '../schemas/qrcode';
-import { toast } from 'rea'
-//TODO ADD TOAST NOTIFICATION TO THIS SAGAS (SPECIALLY UPDATE)
+import { toast } from 'react-toastify';
 
 
 function* getNodesData(action) {
@@ -45,6 +44,7 @@ function* getNodesData(action) {
     else {
         yield put(actions.failFetchingQrData("Error server"));
         yield put(toast.error("Error please try to refresh the page"));
+        
 
     }
 } catch (error) {
@@ -60,8 +60,6 @@ yield takeEvery(
     getNodesData,
 );
 }
-
-
 
 function* updateNodesData(action) {
     try {
@@ -82,12 +80,18 @@ function* updateNodesData(action) {
     );
     if (response.status === 200) {
         yield put(actions.completeUpdatingQrData());   
+        toast.success("Updated successfully!", { position: toast.POSITION.BOTTOM_RIGHT });
+
     }
     else {
         yield put(actions.failUpdatingQrData("Error server"));
+        toast.error("Can't perform action, try again", { position: toast.POSITION.BOTTOM_RIGHT });
+
     }
 } catch (error) {
     yield put(actions.failUpdatingQrData("Error in fetch")); 
+    toast.error("Can't perform action, try again", { position: toast.POSITION.BOTTOM_RIGHT });
+
 }
 }
 
