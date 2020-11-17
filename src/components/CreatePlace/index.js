@@ -6,6 +6,7 @@ import trim from 'lodash/trim';
 import * as actions from '../../actions/places';
 import * as selectors from '../../reducers';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody } from "mdbreact";
+import { toast} from 'react-toastify';
 import Header from "../Header";
 import Notification from '../Notification';
 import Spinner from '../Spinner';
@@ -19,7 +20,6 @@ const CreatePlace = ({ isUploading, fileError, onUpload, success}) => {
 
 
     const [selectedFile, setSelectedFile] = useState(undefined);
-    const [error, changeError] = useState('');
     const [jsonData, changeJsonData] = useState('');
 
     //var props = ["id", "name", "latitude", "longitude", "items"]
@@ -60,11 +60,11 @@ const CreatePlace = ({ isUploading, fileError, onUpload, success}) => {
 
 
         if (selectedFile === undefined) {
-            changeError("Please, select a file");
+            toast.error("Please, select a correct file", {position: toast.POSITION.BOTTOM_RIGHT});
         }
         else {
             if (selectedFile.type !== "application/json") {
-                changeError("Please, select a .json file");
+                toast.error("Please, select a .json fiie", {position: toast.POSITION.BOTTOM_RIGHT});
 
             }
             else {
@@ -102,7 +102,6 @@ const CreatePlace = ({ isUploading, fileError, onUpload, success}) => {
                                         onChange={e => handleChange(e.target.files[0])}
                                         accept=".json"
                                     />
-                                    {error.length > 0 ? <label>{error}</label> : <label></label>}
                                     {!isUploading ? <MDBBtn
                                         color="green"
                                         onClick={uploadFile}
