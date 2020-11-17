@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect } from "react";
-import Header from "../Header";
 import * as selectors from "../../reducers";
 import * as actions from '../../actions/stats';
 import Chart from "./Chart"
@@ -12,7 +11,6 @@ const Stats = ({ data, isFetching, onLoad}) => {
     
     return(
         <Fragment>
-            <Header nested title="Estadísticas" color="special-color-dark" />
             <MDBContainer size="md">
             <h3 className="h3-responsive text-center font-weight-bold my-5">
                     Lugares más visitados

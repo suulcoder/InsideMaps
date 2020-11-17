@@ -82,7 +82,10 @@ export default connect(
     Message:
       getIsLogging(state) !== null
         ? getIsLogging(state)
-          ? "LOADING..."
+          ? 
+          <div className="spinner-grow text-primary" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
           : getError(state)
         : undefined,
     loginSatus: getIsLogging(state),

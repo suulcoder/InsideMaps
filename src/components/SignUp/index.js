@@ -149,7 +149,10 @@ export default connect(
     Message:
       getIsSigning(state) !== null
         ? getIsSigning(state)
-          ? "LOADING..."
+          ? 
+          <div className="spinner-grow text-primary" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
           : getError(state)
         : undefined,
     signInStatus: getIsSigning(state),
