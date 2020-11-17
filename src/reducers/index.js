@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import {reducer as toastrReducer} from 'react-redux-toastr';
 
 import auth, * as authSelectors from './auth';
 import maps, * as mapSelectors from './map';
@@ -15,7 +16,8 @@ const reducer = combineReducers({
   placesFile,
   qrCode,
   reports,
-  stats
+  stats,
+  toastr: toastrReducer,
 });
 
 export default reducer;

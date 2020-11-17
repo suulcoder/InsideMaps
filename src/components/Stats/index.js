@@ -1,4 +1,5 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
+import { connect } from 'react-redux';
 import Header from "../Header";
 import Spinner from '../Spinner';
 import * as selectors from "../../reducers";
@@ -6,7 +7,7 @@ import * as actions from '../../actions/stats';
 import Chart from "./Chart"
 
 
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBModal, MDBModalHeader, MDBModalBody, MDBModalFooter, MDBInput, MDBIcon, MDBLink} from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBModal, MDBModalHeader, MDBModalBody, MDBModalFooter, MDBInput, MDBIcon, MDBLink } from "mdbreact";
 import { Bar } from "react-chartjs-2";
 
 const Stats = ({ data, isFetching, onLoad, isAuth}) => {
