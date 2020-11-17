@@ -12,13 +12,16 @@ import CreatePlace from './components/CreatePlace';
 import QRGenerator from './components/QRGenerator';
 import Stats from './components/Stats';
 import Reports from './components/Reports';
+import { ToastContainer,toast} from 'react-toastify';
 
+import 'react-toastify/dist/ReactToastify.css';
 import '@fortawesome/fontawesome-free/css/all.min.css'; 
 import 'bootstrap-css-only/css/bootstrap.min.css'; 
 import 'mdbreact/dist/css/mdb.css';
 
 const { store, persistor } = configureStore();
 
+toast.configure();
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
@@ -33,6 +36,7 @@ ReactDOM.render(
             <Route exact path="/stats" component={Stats}/>
             <Route exact path="/reports" component={Reports}/>
             <Route render={() => <Redirect to="/" />} />
+            <ToastContainer />
           </Switch>
         </BrowserRouter>
     </PersistGate>

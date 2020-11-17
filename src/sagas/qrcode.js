@@ -6,7 +6,6 @@ select,
 } from 'redux-saga/effects';
 
 import { normalize } from 'normalizr';
-
 import { API_URL } from '../configuration';
 import * as actions from '../actions/qrcode';
 import * as selectors from '../reducers';
@@ -39,7 +38,7 @@ function* getNodesData(action) {
             entities: { nodes },
             result,
         } = normalize(jsonResult.result, schemas.nodes);
-        yield put(actions.completeFetchingQrData(nodes, result));   
+        yield put(actions.completeFetchingQrData(nodes, result));
     }
     else {
         yield put(actions.failFetchingQrData("Error server"));

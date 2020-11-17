@@ -2,6 +2,8 @@ import { connect } from "react-redux";
 import React, { useState, Fragment, useEffect } from "react";
 import Header from "../Header";
 import Spinner from '../../components/Spinner';
+import { toast} from 'react-toastify';
+
 
 import * as actions from '../../actions/qrcode';
 import { getQrData, getIsFetchingQr, getSelectedMap } from '../../reducers';
@@ -14,7 +16,6 @@ import "ace-builds/src-noconflict/theme-monokai";
 
 
 const QRGenerator = ({ isFetching, qrData, fetchData, mapId}) => {
-
     useEffect(() => (
         fetchData(mapId)
     ), [])
@@ -25,6 +26,7 @@ const QRGenerator = ({ isFetching, qrData, fetchData, mapId}) => {
         changeQrValue(newData);
     }
 
+    
     const handleDownload = () => {
         const canvas = document.getElementById("QRCodeGenCanva");
         const pngUrl = canvas
@@ -61,6 +63,7 @@ const QRGenerator = ({ isFetching, qrData, fetchData, mapId}) => {
                 <h2 className="h1-responsive text-center font-weight-bold my-5">
                     QR code generator
                 </h2>
+                <button type="button" onClick={() => toast('basic notify')}>Presinomae</button>
                 {!isFetching && qrData ? (
                 <MDBCard className="dark-grey-text">
                     <MDBRow className="container pb-0">
