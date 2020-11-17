@@ -34,6 +34,7 @@ function* createMap(action) {
 			}
 		);
 		if (response.status >= 200 && response.status <= 300) {
+			console.log("CREATED MAP!");
 			const { result } = yield response.json();
 			const map = result;
 			yield put(actions.completeCreatingMap(oldId, map));

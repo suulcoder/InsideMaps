@@ -9,6 +9,7 @@ import * as actions from '../actions/places';
 import * as selectors from '../reducers';
 import * as types from '../types/places';
 import { API_URL } from '../configuration';
+import { toast } from 'react-toastify';
 
 
 const API_BASE_URL = `${API_URL}map`;
@@ -32,15 +33,17 @@ try {
     },  
     );
     if (response.satus >300) {
-        //const { message } = yield response.json();
-        console.log("Respuesta ---->" , response)
-        yield put(actions.failedUploadingFile("Trono grueso"));   
+        yield put(actions.failedUploadingFile("Error en la respuesta"));   
+        toast.error("Error while creating map, try again", { position: toast.POSITION.BOTTOM_RIGHT });
     }
     else {
         yield put(actions.completeUploadingFile());
+        toast.success("New map created successfully!", { position: toast.POSITION.BOTTOM_RIGHT });
     }
 } catch (error) {
     yield put(actions.failedUploadingFile(error)); 
+    toast.error("Error while creating map, try again", { position: toast.POSITION.BOTTOM_RIGHT });
+
 }
 }
 

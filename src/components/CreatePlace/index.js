@@ -17,20 +17,8 @@ import './styles.css'
 
 const CreatePlace = ({ isUploading, fileError, onUpload, success}) => {
 
-
-
     const [selectedFile, setSelectedFile] = useState(undefined);
     const [jsonData, changeJsonData] = useState('');
-
-    //var props = ["id", "name", "latitude", "longitude", "items"]
-
-    // exports.hasAllProperties = (obj) => {
-    //     for (var i = 0; i < props.length; i++) {
-    //         if (!obj.hasOwnProperty(props[i]))
-    //             return false;
-    //     }
-    //     return true;
-    // };
 
     const handleChangeEditor = (newData) => {
         if (!jsonData) {
@@ -110,10 +98,6 @@ const CreatePlace = ({ isUploading, fileError, onUpload, success}) => {
                                     </MDBBtn>
                                     :
                                     <Spinner />
-                                    }
-                                    {
-                                    success &&
-                                    <Notification messageText={success} />
                                     }
                                     <AceEditor
                                         onChange={handleChangeEditor}
