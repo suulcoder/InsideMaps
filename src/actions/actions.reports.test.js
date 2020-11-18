@@ -11,7 +11,7 @@ describe('reports Actions', () => {
       });
       it('should fail fetching error data', () => {
         const expectedAction = {
-          type: types.FETCH_MAP_FAILED,
+          type: types.FETCH_ERROR_DATA_FAILED,
           payload: {
             error: 1,
           }
@@ -20,7 +20,7 @@ describe('reports Actions', () => {
       });
       it('should complete fetching error data', () => {
         const expectedAction = {
-          type: types.FETCH_MAP_FAILED,
+          type: types.FETCH_ERROR_DATA_COMPLETED,
           payload: {
             data: "ERROR",
           }
