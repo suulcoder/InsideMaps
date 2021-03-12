@@ -27,7 +27,7 @@
     "draft-js-code-editor-plugin": "^0.2.1",
     "html2canvas": "^1.0.0-rc.5",
     "jest-cli": "^26.4.0",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.15",
     "mdbreact": "^4.26.1",
